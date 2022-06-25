@@ -100,7 +100,7 @@
             // 
             // tollStationDeleteBtn
             // 
-            this.tollStationDeleteBtn.Location = new System.Drawing.Point(578, 332);
+            this.tollStationDeleteBtn.Location = new System.Drawing.Point(647, 333);
             this.tollStationDeleteBtn.Name = "tollStationDeleteBtn";
             this.tollStationDeleteBtn.Size = new System.Drawing.Size(119, 39);
             this.tollStationDeleteBtn.TabIndex = 3;
@@ -109,7 +109,7 @@
             // 
             // tollStationUpdateBtn
             // 
-            this.tollStationUpdateBtn.Location = new System.Drawing.Point(366, 332);
+            this.tollStationUpdateBtn.Location = new System.Drawing.Point(436, 333);
             this.tollStationUpdateBtn.Name = "tollStationUpdateBtn";
             this.tollStationUpdateBtn.Size = new System.Drawing.Size(106, 39);
             this.tollStationUpdateBtn.TabIndex = 2;
@@ -118,7 +118,7 @@
             // 
             // tollStationCreateBtn
             // 
-            this.tollStationCreateBtn.Location = new System.Drawing.Point(130, 331);
+            this.tollStationCreateBtn.Location = new System.Drawing.Point(199, 331);
             this.tollStationCreateBtn.Name = "tollStationCreateBtn";
             this.tollStationCreateBtn.Size = new System.Drawing.Size(103, 41);
             this.tollStationCreateBtn.TabIndex = 1;
@@ -127,13 +127,17 @@
             // 
             // tollStationGridView
             // 
+            this.tollStationGridView.AllowUserToAddRows = false;
+            this.tollStationGridView.AllowUserToDeleteRows = false;
+            this.tollStationGridView.AllowUserToResizeColumns = false;
+            this.tollStationGridView.AllowUserToResizeRows = false;
             this.tollStationGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tollStationGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tollstationId,
             this.tollstationCity,
             this.tollstationZipCode,
             this.tollBooths});
-            this.tollStationGridView.Location = new System.Drawing.Point(130, 23);
+            this.tollStationGridView.Location = new System.Drawing.Point(199, 33);
             this.tollStationGridView.Name = "tollStationGridView";
             this.tollStationGridView.RowTemplate.Height = 25;
             this.tollStationGridView.Size = new System.Drawing.Size(567, 282);
@@ -181,10 +185,11 @@
             this.panel2.Controls.Add(this.userUpdateBtn);
             this.panel2.Controls.Add(this.userCreateBtn);
             this.panel2.Controls.Add(this.userDataGridView);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Location = new System.Drawing.Point(3, 27);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(981, 484);
             this.panel2.TabIndex = 4;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // userDeleteBtn
             // 
@@ -194,6 +199,7 @@
             this.userDeleteBtn.TabIndex = 3;
             this.userDeleteBtn.Text = "Delete";
             this.userDeleteBtn.UseVisualStyleBackColor = true;
+            this.userDeleteBtn.Click += new System.EventHandler(this.userDeleteBtn_Click);
             // 
             // userUpdateBtn
             // 
@@ -203,6 +209,7 @@
             this.userUpdateBtn.TabIndex = 2;
             this.userUpdateBtn.Text = "Update";
             this.userUpdateBtn.UseVisualStyleBackColor = true;
+            this.userUpdateBtn.Click += new System.EventHandler(this.userUpdateBtn_Click);
             // 
             // userCreateBtn
             // 
@@ -212,9 +219,14 @@
             this.userCreateBtn.TabIndex = 1;
             this.userCreateBtn.Text = "Create";
             this.userCreateBtn.UseVisualStyleBackColor = true;
+            this.userCreateBtn.Click += new System.EventHandler(this.userCreateBtn_Click);
             // 
             // userDataGridView
             // 
+            this.userDataGridView.AllowUserToAddRows = false;
+            this.userDataGridView.AllowUserToDeleteRows = false;
+            this.userDataGridView.AllowUserToResizeColumns = false;
+            this.userDataGridView.AllowUserToResizeRows = false;
             this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -313,8 +325,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 511);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdministratorForm";
             this.Text = "AdministratorForm";

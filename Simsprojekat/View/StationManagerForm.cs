@@ -68,5 +68,10 @@ namespace Simsprojekat.View
 
 
         }
+
+        private void listOfTollBoothsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

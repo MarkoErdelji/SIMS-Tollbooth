@@ -122,6 +122,7 @@
             this.listOfTollBoothsGridView.RowTemplate.Height = 25;
             this.listOfTollBoothsGridView.Size = new System.Drawing.Size(346, 201);
             this.listOfTollBoothsGridView.TabIndex = 1;
+            this.listOfTollBoothsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listOfTollBoothsGridView_CellContentClick);
             // 
             // ID
             // 
@@ -155,7 +156,6 @@
             this.Controls.Add(this.ListTollBoothPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
- 
             this.Text = "StationManager";
             this.Load += new System.EventHandler(this.StationManagerForm_Load);
             this.menuStrip1.ResumeLayout(false);
