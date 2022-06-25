@@ -67,6 +67,17 @@ public class UserController
 
     }
 
+    public bool DeleteUser(User user)
+    {
+        var users = _database.GetCollection<User>("Users");
+
+        users.DeleteOne(u => u.Id == user.Id);
+
+
+        return true;
+
+    }
+
 
 
 
