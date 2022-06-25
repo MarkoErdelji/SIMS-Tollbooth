@@ -28,11 +28,21 @@ public class UserController
 
     public Worker GetWorker(int id)
     {
-        var workers = _database.GetCollection<Worker>("Users");
+        var users = _database.GetCollection<Worker>("Users");
 
-        Worker worker = workers.Find(u => u.Type == UserType.Worker && u.Id == id).FirstOrDefault();
+        Worker worker = users.Find(u => u.Type == UserType.Worker && u.Id == id).FirstOrDefault();
 
         return worker;
+
+    }
+
+    public TollBooth GetTollbooth(int id)
+    {
+        var users = _database.GetCollection<TollBooth>("TollBooths");
+
+        TollBooth tollbooth = users.Find(tb => tb.Id == id).FirstOrDefault();
+
+        return tollbooth;
 
     }
 

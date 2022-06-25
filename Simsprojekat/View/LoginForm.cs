@@ -45,7 +45,7 @@ namespace Simsprojekat.View
                 if (user.Type == UserType.Worker)
                 {
                     Worker worker = _userController.GetWorker(user.Id);
-                    WorkerForm workerForm = new WorkerForm();
+                    WorkerForm workerForm = new WorkerForm(worker,this);
                     workerForm.Show();
                 }
             }

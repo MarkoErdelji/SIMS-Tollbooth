@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // Administrator
+            // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 601);
-            this.Name = "Administrator";
+            this.Name = "AdministratorForm";
             this.Text = "Administrator";
             this.ResumeLayout(false);
 

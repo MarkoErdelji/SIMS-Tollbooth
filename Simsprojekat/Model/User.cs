@@ -21,8 +21,18 @@ namespace Simsprojekat.Model
     [BsonIgnoreExtraElements]
     public class User
     {
-        public const string Worker = "Worker";
-        public const string StationManager = "StationManager";
+        public User(string? _id, int id, string firstName, string lastName, string username, string password, string email, UserType type, Address adress)
+        {
+            _Id = _id;
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Username = username;
+            Password = password;
+            Email = email;
+            Type = type;
+            Adress = adress;
+        }
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -49,7 +59,7 @@ namespace Simsprojekat.Model
         [BsonElement("type")]
         public UserType Type { get; set; }
 
-        [BsonElement("Adress")]
+        [BsonElement("adress")]
         public Address Adress { get; set; }
 
 
