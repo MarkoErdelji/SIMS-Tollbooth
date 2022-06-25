@@ -15,7 +15,7 @@ namespace Simsprojekat.Model
         [BsonElement("zipCode")]
         public string ZipCode { get; set; }
 
-        [BsonElement("Name")]
+        [BsonElement("name")]
         public string Name { get; set; }
     }
 }

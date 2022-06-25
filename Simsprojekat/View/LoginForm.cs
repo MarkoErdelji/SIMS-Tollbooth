@@ -39,7 +39,7 @@ namespace Simsprojekat.View
                 }
                 if (user.Type == UserType.StationManager)
                 {
-                    StationManagerForm stationManagerForm = new StationManagerForm();
+                    StationManagerForm stationManagerForm = new StationManagerForm(_userController.GetStationManagers(user.Id));
                     stationManagerForm.Show();
                 }
                 if (user.Type == UserType.Worker)
@@ -53,6 +53,11 @@ namespace Simsprojekat.View
             {
                 wrongLoginLabel.Visible = true;
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

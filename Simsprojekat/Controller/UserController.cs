@@ -36,6 +36,15 @@ public class UserController
 
     }
 
+    public StationManager GetStationManagers(int id)
+    {
+        var users = _database.GetCollection<StationManager>("Users");
+
+        StationManager stationManager = users.Find(u => u.Type == UserType.StationManager && u.Id == id).FirstOrDefault();
+
+        return stationManager;
+
+    }
     public TollBooth GetTollbooth(int id)
     {
         var users = _database.GetCollection<TollBooth>("TollBooths");

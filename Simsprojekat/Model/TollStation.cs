@@ -22,6 +22,6 @@ namespace Simsprojekat.Model
         public City location { get; set; }
 
         [BsonElement("tollBooths")]
-        public List<TollBooth> tollBooths { get; set; }
+        public List<int> tollBoothsId { get; set; }
     }
 }

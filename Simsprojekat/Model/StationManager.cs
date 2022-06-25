@@ -16,6 +16,6 @@ namespace Simsprojekat.Model
         }
 
         [BsonElement("tollStationId")]
-        public int? TollStationId { get; set; }
+        public int TollStationId { get; set; }
     }
 }
