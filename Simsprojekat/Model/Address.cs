@@ -21,5 +21,11 @@ namespace Simsprojekat.Model
         [BsonElement("city")]
         public City City { get; set; }
 
+        override
+        public string? ToString()
+        {
+            return (StreetName + ',' + StreetNumber);
+        }
+
     }
 }

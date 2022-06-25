@@ -18,4 +18,5 @@ namespace Simsprojekat.Model
         [BsonElement("tollBoothId")]
         public int TollBoothId { get; set; }
     }
+   
 }

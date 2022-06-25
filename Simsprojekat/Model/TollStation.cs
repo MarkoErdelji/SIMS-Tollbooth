@@ -22,6 +22,10 @@ namespace Simsprojekat.Model
         public City location { get; set; }
 
         [BsonElement("tollBooths")]
+<<<<<<< Updated upstream
         public List<int> tollBoothsId { get; set; }
+=======
+        public List<int> tollBoothIds { get; set; }
+>>>>>>> Stashed changes
     }
 }

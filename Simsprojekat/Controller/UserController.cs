@@ -17,6 +17,12 @@ public class UserController
         _database = client.GetDatabase("TollBooth");
     }
 
+    public List<User> GetAllUsers()
+    {
+        var users = _database.GetCollection<User>("Users");
+
+        return users.Find(u => true).ToList();
+    }
     public User Login(String username,String password)
     {
         var users = _database.GetCollection<User>("Users");
