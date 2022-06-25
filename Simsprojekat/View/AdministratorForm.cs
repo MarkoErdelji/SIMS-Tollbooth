@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View
 {
-    public partial class Login : Form
+    public partial class AdministratorForm : Form
     {
-        public Login()
+        public AdministratorForm()
         {
             InitializeComponent();
-        }
-
-        private void loginBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

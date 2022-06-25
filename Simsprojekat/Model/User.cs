@@ -21,6 +21,9 @@ namespace Simsprojekat.Model
     [BsonIgnoreExtraElements]
     public class User
     {
+        public const string Worker = "Worker";
+        public const string StationManager = "StationManager";
+
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? _Id { get; set; }
@@ -47,7 +50,7 @@ namespace Simsprojekat.Model
         public UserType Type { get; set; }
 
         [BsonElement("Adress")]
-        public Adress Adress { get; set; }
+        public Address Adress { get; set; }
 
 
     }

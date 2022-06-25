@@ -10,7 +10,7 @@ namespace Simsprojekat.Model
 {
 
     [BsonIgnoreExtraElements]
-    public class Adress
+    public class Address
     {
         [BsonElement("streetName")]
         public string StreetName { get; set; }
