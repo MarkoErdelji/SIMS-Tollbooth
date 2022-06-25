@@ -21,5 +21,10 @@ namespace Simsprojekat.View
         {
 
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

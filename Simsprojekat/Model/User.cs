@@ -32,23 +32,22 @@ namespace Simsprojekat.Model
         public string FirstName { get; set; }
 
         [BsonElement("lastName")]
-        [EmailAddress]
         public string LastName { get; set; }
 
         [BsonElement("username")]
-        [EmailAddress]
         public string Username { get; set; }
 
         [BsonElement("password")]
         public string Password { get; set; }
 
         [BsonElement("email")]
-        [EmailAddress]
         public string Email { get; set; }
 
         [BsonElement("type")]
-        [EmailAddress]
         public UserType Type { get; set; }
+
+        [BsonElement("Adress")]
+        public Adress Adress { get; set; }
 
 
     }
