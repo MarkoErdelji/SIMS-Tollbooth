@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Simsprojekat.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View.AdministratorView
 {
-    public partial class StationManagerCreationForm : Form
+    public partial class StationManagerForm : UserCreationForm
     {
-        public StationManagerCreationForm()
+        public StationManagerForm(UserType.Stationmanager)
         {
             InitializeComponent();
         }
