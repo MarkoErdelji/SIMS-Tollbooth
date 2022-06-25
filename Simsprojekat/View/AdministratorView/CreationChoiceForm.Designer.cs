@@ -52,6 +52,7 @@
             this.adminCreateBtn.TabIndex = 8;
             this.adminCreateBtn.Text = "Administrator";
             this.adminCreateBtn.UseVisualStyleBackColor = true;
+            this.adminCreateBtn.Click += new System.EventHandler(this.adminCreateBtn_Click);
             // 
             // headManagerCreateBtn
             // 
@@ -61,6 +62,7 @@
             this.headManagerCreateBtn.TabIndex = 7;
             this.headManagerCreateBtn.Text = "Head Manager";
             this.headManagerCreateBtn.UseVisualStyleBackColor = true;
+            this.headManagerCreateBtn.Click += new System.EventHandler(this.headManagerCreateBtn_Click);
             // 
             // stationManagerCreateBtn
             // 
@@ -70,6 +72,7 @@
             this.stationManagerCreateBtn.TabIndex = 6;
             this.stationManagerCreateBtn.Text = "Station Manager";
             this.stationManagerCreateBtn.UseVisualStyleBackColor = true;
+            this.stationManagerCreateBtn.Click += new System.EventHandler(this.stationManagerCreateBtn_Click);
             // 
             // workerCreateBtn
             // 
@@ -79,6 +82,7 @@
             this.workerCreateBtn.TabIndex = 5;
             this.workerCreateBtn.Text = "Worker";
             this.workerCreateBtn.UseVisualStyleBackColor = true;
+            this.workerCreateBtn.Click += new System.EventHandler(this.workerCreateBtn_Click);
             // 
             // CreationChoiceForm
             // 

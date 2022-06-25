@@ -1,4 +1,5 @@
-﻿using Simsprojekat.Model;
+﻿using Simsprojekat.Controller;
+using Simsprojekat.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +21,7 @@ namespace Simsprojekat.View
             _loginForm = loginform;
             InitializeComponent();
             welcomeLabel.Text += " " + worker.FirstName + " " + worker.LastName;
-            TollBooth tb = new UserController().GetTollbooth(worker.TollBoothId);
+            TollBooth tb = new TollBoothController().GetById(worker.TollBoothId);
             tollBoothLabel.Text += tb.TollBoothNumber;
         }
 

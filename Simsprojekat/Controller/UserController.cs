@@ -51,15 +51,24 @@ public class UserController
         return stationManager;
 
     }
-    public TollBooth GetTollbooth(int id)
+
+
+    public bool CreateUser(User user)
     {
-        var users = _database.GetCollection<TollBooth>("TollBooths");
+        var users = _database.GetCollection<User>("Users");
 
-        TollBooth tollbooth = users.Find(tb => tb.Id == id).FirstOrDefault();
+        var id = users.Find(e => true).SortByDescending(e => e.Id).FirstOrDefaultAsync().Id;
+        user.Id = id + 1;
 
-        return tollbooth;
+        users.InsertOne(user);
+
+
+        return true;
 
     }
+
+
+
 
 
 }
