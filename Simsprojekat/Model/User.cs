@@ -21,9 +21,8 @@ namespace Simsprojekat.Model
     [BsonIgnoreExtraElements]
     public class User
     {
-        public User(string? _id, int id, string firstName, string lastName, string username, string password, string email, UserType type, Address adress)
+        public User(int id, string firstName, string lastName, string username, string password, string email, UserType type, Address adress)
         {
-            _Id = _id;
             Id = id;
             FirstName = firstName;
             LastName = lastName;

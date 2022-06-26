@@ -10,7 +10,7 @@ namespace Simsprojekat.Model
 {
     public class Worker : User
     {
-        public Worker(string? _id, int id, string firstName, string lastName, string username, string password, string email, UserType type, Address adress,int tollBoothId) : base(_id,id,firstName,lastName,username,password,email,type,adress)
+        public Worker(int id, string firstName, string lastName, string username, string password, string email, UserType type, Address adress,int tollBoothId) : base(id,firstName,lastName,username,password,email,type,adress)
         {
             TollBoothId = tollBoothId;
         }

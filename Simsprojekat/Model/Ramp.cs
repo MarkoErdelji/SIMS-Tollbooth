@@ -8,5 +8,10 @@ namespace Simsprojekat.Model
 {
     public class Ramp : Device
     {
+        public Ramp()
+        {
+            this.Name = "Ramp";
+            this.Faulty = false;
+        }
     }
 }

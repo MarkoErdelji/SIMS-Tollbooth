@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.View.StationManagerView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,12 +36,12 @@ namespace Simsprojekat.View
             this.listOfTollBoothsGridView.Rows.Clear();
             foreach (TollBooth tollBooth in tollBooths)
             {
-                
 
-                DataGridViewRow row = (DataGridViewRow)listOfTollBoothsGridView.Rows[0].Clone();
-                row.Cells[0].Value = tollBooth.Id.ToString();
-                row.Cells[1].Value = tollBooth.TollBoothNumber;
-                listOfTollBoothsGridView.Rows.Add(row);
+
+                var index = listOfTollBoothsGridView.Rows.Add();
+                listOfTollBoothsGridView.Rows[index].Cells[0].Value = tollBooth.Id.ToString();
+                listOfTollBoothsGridView.Rows[index].Cells[1].Value = tollBooth.TollBoothNumber;
+               
             }
 
         }
@@ -67,6 +68,18 @@ namespace Simsprojekat.View
             
 
 
+        }
+
+        private void listOfTollBoothsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == listOfTollBoothsGridView.Columns["devices"].Index && e.RowIndex >= 0)
+            {
+                Console.WriteLine("Button on row {0} clicked", e.RowIndex);
+                int id = int.Parse((string)listOfTollBoothsGridView.Rows[e.RowIndex].Cells[0].Value);
+                TollBooth tb = tollBoothController.GetById(id);
+                DevicesForm devicesForm = new DevicesForm(tollBoothController, tb);
+                devicesForm.Show();
+            }
         }
     }
 }

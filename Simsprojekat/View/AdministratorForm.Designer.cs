@@ -32,14 +32,11 @@
             this.tolLStationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.logoutButton = new System.Windows.Forms.Button();
             this.tollStationDeleteBtn = new System.Windows.Forms.Button();
             this.tollStationUpdateBtn = new System.Windows.Forms.Button();
             this.tollStationCreateBtn = new System.Windows.Forms.Button();
             this.tollStationGridView = new System.Windows.Forms.DataGridView();
-            this.tollstationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollstationCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollstationZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollBooths = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.userDeleteBtn = new System.Windows.Forms.Button();
             this.userUpdateBtn = new System.Windows.Forms.Button();
@@ -54,6 +51,11 @@
             this.userType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollstationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollstationCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollstationZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollBooths = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tollStationSections = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tollStationGridView)).BeginInit();
@@ -89,6 +91,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.logoutButton);
             this.panel1.Controls.Add(this.tollStationDeleteBtn);
             this.panel1.Controls.Add(this.tollStationUpdateBtn);
             this.panel1.Controls.Add(this.tollStationCreateBtn);
@@ -97,83 +100,67 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(989, 487);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // logoutButton
+            // 
+            this.logoutButton.Location = new System.Drawing.Point(851, 18);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(124, 32);
+            this.logoutButton.TabIndex = 12;
+            this.logoutButton.Text = "Logout";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
             // tollStationDeleteBtn
             // 
-            this.tollStationDeleteBtn.Location = new System.Drawing.Point(578, 332);
+            this.tollStationDeleteBtn.Location = new System.Drawing.Point(647, 333);
             this.tollStationDeleteBtn.Name = "tollStationDeleteBtn";
             this.tollStationDeleteBtn.Size = new System.Drawing.Size(119, 39);
             this.tollStationDeleteBtn.TabIndex = 3;
             this.tollStationDeleteBtn.Text = "Delete";
             this.tollStationDeleteBtn.UseVisualStyleBackColor = true;
+            this.tollStationDeleteBtn.Click += new System.EventHandler(this.tollStationDeleteBtn_Click);
             // 
             // tollStationUpdateBtn
             // 
-            this.tollStationUpdateBtn.Location = new System.Drawing.Point(366, 332);
+            this.tollStationUpdateBtn.Location = new System.Drawing.Point(436, 333);
             this.tollStationUpdateBtn.Name = "tollStationUpdateBtn";
             this.tollStationUpdateBtn.Size = new System.Drawing.Size(106, 39);
             this.tollStationUpdateBtn.TabIndex = 2;
             this.tollStationUpdateBtn.Text = "Update";
             this.tollStationUpdateBtn.UseVisualStyleBackColor = true;
+            this.tollStationUpdateBtn.Click += new System.EventHandler(this.tollStationUpdateBtn_Click);
             // 
             // tollStationCreateBtn
             // 
-            this.tollStationCreateBtn.Location = new System.Drawing.Point(130, 331);
+            this.tollStationCreateBtn.Location = new System.Drawing.Point(199, 331);
             this.tollStationCreateBtn.Name = "tollStationCreateBtn";
             this.tollStationCreateBtn.Size = new System.Drawing.Size(103, 41);
             this.tollStationCreateBtn.TabIndex = 1;
             this.tollStationCreateBtn.Text = "Create";
             this.tollStationCreateBtn.UseVisualStyleBackColor = true;
+            this.tollStationCreateBtn.Click += new System.EventHandler(this.tollStationCreateBtn_Click);
             // 
             // tollStationGridView
             // 
+            this.tollStationGridView.AllowUserToAddRows = false;
+            this.tollStationGridView.AllowUserToDeleteRows = false;
+            this.tollStationGridView.AllowUserToResizeColumns = false;
+            this.tollStationGridView.AllowUserToResizeRows = false;
             this.tollStationGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tollStationGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tollstationId,
             this.tollstationCity,
             this.tollstationZipCode,
-            this.tollBooths});
-            this.tollStationGridView.Location = new System.Drawing.Point(130, 23);
+            this.tollBooths,
+            this.tollStationSections});
+            this.tollStationGridView.Location = new System.Drawing.Point(199, 33);
             this.tollStationGridView.Name = "tollStationGridView";
             this.tollStationGridView.RowTemplate.Height = 25;
             this.tollStationGridView.Size = new System.Drawing.Size(567, 282);
             this.tollStationGridView.TabIndex = 0;
             this.tollStationGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tollStationGridView_CellContentClick);
-            // 
-            // tollstationId
-            // 
-            this.tollstationId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tollstationId.HeaderText = "Id";
-            this.tollstationId.Name = "tollstationId";
-            this.tollstationId.ReadOnly = true;
-            this.tollstationId.Width = 50;
-            // 
-            // tollstationCity
-            // 
-            this.tollstationCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tollstationCity.FillWeight = 78.57143F;
-            this.tollstationCity.HeaderText = "City";
-            this.tollstationCity.Name = "tollstationCity";
-            this.tollstationCity.ReadOnly = true;
-            // 
-            // tollstationZipCode
-            // 
-            this.tollstationZipCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tollstationZipCode.FillWeight = 78.57143F;
-            this.tollstationZipCode.HeaderText = "Zip Code";
-            this.tollstationZipCode.Name = "tollstationZipCode";
-            this.tollstationZipCode.ReadOnly = true;
-            // 
-            // tollBooths
-            // 
-            this.tollBooths.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tollBooths.FillWeight = 1F;
-            this.tollBooths.HeaderText = "Toll Booths";
-            this.tollBooths.Name = "tollBooths";
-            this.tollBooths.ReadOnly = true;
-            this.tollBooths.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.tollBooths.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.tollBooths.Width = 70;
             // 
             // panel2
             // 
@@ -185,6 +172,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(981, 484);
             this.panel2.TabIndex = 4;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // userDeleteBtn
             // 
@@ -194,6 +182,7 @@
             this.userDeleteBtn.TabIndex = 3;
             this.userDeleteBtn.Text = "Delete";
             this.userDeleteBtn.UseVisualStyleBackColor = true;
+            this.userDeleteBtn.Click += new System.EventHandler(this.userDeleteBtn_Click);
             // 
             // userUpdateBtn
             // 
@@ -203,6 +192,7 @@
             this.userUpdateBtn.TabIndex = 2;
             this.userUpdateBtn.Text = "Update";
             this.userUpdateBtn.UseVisualStyleBackColor = true;
+            this.userUpdateBtn.Click += new System.EventHandler(this.userUpdateBtn_Click);
             // 
             // userCreateBtn
             // 
@@ -212,9 +202,14 @@
             this.userCreateBtn.TabIndex = 1;
             this.userCreateBtn.Text = "Create";
             this.userCreateBtn.UseVisualStyleBackColor = true;
+            this.userCreateBtn.Click += new System.EventHandler(this.userCreateBtn_Click);
             // 
             // userDataGridView
             // 
+            this.userDataGridView.AllowUserToAddRows = false;
+            this.userDataGridView.AllowUserToDeleteRows = false;
+            this.userDataGridView.AllowUserToResizeColumns = false;
+            this.userDataGridView.AllowUserToResizeRows = false;
             this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -307,6 +302,53 @@
             this.userCity.ReadOnly = true;
             this.userCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // tollstationId
+            // 
+            this.tollstationId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.tollstationId.HeaderText = "Id";
+            this.tollstationId.Name = "tollstationId";
+            this.tollstationId.ReadOnly = true;
+            this.tollstationId.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tollstationId.Width = 50;
+            // 
+            // tollstationCity
+            // 
+            this.tollstationCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tollstationCity.FillWeight = 78.57143F;
+            this.tollstationCity.HeaderText = "City";
+            this.tollstationCity.Name = "tollstationCity";
+            this.tollstationCity.ReadOnly = true;
+            this.tollstationCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // tollstationZipCode
+            // 
+            this.tollstationZipCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tollstationZipCode.FillWeight = 78.57143F;
+            this.tollstationZipCode.HeaderText = "Zip Code";
+            this.tollstationZipCode.Name = "tollstationZipCode";
+            this.tollstationZipCode.ReadOnly = true;
+            this.tollstationZipCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // tollBooths
+            // 
+            this.tollBooths.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.tollBooths.FillWeight = 1F;
+            this.tollBooths.HeaderText = "Toll Booths";
+            this.tollBooths.Name = "tollBooths";
+            this.tollBooths.ReadOnly = true;
+            this.tollBooths.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tollBooths.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tollBooths.Width = 70;
+            // 
+            // tollStationSections
+            // 
+            this.tollStationSections.HeaderText = "Section";
+            this.tollStationSections.Name = "tollStationSections";
+            this.tollStationSections.ReadOnly = true;
+            this.tollStationSections.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tollStationSections.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tollStationSections.Width = 70;
+            // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -315,8 +357,10 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdministratorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdministratorForm";
             this.Load += new System.EventHandler(this.AdministratorForm_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -345,10 +389,6 @@
         private System.Windows.Forms.Button userCreateBtn;
         private System.Windows.Forms.DataGridView userDataGridView;
         private System.Windows.Forms.Button userDeleteBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tollstationId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tollstationCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tollstationZipCode;
-        private System.Windows.Forms.DataGridViewButtonColumn tollBooths;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn userLastName;
@@ -358,5 +398,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userType;
         private System.Windows.Forms.DataGridViewTextBoxColumn userAdress;
         private System.Windows.Forms.DataGridViewTextBoxColumn userCity;
+        private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tollstationId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tollstationCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tollstationZipCode;
+        private System.Windows.Forms.DataGridViewButtonColumn tollBooths;
+        private System.Windows.Forms.DataGridViewButtonColumn tollStationSections;
     }
 }

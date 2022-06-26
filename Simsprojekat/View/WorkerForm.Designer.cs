@@ -62,7 +62,7 @@
             // submitTicketBtn
             // 
             this.submitTicketBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("submitTicketBtn.BackgroundImage")));
-            this.submitTicketBtn.Location = new System.Drawing.Point(605, 282);
+            this.submitTicketBtn.Location = new System.Drawing.Point(605, 284);
             this.submitTicketBtn.Name = "submitTicketBtn";
             this.submitTicketBtn.Size = new System.Drawing.Size(31, 30);
             this.submitTicketBtn.TabIndex = 2;
