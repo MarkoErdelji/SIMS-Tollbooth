@@ -20,7 +20,7 @@ namespace Simsprojekat.Model
         public int Id { get; set; }
 
         [BsonElement("entryTime")]
-        public string EntryTime { get; set; }
+        public DateTime EntryTime { get; set; }
 
         [BsonElement("vehicle")]
         public Vehicle Vehicle { get; set; }

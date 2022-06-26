@@ -20,7 +20,7 @@ namespace Simsprojekat.Model
 
 
         [BsonElement("date")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
 
         [BsonElement("amount")]
@@ -32,6 +32,9 @@ namespace Simsprojekat.Model
 
         [BsonElement("exitStationId")]
         public int  ExitStationId { get; set; }
+
+        [BsonElement("ticketId")]
+        public int TicketId { get; set; }
 
     }
 }

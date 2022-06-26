@@ -1,24 +1,23 @@
 ﻿using Simsprojekat.Controller;
+using Simsprojekat.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Simsprojekat.Model;
 using System.Windows.Forms;
-using System.IO;
 
 namespace Simsprojekat.View.StationManagerView
 {
-    
-    partial class YearPickerForm : Form
+    partial class MonthPickerForm : Form
     {
         public TransactionController transactionController;
         public StationManager stationManager;
-        public YearPickerForm(TransactionController transactionController, StationManager stationManager)
+        public MonthPickerForm(TransactionController transactionController, StationManager stationManager)
         {
             InitializeComponent();
             this.transactionController = transactionController;
@@ -28,16 +27,17 @@ namespace Simsprojekat.View.StationManagerView
         private void createReportButton_Click(object sender, EventArgs e)
         {
             List<Transaction> transactions = transactionController.GetAllByTollStation(stationManager.TollStationId);
-            DateTime selectedDate = new DateTime(int.Parse(yearTextBox.Text), 1, 1, 0, 0, 0);
+            DateTime selectedDate = new DateTime(int.Parse(yearTextBox.Text), int.Parse(monthTextBox.Text), 1, 0, 0, 0);
 
-            StreamWriter fileDin = new StreamWriter("../../../Reports/Annual_Report_In_Dinars_for_" + yearTextBox.Text + ".txt");
-            StreamWriter fileEur = new StreamWriter("../../../Reports/Annual_Report_In_Euros_for_" + yearTextBox.Text + ".txt");
+            StreamWriter fileDin = new StreamWriter("../../../Reports/Monthly_Report_In_Dinars_for_" + monthTextBox.Text + "_" + yearTextBox.Text + ".txt");
+            StreamWriter fileEur = new StreamWriter("../../../Reports/Monthly_Report_In_Euros_for_" + monthTextBox.Text + "_" + yearTextBox.Text + ".txt");
             double euroSum = 0;
             double dinSum = 0;
-            foreach(Transaction transaction in transactions)
+            foreach (Transaction transaction in transactions)
             {
                 string line = "";
-                if(transaction.Date > selectedDate){
+                if (transaction.Date > selectedDate)
+                {
                     line += transaction.Id.ToString();
                     line += "\t";
                     line += transaction.Date.ToString("D");
@@ -47,9 +47,9 @@ namespace Simsprojekat.View.StationManagerView
                     {
 
                         fileDin.WriteLine(line);
-                        
+
                         dinSum += transaction.Amount;
-                        
+
                     }
                     else
                     {

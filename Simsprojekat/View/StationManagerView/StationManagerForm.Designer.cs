@@ -78,18 +78,21 @@
             this.yearlyLocalIncomeToolStripMenuItem.Name = "yearlyLocalIncomeToolStripMenuItem";
             this.yearlyLocalIncomeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.yearlyLocalIncomeToolStripMenuItem.Text = "Yearly local income";
+            this.yearlyLocalIncomeToolStripMenuItem.Click += new System.EventHandler(this.yearlyLocalIncomeToolStripMenuItem_Click);
             // 
             // monthlyLocalIncomeToolStripMenuItem
             // 
             this.monthlyLocalIncomeToolStripMenuItem.Name = "monthlyLocalIncomeToolStripMenuItem";
             this.monthlyLocalIncomeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.monthlyLocalIncomeToolStripMenuItem.Text = "Monthly local income";
+            this.monthlyLocalIncomeToolStripMenuItem.Click += new System.EventHandler(this.monthlyLocalIncomeToolStripMenuItem_Click);
             // 
             // dailyLocalIncomeToolStripMenuItem
             // 
             this.dailyLocalIncomeToolStripMenuItem.Name = "dailyLocalIncomeToolStripMenuItem";
             this.dailyLocalIncomeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.dailyLocalIncomeToolStripMenuItem.Text = "Daily local income";
+            this.dailyLocalIncomeToolStripMenuItem.Click += new System.EventHandler(this.dailyLocalIncomeToolStripMenuItem_Click);
             // 
             // ListTollBoothPanel
             // 
