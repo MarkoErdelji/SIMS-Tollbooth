@@ -17,11 +17,13 @@ namespace Simsprojekat.View
     {
         UserController _userController;
         TollStationController _tollStationController;
+        TollBoothController _tollBoothController;
         private LoginForm _loginForm;
         public AdministratorForm(LoginForm loginForm)
         {
             _loginForm = loginForm;
             _userController = new UserController();
+            _tollBoothController = new TollBoothController();
             _tollStationController = new TollStationController();
             InitializeComponent();
 
@@ -49,11 +51,19 @@ namespace Simsprojekat.View
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+                e.RowIndex >= 0 && e.ColumnIndex == 3)
             {
                 int tollStationId;
                 tollStationId = int.Parse((string)tollStationGridView.Rows[e.RowIndex].Cells[0].Value);
                 new TollBoothAdminForm(tollStationId).ShowDialog();
+                //TODO - Button Clicked - Execute Code Here
+            }
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0 && e.ColumnIndex == 4)
+            {
+                int tollStationId;
+                tollStationId = int.Parse((string)tollStationGridView.Rows[e.RowIndex].Cells[0].Value);
+                new SectionAdminForm(tollStationId).ShowDialog();
                 //TODO - Button Clicked - Execute Code Here
             }
         }
@@ -180,7 +190,26 @@ namespace Simsprojekat.View
 
         private void tollStationUpdateBtn_Click(object sender, EventArgs e)
         {
+            var selectedRowCount = tollStationGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
 
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int tollStationId = int.Parse((string)tollStationGridView.SelectedRows[i].Cells[0].Value);
+                        TollStation ts = _tollStationController.GetById(tollStationId);
+                        new TollStationCreationForm(ts.Id, ts.location.ZipCode,ts.location.Name).ShowDialog();
+                        
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -192,6 +221,38 @@ namespace Simsprojekat.View
         {
             this.Dispose();
             _loginForm.Show();
+        }
+
+        private void tollStationDeleteBtn_Click(object sender, EventArgs e)
+        {
+            var selectedRowCount = tollStationGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int tollStationId = int.Parse((string)tollStationGridView.SelectedRows[i].Cells[0].Value);
+                        List<TollBooth> tollBooths = _tollBoothController.GetByTollStationId(tollStationId);
+                        foreach(TollBooth tb  in tollBooths){
+                            _tollBoothController.Delete(tb.Id);
+                        }
+                        _tollStationController.Delete(tollStationId);
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+                MessageBox.Show("Selected toll stations successfuly deleted");
+
+            }
+        }
+
+        private void tollStationCreateBtn_Click(object sender, EventArgs e)
+        {
+            new TollStationCreationForm().ShowDialog();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.View.StationManagerView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,11 +17,12 @@ namespace Simsprojekat.View.AdministratorView
     {
         TollStationController tollStationController;
         TollBoothController tollBoothController;
+        TollStation ts;
 
         public TollBoothAdminForm(int tollStationId)
         {
             tollStationController = new TollStationController();
-            TollStation ts = tollStationController.GetById(tollStationId);
+            ts = tollStationController.GetById(tollStationId);
             tollBoothController = new TollBoothController();
             InitializeComponent();
             List<TollBooth> tollBooth = tollBoothController.GetByTollStationId(tollStationId);
@@ -42,11 +44,11 @@ namespace Simsprojekat.View.AdministratorView
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+                e.RowIndex >= 0 )
             {
                 int tollBoothId;
                 tollBoothId = int.Parse((string)dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-                new DeviceAdminForm(tollBoothId).ShowDialog();
+                new DevicesForm(tollBoothController, tollBoothController.GetById(tollBoothId)).ShowDialog();
                 //TODO - Button Clicked - Execute Code Here
             }
         }
@@ -54,6 +56,53 @@ namespace Simsprojekat.View.AdministratorView
         private void TollBoothAdminForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void tollStationCreateBtn_Click(object sender, EventArgs e)
+        {
+            List<TollBooth> tollBooths = tollBoothController.GetByTollStationId(ts.Id);
+            int maxNumber = 0;
+            foreach (TollBooth tollB in tollBooths)
+            {
+                int currentNumber = int.Parse(tollB.TollBoothNumber);
+                if (currentNumber > maxNumber)
+                {
+                    maxNumber = currentNumber;
+                }
+            }
+            TollBooth tb = new TollBooth();
+            tb.TollBoothNumber = (maxNumber + 1).ToString();
+            List<Device> devices = new List<Device>();
+            devices.Add(new Ramp());
+            devices.Add(new Camera());
+            tb.Devices = devices;
+            tb.TollStationId = ts.Id;
+            tollBoothController.Insert(tb);
+            MessageBox.Show("Toll booth successfuly created");
+
+        }
+
+        private void tollStationDeleteBtn_Click(object sender, EventArgs e)
+        {
+            var selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int tollStationId = int.Parse((string)dataGridView1.SelectedRows[i].Cells[0].Value);
+                        tollBoothController.Delete(tollStationId);
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+                MessageBox.Show("Selected toll booths successfuly deleted");
+
+            }
         }
     }
 }

@@ -25,11 +25,39 @@ namespace Simsprojekat.Controller
             return tollBoothCollection.Find(item => item.Id == id).FirstOrDefault();
         }
 
+
         public List<TollBooth> GetByTollStationId(int tollStationId)
         {
             return tollBoothCollection.Find(item => item.TollStationId == tollStationId).ToList();
         }
 
+        public bool Insert(TollBooth tb)
+        {
+            var tollBooths = _database.GetCollection<TollBooth>("TollBooths");
+
+            var id = tollBooths.Find(e => true).SortByDescending(e => e.Id).FirstOrDefault().Id;
+            tb.Id = id + 1;
+
+            tollBooths.InsertOne(tb);
+
+            return true;
+        }
+
+
+        public bool Delete(int tollBoothId)
+        {
+            var tollBooths = _database.GetCollection<TollBooth>("TollBooths");
+
+            tollBooths.DeleteOne(tb => tb.Id == tollBoothId);
+
+            return true;
+
+        }
+
+        public void Update(TollBooth tb)
+        {
+            tollBoothCollection.ReplaceOne(item=>item.Id==tb.Id, tb);
+        }
 
     }
 }

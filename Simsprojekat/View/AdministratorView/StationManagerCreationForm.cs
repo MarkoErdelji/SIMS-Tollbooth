@@ -1,4 +1,5 @@
-﻿using Simsprojekat.Model;
+﻿using Simsprojekat.Controller;
+using Simsprojekat.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,10 +18,12 @@ namespace Simsprojekat.View.AdministratorView
         private int userId;
         bool _isUpdate;
         UserController _userController;
+        TollStationController _tollStationController;
         public StationManagerCreationForm(UserType type)
         {
             userId = 0;
             _userController = new UserController();
+            _tollStationController = new TollStationController();
             _userType = type;
             _isUpdate = false;
             InitializeComponent();
@@ -98,6 +101,11 @@ namespace Simsprojekat.View.AdministratorView
                 tollStationId = int.Parse(tollStationIdTextBox.Text);
             }
             catch (Exception valueexception)
+            {
+                invalidInfoLabel.Visible = true;
+                return;
+            }
+            if (_tollStationController.GetById(tollStationId) is null)
             {
                 invalidInfoLabel.Visible = true;
                 return;

@@ -1,4 +1,5 @@
-﻿using Simsprojekat.Model;
+﻿using Simsprojekat.Controller;
+using Simsprojekat.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +19,12 @@ namespace Simsprojekat.View.AdministratorView
         private int userId;
 
         UserController _userController;
+        TollBoothController _tollBoothController;
         public WorkerCreationForm(UserType type)
         {
             userId = 0;
             _isUpdate = false;
+            _tollBoothController = new TollBoothController();
             _userController = new UserController();
             _userType = type;
             InitializeComponent();
@@ -99,6 +102,11 @@ namespace Simsprojekat.View.AdministratorView
                 tollBoothId = int.Parse(tollBoothTextBox.Text);
             }
             catch(Exception valueexception){
+                invalidInfoLabel.Visible = true;
+                return;
+            }
+            if (_tollBoothController.GetById(tollBoothId) is null)
+            {
                 invalidInfoLabel.Visible = true;
                 return;
             }

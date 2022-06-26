@@ -65,9 +65,9 @@
             this.firstNameLabel.AutoSize = true;
             this.firstNameLabel.Location = new System.Drawing.Point(65, 40);
             this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(67, 15);
+            this.firstNameLabel.Size = new System.Drawing.Size(70, 15);
             this.firstNameLabel.TabIndex = 1;
-            this.firstNameLabel.Text = "FirstName :";
+            this.firstNameLabel.Text = "First Name :";
             // 
             // lastNameLabel
             // 
@@ -244,6 +244,7 @@
             this.Controls.Add(this.firstNameLabel);
             this.Controls.Add(this.submitBtn);
             this.Name = "UserCreationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UserCreationForm";
             this.Load += new System.EventHandler(this.UserCreationForm_Load);
             this.ResumeLayout(false);

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View.AdministratorView
 {
-    public partial class DeviceAdminForm : Form
+    public partial class SectionCreationForm : Form
     {
-        public DeviceAdminForm()
+        public SectionCreationForm()
         {
             InitializeComponent();
         }

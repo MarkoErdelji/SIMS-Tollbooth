@@ -35,7 +35,6 @@
             this.tollBoothNumberLabel = new System.Windows.Forms.Label();
             this.locationLabel = new System.Windows.Forms.Label();
             this.tollStationDeleteBtn = new System.Windows.Forms.Button();
-            this.tollStationUpdateBtn = new System.Windows.Forms.Button();
             this.tollStationCreateBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -103,30 +102,23 @@
             // 
             // tollStationDeleteBtn
             // 
-            this.tollStationDeleteBtn.Location = new System.Drawing.Point(441, 373);
+            this.tollStationDeleteBtn.Location = new System.Drawing.Point(428, 373);
             this.tollStationDeleteBtn.Name = "tollStationDeleteBtn";
             this.tollStationDeleteBtn.Size = new System.Drawing.Size(119, 39);
             this.tollStationDeleteBtn.TabIndex = 6;
             this.tollStationDeleteBtn.Text = "Delete";
             this.tollStationDeleteBtn.UseVisualStyleBackColor = true;
-            // 
-            // tollStationUpdateBtn
-            // 
-            this.tollStationUpdateBtn.Location = new System.Drawing.Point(287, 373);
-            this.tollStationUpdateBtn.Name = "tollStationUpdateBtn";
-            this.tollStationUpdateBtn.Size = new System.Drawing.Size(106, 39);
-            this.tollStationUpdateBtn.TabIndex = 5;
-            this.tollStationUpdateBtn.Text = "Update";
-            this.tollStationUpdateBtn.UseVisualStyleBackColor = true;
+            this.tollStationDeleteBtn.Click += new System.EventHandler(this.tollStationDeleteBtn_Click);
             // 
             // tollStationCreateBtn
             // 
-            this.tollStationCreateBtn.Location = new System.Drawing.Point(125, 372);
+            this.tollStationCreateBtn.Location = new System.Drawing.Point(146, 372);
             this.tollStationCreateBtn.Name = "tollStationCreateBtn";
             this.tollStationCreateBtn.Size = new System.Drawing.Size(103, 41);
             this.tollStationCreateBtn.TabIndex = 4;
             this.tollStationCreateBtn.Text = "Create";
             this.tollStationCreateBtn.UseVisualStyleBackColor = true;
+            this.tollStationCreateBtn.Click += new System.EventHandler(this.tollStationCreateBtn_Click);
             // 
             // TollBoothAdminForm
             // 
@@ -134,13 +126,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 442);
             this.Controls.Add(this.tollStationDeleteBtn);
-            this.Controls.Add(this.tollStationUpdateBtn);
             this.Controls.Add(this.tollStationCreateBtn);
             this.Controls.Add(this.locationLabel);
             this.Controls.Add(this.tollBoothNumberLabel);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "TollBoothAdminForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "TollBoothAdminForm";
             this.Load += new System.EventHandler(this.TollBoothAdminForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -155,7 +147,6 @@
         private System.Windows.Forms.Label tollBoothNumberLabel;
         private System.Windows.Forms.Label locationLabel;
         private System.Windows.Forms.Button tollStationDeleteBtn;
-        private System.Windows.Forms.Button tollStationUpdateBtn;
         private System.Windows.Forms.Button tollStationCreateBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tollBoothId;
         private System.Windows.Forms.DataGridViewTextBoxColumn tollBoothNumber;

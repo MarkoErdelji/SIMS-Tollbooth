@@ -34,7 +34,6 @@
             this.yearlyLocalIncomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monthlyLocalIncomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dailyLocalIncomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.faultyDevicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListTollBoothPanel = new System.Windows.Forms.Panel();
             this.listOfTollBoothsGridView = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,8 +49,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listTollboothsToolStripMenuItem,
-            this.reportsToolStripMenuItem,
-            this.faultyDevicesToolStripMenuItem});
+            this.reportsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(799, 24);
@@ -93,56 +91,59 @@
             this.dailyLocalIncomeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.dailyLocalIncomeToolStripMenuItem.Text = "Daily local income";
             // 
-            // faultyDevicesToolStripMenuItem
-            // 
-            this.faultyDevicesToolStripMenuItem.Name = "faultyDevicesToolStripMenuItem";
-            this.faultyDevicesToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.faultyDevicesToolStripMenuItem.Text = "Faulty devices";
-            // 
             // ListTollBoothPanel
             // 
             this.ListTollBoothPanel.Controls.Add(this.listOfTollBoothsGridView);
             this.ListTollBoothPanel.Controls.Add(this.tollStationNameLabel);
-            this.ListTollBoothPanel.Location = new System.Drawing.Point(143, 79);
+            this.ListTollBoothPanel.Location = new System.Drawing.Point(102, 65);
             this.ListTollBoothPanel.Name = "ListTollBoothPanel";
-            this.ListTollBoothPanel.Size = new System.Drawing.Size(511, 302);
+            this.ListTollBoothPanel.Size = new System.Drawing.Size(580, 344);
             this.ListTollBoothPanel.TabIndex = 1;
             this.ListTollBoothPanel.Visible = false;
             this.ListTollBoothPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ListTollBoothPanel_Paint);
             // 
             // listOfTollBoothsGridView
             // 
+            this.listOfTollBoothsGridView.AllowUserToAddRows = false;
+            this.listOfTollBoothsGridView.AllowUserToDeleteRows = false;
+            this.listOfTollBoothsGridView.AllowUserToResizeColumns = false;
+            this.listOfTollBoothsGridView.AllowUserToResizeRows = false;
             this.listOfTollBoothsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listOfTollBoothsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.Name,
             this.devices});
-            this.listOfTollBoothsGridView.Location = new System.Drawing.Point(77, 69);
+            this.listOfTollBoothsGridView.Location = new System.Drawing.Point(67, 72);
             this.listOfTollBoothsGridView.Name = "listOfTollBoothsGridView";
             this.listOfTollBoothsGridView.RowTemplate.Height = 25;
-            this.listOfTollBoothsGridView.Size = new System.Drawing.Size(346, 201);
+            this.listOfTollBoothsGridView.Size = new System.Drawing.Size(451, 228);
             this.listOfTollBoothsGridView.TabIndex = 1;
             this.listOfTollBoothsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listOfTollBoothsGridView_CellContentClick);
             // 
             // ID
             // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // Name
             // 
+            this.Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Name.HeaderText = "Name";
             this.Name.Name = "Name";
             // 
             // devices
             // 
+            this.devices.FillWeight = 1F;
             this.devices.HeaderText = "Devices";
             this.devices.Name = "devices";
+            this.devices.Width = 70;
             // 
             // tollStationNameLabel
             // 
             this.tollStationNameLabel.AutoSize = true;
-            this.tollStationNameLabel.Location = new System.Drawing.Point(226, 22);
+            this.tollStationNameLabel.Location = new System.Drawing.Point(272, 14);
             this.tollStationNameLabel.Name = "tollStationNameLabel";
             this.tollStationNameLabel.Size = new System.Drawing.Size(38, 15);
             this.tollStationNameLabel.TabIndex = 0;
@@ -176,7 +177,6 @@
         private System.Windows.Forms.ToolStripMenuItem yearlyLocalIncomeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem monthlyLocalIncomeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dailyLocalIncomeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem faultyDevicesToolStripMenuItem;
         private System.Windows.Forms.Panel ListTollBoothPanel;
         private System.Windows.Forms.DataGridView listOfTollBoothsGridView;
         private System.Windows.Forms.Label tollStationNameLabel;

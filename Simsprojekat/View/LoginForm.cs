@@ -59,5 +59,10 @@ namespace Simsprojekat.View
         {
 
         }
+
+        private void usernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
