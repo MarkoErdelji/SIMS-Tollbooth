@@ -54,6 +54,7 @@
             this.userType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.logoutButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tollStationGridView)).BeginInit();
@@ -89,6 +90,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.logoutButton);
             this.panel1.Controls.Add(this.tollStationDeleteBtn);
             this.panel1.Controls.Add(this.tollStationUpdateBtn);
             this.panel1.Controls.Add(this.tollStationCreateBtn);
@@ -97,6 +99,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(989, 487);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tollStationDeleteBtn
             // 
@@ -320,6 +323,16 @@
             this.userCity.ReadOnly = true;
             this.userCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // logoutButton
+            // 
+            this.logoutButton.Location = new System.Drawing.Point(851, 18);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(124, 32);
+            this.logoutButton.TabIndex = 12;
+            this.logoutButton.Text = "Logout";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -372,5 +385,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userType;
         private System.Windows.Forms.DataGridViewTextBoxColumn userAdress;
         private System.Windows.Forms.DataGridViewTextBoxColumn userCity;
+        private System.Windows.Forms.Button logoutButton;
     }
 }

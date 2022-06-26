@@ -29,7 +29,7 @@ namespace Simsprojekat.View
                 this.Hide();
                 if (user.Type == UserType.Admin)
                 {
-                    AdministratorForm adminForm = new AdministratorForm();
+                    AdministratorForm adminForm = new AdministratorForm(this);
                     adminForm.Show();
                 }
                 if (user.Type == UserType.HeadManager)

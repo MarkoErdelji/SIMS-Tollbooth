@@ -17,8 +17,10 @@ namespace Simsprojekat.View
     {
         UserController _userController;
         TollStationController _tollStationController;
-        public AdministratorForm()
+        private LoginForm _loginForm;
+        public AdministratorForm(LoginForm loginForm)
         {
+            _loginForm = loginForm;
             _userController = new UserController();
             _tollStationController = new TollStationController();
             InitializeComponent();
@@ -44,7 +46,16 @@ namespace Simsprojekat.View
 
         private void tollStationGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var senderGrid = (DataGridView)sender;
 
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                int tollStationId;
+                tollStationId = int.Parse((string)tollStationGridView.Rows[e.RowIndex].Cells[0].Value);
+                new TollBoothAdminForm(tollStationId).ShowDialog();
+                //TODO - Button Clicked - Execute Code Here
+            }
         }
 
         private void AdministratorForm_Load(object sender, EventArgs e)
@@ -170,6 +181,17 @@ namespace Simsprojekat.View
         private void tollStationUpdateBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            _loginForm.Show();
         }
     }
 }

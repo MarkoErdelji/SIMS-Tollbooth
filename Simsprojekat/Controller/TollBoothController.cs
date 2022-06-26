@@ -25,6 +25,11 @@ namespace Simsprojekat.Controller
             return tollBoothCollection.Find(item => item.Id == id).FirstOrDefault();
         }
 
+        public List<TollBooth> GetByTollStationId(int tollStationId)
+        {
+            return tollBoothCollection.Find(item => item.TollStationId == tollStationId).ToList();
+        }
+
 
     }
 }
