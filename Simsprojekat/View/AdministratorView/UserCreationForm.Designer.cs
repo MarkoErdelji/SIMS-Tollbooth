@@ -47,6 +47,7 @@
             this.streetNumberTextBox = new System.Windows.Forms.TextBox();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.zipCodeTextBox = new System.Windows.Forms.TextBox();
+            this.invalidInfoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // submitBtn
@@ -62,7 +63,7 @@
             // firstNameLabel
             // 
             this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Location = new System.Drawing.Point(65, 37);
+            this.firstNameLabel.Location = new System.Drawing.Point(65, 40);
             this.firstNameLabel.Name = "firstNameLabel";
             this.firstNameLabel.Size = new System.Drawing.Size(67, 15);
             this.firstNameLabel.TabIndex = 1;
@@ -206,11 +207,23 @@
             this.zipCodeTextBox.Size = new System.Drawing.Size(150, 23);
             this.zipCodeTextBox.TabIndex = 18;
             // 
+            // invalidInfoLabel
+            // 
+            this.invalidInfoLabel.AutoSize = true;
+            this.invalidInfoLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.invalidInfoLabel.Location = new System.Drawing.Point(111, 420);
+            this.invalidInfoLabel.Name = "invalidInfoLabel";
+            this.invalidInfoLabel.Size = new System.Drawing.Size(165, 15);
+            this.invalidInfoLabel.TabIndex = 64;
+            this.invalidInfoLabel.Text = "Entered information is invalid!";
+            this.invalidInfoLabel.Visible = false;
+            // 
             // UserCreationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 549);
+            this.Controls.Add(this.invalidInfoLabel);
             this.Controls.Add(this.zipCodeTextBox);
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.streetNumberTextBox);
@@ -232,6 +245,7 @@
             this.Controls.Add(this.submitBtn);
             this.Name = "UserCreationForm";
             this.Text = "UserCreationForm";
+            this.Load += new System.EventHandler(this.UserCreationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,5 +272,6 @@
         private System.Windows.Forms.TextBox streetNumberTextBox;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.TextBox zipCodeTextBox;
+        private System.Windows.Forms.Label invalidInfoLabel;
     }
 }

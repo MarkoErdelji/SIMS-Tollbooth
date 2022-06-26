@@ -11,52 +11,38 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View.AdministratorView
 {
-    public partial class UserCreationForm : Form
+    public partial class StationManagerCreationForm : Form
     {
         UserType _userType;
-        bool _isUpdate;
         private int userId;
+        bool _isUpdate;
         UserController _userController;
-        public UserCreationForm(UserType type)
+        public StationManagerCreationForm(UserType type)
         {
-            _isUpdate = false;
             userId = 0;
             _userController = new UserController();
             _userType = type;
+            _isUpdate = false;
             InitializeComponent();
         }
 
-        public UserCreationForm(int id,string firstName,string lastName,string username,string password,string email,UserType type,Address address,City city)
+        public StationManagerCreationForm(int id,string firstName, string lastName, string username, string password, string email, UserType type, Address address, City city, int tollStationId)
         {
-            userId = id;
             _userController = new UserController();
+            userId = id;
             _isUpdate = true;
             _userType = type;
             InitializeComponent();
             firstNameTextBox.Text = firstName;
             lastNameTextBox.Text = lastName;
             usernameTextBox.Text = username;
-            passwordTextBox.Text = password;    
+            passwordTextBox.Text = password;
             emailTextBox.Text = email;
             streetNameTextBox.Text = address.StreetName;
             streetNumberTextBox.Text = address.StreetNumber;
             cityTextBox.Text = city.Name;
             zipCodeTextBox.Text = city.ZipCode;
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
+            tollStationIdTextBox.Text = tollStationId.ToString();
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
@@ -106,6 +92,16 @@ namespace Simsprojekat.View.AdministratorView
                 invalidInfoLabel.Visible = true;
                 return;
             }
+            int tollStationId;
+            try
+            {
+                tollStationId = int.Parse(tollStationIdTextBox.Text);
+            }
+            catch (Exception valueexception)
+            {
+                invalidInfoLabel.Visible = true;
+                return;
+            }
             Address a = new Address();
             a.StreetName = streetNameTextBox.Text;
             a.StreetNumber = streetNumberTextBox.Text;
@@ -113,16 +109,16 @@ namespace Simsprojekat.View.AdministratorView
             c.Name = cityTextBox.Text;
             c.ZipCode = zipCodeTextBox.Text;
             a.City = c;
-            User u = new User(userId,
+            StationManager sm = new StationManager(userId,
                 firstNameTextBox.Text,
                 lastNameTextBox.Text,
                 usernameTextBox.Text,
                 passwordTextBox.Text,
                 emailTextBox.Text,
-                _userType,a);
+                _userType, a, tollStationId);
             if (!_isUpdate)
             {
-                if (_userController.InsertUser(u))
+                if (_userController.InsertStationManager(sm))
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly created");
@@ -135,15 +131,16 @@ namespace Simsprojekat.View.AdministratorView
             }
             else
             {
-                User user = _userController.GetUser(u.Id);
-                user.FirstName = u.FirstName;
-                user.LastName = u.LastName;
-                user.Username = u.Username;
-                user.Password = u.Password;
-                user.Email = u.Email;
-                user.Adress = u.Adress;
-                user.Type = u.Type;
-                if (_userController.UpdateUser(user))
+                StationManager stationManager = _userController.GetStationManager(sm.Id);
+                stationManager.FirstName = sm.FirstName;
+                stationManager.LastName = sm.LastName;
+                stationManager.Username = sm.Username;
+                stationManager.Password = sm.Password;
+                stationManager.Email = sm.Email;
+                stationManager.Adress = sm.Adress;
+                stationManager.Type = sm.Type;
+                stationManager.TollStationId = sm.TollStationId;
+                if (_userController.UpdateStationManager(stationManager))
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly updated");
@@ -156,7 +153,12 @@ namespace Simsprojekat.View.AdministratorView
             }
         }
 
-        private void UserCreationForm_Load(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StationManagerCreationForm_Load(object sender, EventArgs e)
         {
 
         }

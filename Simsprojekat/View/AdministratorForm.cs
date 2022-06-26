@@ -22,6 +22,7 @@ namespace Simsprojekat.View
             _userController = new UserController();
             _tollStationController = new TollStationController();
             InitializeComponent();
+
         }
 
         private void tolLStationsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,8 +49,18 @@ namespace Simsprojekat.View
 
         private void AdministratorForm_Load(object sender, EventArgs e)
         {
-            this.panel1.Hide();
+            this.panel1.Show();
             this.panel2.Hide();
+            List<TollStation> tollStations = _tollStationController.GetAll();
+            this.tollStationGridView.Rows.Clear();
+            foreach (TollStation tollStation in tollStations)
+            {
+                var index = tollStationGridView.Rows.Add();
+
+                tollStationGridView.Rows[index].Cells[0].Value = tollStation.Id.ToString();
+                tollStationGridView.Rows[index].Cells[1].Value = tollStation.location.Name;
+                tollStationGridView.Rows[index].Cells[2].Value = tollStation.location.ZipCode;
+            }
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -97,10 +108,66 @@ namespace Simsprojekat.View
 
         private void userUpdateBtn_Click(object sender, EventArgs e)
         {
+            var selectedRowCount = userDataGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
 
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int userid = int.Parse((string)userDataGridView.SelectedRows[i].Cells[0].Value);
+                        string userType = (string)userDataGridView.SelectedRows[i].Cells[6].Value;
+                        if (userType.Equals("Worker")){
+                            Worker w = _userController.GetWorker(userid);
+                            WorkerCreationForm wcf = new WorkerCreationForm(w.Id,w.FirstName, w.LastName,w.Username,w.Password,w.Email,w.Type,w.Adress,w.Adress.City,w.TollBoothId);
+                            wcf.ShowDialog();
+                        }
+                        if (userType.Equals("StationManager"))
+                        {
+                            StationManager sm = _userController.GetStationManager(userid);
+                            StationManagerCreationForm wcf = new StationManagerCreationForm(sm.Id,sm.FirstName, sm.LastName, sm.Username, sm.Password, sm.Email, sm.Type, sm.Adress, sm.Adress.City, sm.TollStationId);
+                            wcf.ShowDialog();
+                        }
+                        else
+                        {
+                            User u = _userController.GetUser(userid);
+                            UserCreationForm wcf = new UserCreationForm(u.Id,u.FirstName, u.LastName, u.Username, u.Password, u.Email, u.Type, u.Adress, u.Adress.City);
+                            wcf.ShowDialog();
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+
+            }
         }
 
         private void userDeleteBtn_Click(object sender, EventArgs e)
+        {
+            var selectedRowCount = userDataGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int userid = int.Parse((string)userDataGridView.SelectedRows[i].Cells[0].Value);
+                        _userController.DeleteUser(userid);
+                                           }
+                    catch (Exception exc){
+                        return;
+                    }
+                }
+                MessageBox.Show("Selected users successfuly deleted");
+
+            }
+        }
+
+        private void tollStationUpdateBtn_Click(object sender, EventArgs e)
         {
 
         }

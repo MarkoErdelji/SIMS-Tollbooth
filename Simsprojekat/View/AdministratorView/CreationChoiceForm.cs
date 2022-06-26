@@ -28,7 +28,10 @@ namespace Simsprojekat.View.AdministratorView
 
         private void stationManagerCreateBtn_Click(object sender, EventArgs e)
         {
-
+            this.Dispose();
+            StationManagerCreationForm usc = new StationManagerCreationForm(UserType.StationManager);
+            usc.Visible = false;
+            usc.ShowDialog();
         }
 
         private void headManagerCreateBtn_Click(object sender, EventArgs e)
@@ -40,6 +43,15 @@ namespace Simsprojekat.View.AdministratorView
         }
 
         private void workerCreateBtn_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            WorkerCreationForm usc = new WorkerCreationForm(UserType.Worker);
+            usc.Visible = false;
+            usc.ShowDialog();
+
+        }
+
+        private void CreationChoiceForm_Load(object sender, EventArgs e)
         {
 
         }

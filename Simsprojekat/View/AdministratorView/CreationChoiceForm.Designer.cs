@@ -94,8 +94,10 @@
             this.Controls.Add(this.headManagerCreateBtn);
             this.Controls.Add(this.stationManagerCreateBtn);
             this.Controls.Add(this.workerCreateBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreationChoiceForm";
             this.Text = "CreationChoiceForm";
+            this.Load += new System.EventHandler(this.CreationChoiceForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -115,6 +115,7 @@
             this.tollStationUpdateBtn.TabIndex = 2;
             this.tollStationUpdateBtn.Text = "Update";
             this.tollStationUpdateBtn.UseVisualStyleBackColor = true;
+            this.tollStationUpdateBtn.Click += new System.EventHandler(this.tollStationUpdateBtn_Click);
             // 
             // tollStationCreateBtn
             // 
@@ -185,7 +186,7 @@
             this.panel2.Controls.Add(this.userUpdateBtn);
             this.panel2.Controls.Add(this.userCreateBtn);
             this.panel2.Controls.Add(this.userDataGridView);
-            this.panel2.Location = new System.Drawing.Point(3, 27);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(981, 484);
             this.panel2.TabIndex = 4;
@@ -325,8 +326,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 511);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdministratorForm";
             this.Text = "AdministratorForm";
