@@ -12,38 +12,31 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View.AdministratorView
 {
-    public partial class SectionCreationForm : Form
+    public partial class SectionUpdateForm : Form
     {
         int stationOneId;
+        int stationTwoId;
         SectionController _sectionController;
         TollStationController _tollStationController;
-        public SectionCreationForm(int stationOneId)
+
+        public SectionUpdateForm(int stationOneId,int stationTwoId, int distance)
         {
             this.stationOneId = stationOneId;
+            this.stationTwoId = stationTwoId;
             _sectionController = new SectionController();
             _tollStationController = new TollStationController();
             InitializeComponent();
+            this.distanceTextBox.Text = distance.ToString();
+        }
+
+        private void SectionUpdateForm_Load(object sender, EventArgs e)
+        {
 
         }
 
         private void submitBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(toTextBox.Text))
-            {
-                invalidInfoLabel.Visible = true;
-                return;
-            }
             if (string.IsNullOrEmpty(distanceTextBox.Text))
-            {
-                invalidInfoLabel.Visible = true;
-                return;
-            }
-            int tollStationId;
-            try
-            {
-                tollStationId = int.Parse(toTextBox.Text);
-            }
-            catch (Exception valueexception)
             {
                 invalidInfoLabel.Visible = true;
                 return;
@@ -58,16 +51,11 @@ namespace Simsprojekat.View.AdministratorView
                 invalidInfoLabel.Visible = true;
                 return;
             }
-            if (_tollStationController.GetById(tollStationId) is null)
-            {
-                invalidInfoLabel.Visible = true;
-                return;
-            }
-            Section section = new Section();
+            Section section = _sectionController.GetByStationIds(stationOneId,stationTwoId);
             section.EntryStationId = stationOneId;
-            section.ExitStationId = tollStationId;
+            section.ExitStationId = stationTwoId;
             section.Distance = distance;
-            if (_sectionController.Insert(section))
+            if (_sectionController.Update(section))
             {
                 invalidInfoLabel.Visible = false;
                 MessageBox.Show("Section successfuly created");
@@ -78,11 +66,6 @@ namespace Simsprojekat.View.AdministratorView
                 invalidInfoLabel.Visible = true;
                 return;
             }
-        }
-
-        private void SectionCreationForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

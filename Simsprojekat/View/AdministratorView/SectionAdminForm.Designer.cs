@@ -142,6 +142,7 @@
             this.Controls.Add(this.tollBoothNumberLabel);
             this.Controls.Add(this.dataGridView1);
             this.Name = "SectionAdminForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SectionAdminForm";
             this.Load += new System.EventHandler(this.SectionAdminForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

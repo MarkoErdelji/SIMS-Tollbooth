@@ -87,6 +87,7 @@
             this.submitBtn.TabIndex = 65;
             this.submitBtn.Text = "Submit";
             this.submitBtn.UseVisualStyleBackColor = true;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
             // SectionCreationForm
             // 
@@ -103,6 +104,7 @@
             this.Name = "SectionCreationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SectionCreationForm";
+            this.Load += new System.EventHandler(this.SectionCreationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

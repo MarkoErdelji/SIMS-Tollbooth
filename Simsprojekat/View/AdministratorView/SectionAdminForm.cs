@@ -32,16 +32,19 @@ namespace Simsprojekat.View.AdministratorView
             {
 
                 var index = dataGridView1.Rows.Add();
-
+                TollStation otherStation;
                 if(section.EntryStationId == ts.Id)
                 {
                     dataGridView1.Rows[index].Cells[0].Value = section.ExitStationId.ToString();
+                    otherStation = tollStationController.GetById(section.ExitStationId);
                 }
                 else
                 {
                     dataGridView1.Rows[index].Cells[0].Value = section.EntryStationId.ToString();
+                    otherStation = tollStationController.GetById(section.EntryStationId);
                 }
-                dataGridView1.Rows[index].Cells[1].Value = section.Distance;
+                dataGridView1.Rows[index].Cells[1].Value = otherStation.location.Name;
+                dataGridView1.Rows[index].Cells[2].Value = section.Distance;
             }
         }
 
@@ -57,12 +60,29 @@ namespace Simsprojekat.View.AdministratorView
 
         private void sectionCreateBtn_Click(object sender, EventArgs e)
         {
-
+            new SectionCreationForm(ts.Id).ShowDialog();
         }
 
         private void sectionUpdate_Click(object sender, EventArgs e)
         {
+            var selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
 
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int otherStationId = int.Parse((string)dataGridView1.SelectedRows[i].Cells[0].Value);
+                        new SectionUpdateForm(ts.Id, otherStationId, int.Parse((string)dataGridView1.SelectedRows[i].Cells[1].Value)).ShowDialog();
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+
+            }
         }
 
         private void sectionDeleteBtn_Click(object sender, EventArgs e)
@@ -83,7 +103,7 @@ namespace Simsprojekat.View.AdministratorView
                         return;
                     }
                 }
-                MessageBox.Show("Selected users successfuly deleted");
+                MessageBox.Show("Selected sections successfuly deleted");
 
             }
         }

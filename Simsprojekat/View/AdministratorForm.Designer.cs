@@ -55,7 +55,7 @@
             this.tollstationCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tollstationZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tollBooths = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tollStationSections = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollStationSections = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tollStationGridView)).BeginInit();
@@ -346,6 +346,7 @@
             this.tollStationSections.Name = "tollStationSections";
             this.tollStationSections.ReadOnly = true;
             this.tollStationSections.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tollStationSections.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.tollStationSections.Width = 70;
             // 
             // AdministratorForm
@@ -402,6 +403,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tollstationCity;
         private System.Windows.Forms.DataGridViewTextBoxColumn tollstationZipCode;
         private System.Windows.Forms.DataGridViewButtonColumn tollBooths;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tollStationSections;
+        private System.Windows.Forms.DataGridViewButtonColumn tollStationSections;
     }
 }
