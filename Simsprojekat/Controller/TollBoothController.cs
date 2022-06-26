@@ -25,6 +25,10 @@ namespace Simsprojekat.Controller
             return tollBoothCollection.Find(item => item.Id == id).FirstOrDefault();
         }
 
+        public void Update(TollBooth tb)
+        {
+            tollBoothCollection.ReplaceOne(item=>item.Id==tb.Id, tb);
+        }
 
     }
 }
