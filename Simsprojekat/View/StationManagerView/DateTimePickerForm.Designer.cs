@@ -1,6 +1,6 @@
 ﻿namespace Simsprojekat.View.StationManagerView
 {
-    partial class YearPickerForm
+    partial class DateTimePickerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,56 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.yearTextBox = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.createReportButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // yearTextBox
+            // dateTimePicker1
             // 
-            this.yearTextBox.Location = new System.Drawing.Point(104, 41);
-            this.yearTextBox.Name = "yearTextBox";
-            this.yearTextBox.Size = new System.Drawing.Size(44, 23);
-            this.yearTextBox.TabIndex = 0;
+            this.dateTimePicker1.Location = new System.Drawing.Point(50, 29);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.TabIndex = 0;
             // 
             // createReportButton
             // 
-            this.createReportButton.Location = new System.Drawing.Point(67, 92);
+            this.createReportButton.Location = new System.Drawing.Point(92, 76);
             this.createReportButton.Name = "createReportButton";
-            this.createReportButton.Size = new System.Drawing.Size(110, 23);
+            this.createReportButton.Size = new System.Drawing.Size(111, 23);
             this.createReportButton.TabIndex = 1;
             this.createReportButton.Text = "Create report";
             this.createReportButton.UseVisualStyleBackColor = true;
             this.createReportButton.Click += new System.EventHandler(this.createReportButton_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Year: ";
-            // 
-            // YearPickerForm
+            // DateTimePickerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 145);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(295, 126);
             this.Controls.Add(this.createReportButton);
-            this.Controls.Add(this.yearTextBox);
-            this.Name = "YearPickerForm";
-            this.Text = "YearPickerForm";
+            this.Controls.Add(this.dateTimePicker1);
+            this.Name = "DateTimePickerForm";
+            this.Text = "DateTimePickerForm";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox yearTextBox;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button createReportButton;
-        private System.Windows.Forms.Label label1;
     }
 }

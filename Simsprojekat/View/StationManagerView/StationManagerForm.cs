@@ -81,5 +81,29 @@ namespace Simsprojekat.View
                 devicesForm.Show();
             }
         }
+
+        private void yearlyLocalIncomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            TransactionController transactionController = new TransactionController();
+            YearPickerForm ypf = new YearPickerForm(transactionController, stationManager);
+            ypf.Show();
+
+        }
+
+        private void monthlyLocalIncomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TransactionController transactionController = new TransactionController();
+            MonthPickerForm monthPickerForm = new MonthPickerForm(transactionController, stationManager);
+            monthPickerForm.Show();
+
+        }
+
+        private void dailyLocalIncomeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TransactionController transactionController = new TransactionController();
+            DateTimePickerForm dateTimePickerForm = new DateTimePickerForm(transactionController, stationManager);
+            dateTimePickerForm.Show();
+        }
     }
 }
