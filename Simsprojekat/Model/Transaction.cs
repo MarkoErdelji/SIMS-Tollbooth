@@ -19,7 +19,7 @@ namespace Simsprojekat.Model
         public int Id { get; set; }
 
         [BsonElement("date")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         [BsonElement("amount")]
         public int Amount { get; set; }

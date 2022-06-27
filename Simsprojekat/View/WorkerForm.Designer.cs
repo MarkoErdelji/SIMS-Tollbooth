@@ -35,14 +35,14 @@
             this.ticketIdLabel = new System.Windows.Forms.Label();
             this.tollBoothLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
-            this.backgroundRadioButton1 = new Simsprojekat.View.BackgroundRadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.backgroundRadioButton2 = new Simsprojekat.View.BackgroundRadioButton();
-            this.vehicleRadioGroup = new System.Windows.Forms.GroupBox();
-            this.backgroundRadioButton5 = new Simsprojekat.View.BackgroundRadioButton();
-            this.backgroundRadioButton4 = new Simsprojekat.View.BackgroundRadioButton();
-            this.backgroundRadioButton3 = new Simsprojekat.View.BackgroundRadioButton();
             this.logoutButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundRadioButton1 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton2 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton3 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton4 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton5 = new Simsprojekat.View.BackgroundRadioButton();
+            this.vehicleRadioGroup = new System.Windows.Forms.GroupBox();
             this.vehicleRadioGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,16 +105,15 @@
             this.welcomeLabel.Text = "Welcome ";
             this.welcomeLabel.Click += new System.EventHandler(this.welcomeLabel_Click);
             // 
-            // backgroundRadioButton1
+            // logoutButton
             // 
-            this.backgroundRadioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton1.AutoCheck = false;
-            this.backgroundRadioButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton1.BackgroundImage")));
-            this.backgroundRadioButton1.Location = new System.Drawing.Point(155, 22);
-            this.backgroundRadioButton1.Name = "backgroundRadioButton1";
-            this.backgroundRadioButton1.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton1.TabIndex = 7;
-            this.backgroundRadioButton1.UseVisualStyleBackColor = true;
+            this.logoutButton.Location = new System.Drawing.Point(905, 40);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(124, 32);
+            this.logoutButton.TabIndex = 11;
+            this.logoutButton.Text = "Logout";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
             // label1
             // 
@@ -125,6 +124,17 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Select the vehicle type :";
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // backgroundRadioButton1
+            // 
+            this.backgroundRadioButton1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton1.AutoCheck = false;
+            this.backgroundRadioButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton1.BackgroundImage")));
+            this.backgroundRadioButton1.Location = new System.Drawing.Point(155, 22);
+            this.backgroundRadioButton1.Name = "backgroundRadioButton1";
+            this.backgroundRadioButton1.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton1.TabIndex = 7;
+            this.backgroundRadioButton1.UseVisualStyleBackColor = true;
             // 
             // backgroundRadioButton2
             // 
@@ -138,28 +148,16 @@
             this.backgroundRadioButton2.TabStop = true;
             this.backgroundRadioButton2.UseVisualStyleBackColor = true;
             // 
-            // vehicleRadioGroup
+            // backgroundRadioButton3
             // 
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton5);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton4);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton3);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton2);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton1);
-            this.vehicleRadioGroup.Location = new System.Drawing.Point(195, 431);
-            this.vehicleRadioGroup.Name = "vehicleRadioGroup";
-            this.vehicleRadioGroup.Size = new System.Drawing.Size(596, 99);
-            this.vehicleRadioGroup.TabIndex = 10;
-            this.vehicleRadioGroup.TabStop = false;
-            // 
-            // backgroundRadioButton5
-            // 
-            this.backgroundRadioButton5.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton5.BackgroundImage = global::Simsprojekat.Properties.Resources.icons8_question_mark_48;
-            this.backgroundRadioButton5.Location = new System.Drawing.Point(528, 23);
-            this.backgroundRadioButton5.Name = "backgroundRadioButton5";
-            this.backgroundRadioButton5.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton5.TabIndex = 12;
-            this.backgroundRadioButton5.UseVisualStyleBackColor = true;
+            this.backgroundRadioButton3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton3.BackgroundImage")));
+            this.backgroundRadioButton3.Location = new System.Drawing.Point(279, 22);
+            this.backgroundRadioButton3.Name = "backgroundRadioButton3";
+            this.backgroundRadioButton3.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton3.TabIndex = 10;
+            this.backgroundRadioButton3.UseVisualStyleBackColor = true;
+            this.backgroundRadioButton3.CheckedChanged += new System.EventHandler(this.backgroundRadioButton3_CheckedChanged);
             // 
             // backgroundRadioButton4
             // 
@@ -172,26 +170,28 @@
             this.backgroundRadioButton4.TabIndex = 11;
             this.backgroundRadioButton4.UseVisualStyleBackColor = false;
             // 
-            // backgroundRadioButton3
+            // backgroundRadioButton5
             // 
-            this.backgroundRadioButton3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton3.BackgroundImage")));
-            this.backgroundRadioButton3.Location = new System.Drawing.Point(279, 22);
-            this.backgroundRadioButton3.Name = "backgroundRadioButton3";
-            this.backgroundRadioButton3.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton3.TabIndex = 10;
-            this.backgroundRadioButton3.UseVisualStyleBackColor = true;
-            this.backgroundRadioButton3.CheckedChanged += new System.EventHandler(this.backgroundRadioButton3_CheckedChanged);
+            this.backgroundRadioButton5.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton5.BackgroundImage = global::Simsprojekat.Properties.Resources.icons8_question_mark_48;
+            this.backgroundRadioButton5.Location = new System.Drawing.Point(528, 23);
+            this.backgroundRadioButton5.Name = "backgroundRadioButton5";
+            this.backgroundRadioButton5.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton5.TabIndex = 12;
+            this.backgroundRadioButton5.UseVisualStyleBackColor = true;
             // 
-            // logoutButton
+            // vehicleRadioGroup
             // 
-            this.logoutButton.Location = new System.Drawing.Point(905, 40);
-            this.logoutButton.Name = "logoutButton";
-            this.logoutButton.Size = new System.Drawing.Size(124, 32);
-            this.logoutButton.TabIndex = 11;
-            this.logoutButton.Text = "Logout";
-            this.logoutButton.UseVisualStyleBackColor = true;
-            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton5);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton4);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton3);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton2);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton1);
+            this.vehicleRadioGroup.Location = new System.Drawing.Point(195, 431);
+            this.vehicleRadioGroup.Name = "vehicleRadioGroup";
+            this.vehicleRadioGroup.Size = new System.Drawing.Size(596, 99);
+            this.vehicleRadioGroup.TabIndex = 10;
+            this.vehicleRadioGroup.TabStop = false;
             // 
             // WorkerForm
             // 
@@ -223,13 +223,13 @@
         private System.Windows.Forms.Label ticketIdLabel;
         private System.Windows.Forms.Label tollBoothLabel;
         private System.Windows.Forms.Label welcomeLabel;
-        private BackgroundRadioButton backgroundRadioButton1;
-        private System.Windows.Forms.Label label1;
-        private BackgroundRadioButton backgroundRadioButton2;
-        private System.Windows.Forms.GroupBox vehicleRadioGroup;
-        private BackgroundRadioButton backgroundRadioButton3;
-        private BackgroundRadioButton backgroundRadioButton5;
-        private BackgroundRadioButton backgroundRadioButton4;
         private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.Label label1;
+        private BackgroundRadioButton backgroundRadioButton1;
+        private BackgroundRadioButton backgroundRadioButton2;
+        private BackgroundRadioButton backgroundRadioButton3;
+        private BackgroundRadioButton backgroundRadioButton4;
+        private BackgroundRadioButton backgroundRadioButton5;
+        private System.Windows.Forms.GroupBox vehicleRadioGroup;
     }
 }
