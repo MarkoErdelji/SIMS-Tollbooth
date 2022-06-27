@@ -28,15 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tolLStationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ticketGenerationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.logoutButton = new System.Windows.Forms.Button();
             this.tollStationDeleteBtn = new System.Windows.Forms.Button();
             this.tollStationUpdateBtn = new System.Windows.Forms.Button();
             this.tollStationCreateBtn = new System.Windows.Forms.Button();
             this.tollStationGridView = new System.Windows.Forms.DataGridView();
+            this.tollstationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollstationCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollstationZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tollBooths = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tollStationSections = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.userDeleteBtn = new System.Windows.Forms.Button();
             this.userUpdateBtn = new System.Windows.Forms.Button();
@@ -51,23 +58,32 @@
             this.userType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollstationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollstationCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollstationZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tollBooths = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.tollStationSections = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.selectLabel = new System.Windows.Forms.Label();
+            this.ticketGenButton = new System.Windows.Forms.Button();
+            this.vehicleRadioGroup = new System.Windows.Forms.GroupBox();
+            this.backgroundRadioButton5 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton4 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton3 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton2 = new Simsprojekat.View.BackgroundRadioButton();
+            this.backgroundRadioButton1 = new Simsprojekat.View.BackgroundRadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tollStationGridView)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.vehicleRadioGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tolLStationsToolStripMenuItem,
-            this.usersToolStripMenuItem});
+            this.usersToolStripMenuItem,
+            this.ticketGenerationToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(984, 24);
@@ -88,6 +104,13 @@
             this.usersToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
+            // 
+            // ticketGenerationToolStripMenuItem
+            // 
+            this.ticketGenerationToolStripMenuItem.Name = "ticketGenerationToolStripMenuItem";
+            this.ticketGenerationToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.ticketGenerationToolStripMenuItem.Text = "Ticket generation";
+            this.ticketGenerationToolStripMenuItem.Click += new System.EventHandler(this.ticketGenerationToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -161,6 +184,53 @@
             this.tollStationGridView.Size = new System.Drawing.Size(567, 282);
             this.tollStationGridView.TabIndex = 0;
             this.tollStationGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tollStationGridView_CellContentClick);
+            // 
+            // tollstationId
+            // 
+            this.tollstationId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.tollstationId.HeaderText = "Id";
+            this.tollstationId.Name = "tollstationId";
+            this.tollstationId.ReadOnly = true;
+            this.tollstationId.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tollstationId.Width = 50;
+            // 
+            // tollstationCity
+            // 
+            this.tollstationCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tollstationCity.FillWeight = 78.57143F;
+            this.tollstationCity.HeaderText = "City";
+            this.tollstationCity.Name = "tollstationCity";
+            this.tollstationCity.ReadOnly = true;
+            this.tollstationCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // tollstationZipCode
+            // 
+            this.tollstationZipCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tollstationZipCode.FillWeight = 78.57143F;
+            this.tollstationZipCode.HeaderText = "Zip Code";
+            this.tollstationZipCode.Name = "tollstationZipCode";
+            this.tollstationZipCode.ReadOnly = true;
+            this.tollstationZipCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // tollBooths
+            // 
+            this.tollBooths.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.tollBooths.FillWeight = 1F;
+            this.tollBooths.HeaderText = "Toll Booths";
+            this.tollBooths.Name = "tollBooths";
+            this.tollBooths.ReadOnly = true;
+            this.tollBooths.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tollBooths.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tollBooths.Width = 70;
+            // 
+            // tollStationSections
+            // 
+            this.tollStationSections.HeaderText = "Section";
+            this.tollStationSections.Name = "tollStationSections";
+            this.tollStationSections.ReadOnly = true;
+            this.tollStationSections.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tollStationSections.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tollStationSections.Width = 70;
             // 
             // panel2
             // 
@@ -302,58 +372,128 @@
             this.userCity.ReadOnly = true;
             this.userCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // tollstationId
+            // panel3
             // 
-            this.tollstationId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tollstationId.HeaderText = "Id";
-            this.tollstationId.Name = "tollstationId";
-            this.tollstationId.ReadOnly = true;
-            this.tollstationId.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.tollstationId.Width = 50;
+            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.selectLabel);
+            this.panel3.Controls.Add(this.ticketGenButton);
+            this.panel3.Controls.Add(this.vehicleRadioGroup);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(1, 28);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(984, 486);
+            this.panel3.TabIndex = 5;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
-            // tollstationCity
+            // comboBox1
             // 
-            this.tollstationCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tollstationCity.FillWeight = 78.57143F;
-            this.tollstationCity.HeaderText = "City";
-            this.tollstationCity.Name = "tollstationCity";
-            this.tollstationCity.ReadOnly = true;
-            this.tollstationCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(414, 261);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(218, 23);
+            this.comboBox1.TabIndex = 15;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // tollstationZipCode
+            // selectLabel
             // 
-            this.tollstationZipCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tollstationZipCode.FillWeight = 78.57143F;
-            this.tollstationZipCode.HeaderText = "Zip Code";
-            this.tollstationZipCode.Name = "tollstationZipCode";
-            this.tollstationZipCode.ReadOnly = true;
-            this.tollstationZipCode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.selectLabel.AutoSize = true;
+            this.selectLabel.Location = new System.Drawing.Point(454, 225);
+            this.selectLabel.Name = "selectLabel";
+            this.selectLabel.Size = new System.Drawing.Size(133, 15);
+            this.selectLabel.TabIndex = 14;
+            this.selectLabel.Text = "Select the entry station :";
             // 
-            // tollBooths
+            // ticketGenButton
             // 
-            this.tollBooths.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tollBooths.FillWeight = 1F;
-            this.tollBooths.HeaderText = "Toll Booths";
-            this.tollBooths.Name = "tollBooths";
-            this.tollBooths.ReadOnly = true;
-            this.tollBooths.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.tollBooths.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.tollBooths.Width = 70;
+            this.ticketGenButton.Location = new System.Drawing.Point(451, 366);
+            this.ticketGenButton.Name = "ticketGenButton";
+            this.ticketGenButton.Size = new System.Drawing.Size(133, 39);
+            this.ticketGenButton.TabIndex = 13;
+            this.ticketGenButton.Text = "Generate ticket";
+            this.ticketGenButton.UseVisualStyleBackColor = true;
+            this.ticketGenButton.Click += new System.EventHandler(this.ticketGenButton_Click);
             // 
-            // tollStationSections
+            // vehicleRadioGroup
             // 
-            this.tollStationSections.HeaderText = "Section";
-            this.tollStationSections.Name = "tollStationSections";
-            this.tollStationSections.ReadOnly = true;
-            this.tollStationSections.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.tollStationSections.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.tollStationSections.Width = 70;
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton5);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton4);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton3);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton2);
+            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton1);
+            this.vehicleRadioGroup.Location = new System.Drawing.Point(227, 72);
+            this.vehicleRadioGroup.Name = "vehicleRadioGroup";
+            this.vehicleRadioGroup.Size = new System.Drawing.Size(596, 99);
+            this.vehicleRadioGroup.TabIndex = 12;
+            this.vehicleRadioGroup.TabStop = false;
+            // 
+            // backgroundRadioButton5
+            // 
+            this.backgroundRadioButton5.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton5.BackgroundImage = global::Simsprojekat.Properties.Resources.icons8_question_mark_48;
+            this.backgroundRadioButton5.Location = new System.Drawing.Point(528, 23);
+            this.backgroundRadioButton5.Name = "backgroundRadioButton5";
+            this.backgroundRadioButton5.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton5.TabIndex = 12;
+            this.backgroundRadioButton5.UseVisualStyleBackColor = true;
+            // 
+            // backgroundRadioButton4
+            // 
+            this.backgroundRadioButton4.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.backgroundRadioButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton4.BackgroundImage")));
+            this.backgroundRadioButton4.Location = new System.Drawing.Point(410, 23);
+            this.backgroundRadioButton4.Name = "backgroundRadioButton4";
+            this.backgroundRadioButton4.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton4.TabIndex = 11;
+            this.backgroundRadioButton4.UseVisualStyleBackColor = false;
+            // 
+            // backgroundRadioButton3
+            // 
+            this.backgroundRadioButton3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton3.BackgroundImage")));
+            this.backgroundRadioButton3.Location = new System.Drawing.Point(279, 22);
+            this.backgroundRadioButton3.Name = "backgroundRadioButton3";
+            this.backgroundRadioButton3.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton3.TabIndex = 10;
+            this.backgroundRadioButton3.UseVisualStyleBackColor = true;
+            // 
+            // backgroundRadioButton2
+            // 
+            this.backgroundRadioButton2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton2.BackgroundImage")));
+            this.backgroundRadioButton2.Checked = true;
+            this.backgroundRadioButton2.Location = new System.Drawing.Point(22, 22);
+            this.backgroundRadioButton2.Name = "backgroundRadioButton2";
+            this.backgroundRadioButton2.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton2.TabIndex = 9;
+            this.backgroundRadioButton2.TabStop = true;
+            this.backgroundRadioButton2.UseVisualStyleBackColor = true;
+            // 
+            // backgroundRadioButton1
+            // 
+            this.backgroundRadioButton1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.backgroundRadioButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton1.BackgroundImage")));
+            this.backgroundRadioButton1.Location = new System.Drawing.Point(155, 22);
+            this.backgroundRadioButton1.Name = "backgroundRadioButton1";
+            this.backgroundRadioButton1.Size = new System.Drawing.Size(48, 48);
+            this.backgroundRadioButton1.TabIndex = 7;
+            this.backgroundRadioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(454, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Select the vehicle type :";
             // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 511);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -369,6 +509,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tollStationGridView)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.vehicleRadioGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,5 +547,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tollstationZipCode;
         private System.Windows.Forms.DataGridViewButtonColumn tollBooths;
         private System.Windows.Forms.DataGridViewButtonColumn tollStationSections;
+        private System.Windows.Forms.ToolStripMenuItem ticketGenerationToolStripMenuItem;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button ticketGenButton;
+        private System.Windows.Forms.GroupBox vehicleRadioGroup;
+        private BackgroundRadioButton backgroundRadioButton5;
+        private BackgroundRadioButton backgroundRadioButton4;
+        private BackgroundRadioButton backgroundRadioButton3;
+        private BackgroundRadioButton backgroundRadioButton2;
+        private BackgroundRadioButton backgroundRadioButton1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label selectLabel;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
