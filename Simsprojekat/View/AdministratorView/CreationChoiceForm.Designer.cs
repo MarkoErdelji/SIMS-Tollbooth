@@ -96,6 +96,7 @@
             this.Controls.Add(this.workerCreateBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreationChoiceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CreationChoiceForm";
             this.Load += new System.EventHandler(this.CreationChoiceForm_Load);
             this.ResumeLayout(false);

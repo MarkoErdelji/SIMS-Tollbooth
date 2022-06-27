@@ -1,4 +1,5 @@
-﻿using Simsprojekat.Controller;
+﻿using Fare;
+using Simsprojekat.Controller;
 using Simsprojekat.Model;
 using Simsprojekat.View.AdministratorView;
 using System;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,10 +19,16 @@ namespace Simsprojekat.View
     {
         UserController _userController;
         TollStationController _tollStationController;
-        public AdministratorForm()
+        TollBoothController _tollBoothController;
+        TicketController _ticketController;
+        private LoginForm _loginForm;
+        public AdministratorForm(LoginForm loginForm)
         {
+            _loginForm = loginForm;
             _userController = new UserController();
+            _tollBoothController = new TollBoothController();
             _tollStationController = new TollStationController();
+            _ticketController = new TicketController();
             InitializeComponent();
 
         }
@@ -29,6 +37,7 @@ namespace Simsprojekat.View
         {
             this.panel1.Show();
             this.panel2.Hide();
+            this.panel3.Hide();
             List<TollStation> tollStations = _tollStationController.GetAll();
             this.tollStationGridView.Rows.Clear();
             foreach (TollStation tollStation in tollStations)
@@ -44,13 +53,31 @@ namespace Simsprojekat.View
 
         private void tollStationGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var senderGrid = (DataGridView)sender;
 
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0 && e.ColumnIndex == 3)
+            {
+                int tollStationId;
+                tollStationId = int.Parse((string)tollStationGridView.Rows[e.RowIndex].Cells[0].Value);
+                new TollBoothAdminForm(tollStationId).ShowDialog();
+                //TODO - Button Clicked - Execute Code Here
+            }
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0 && e.ColumnIndex == 4)
+            {
+                int tollStationId;
+                tollStationId = int.Parse((string)tollStationGridView.Rows[e.RowIndex].Cells[0].Value);
+                new SectionAdminForm(tollStationId).ShowDialog();
+                //TODO - Button Clicked - Execute Code Here
+            }
         }
 
         private void AdministratorForm_Load(object sender, EventArgs e)
         {
             this.panel1.Show();
             this.panel2.Hide();
+            this.panel3.Hide();
             List<TollStation> tollStations = _tollStationController.GetAll();
             this.tollStationGridView.Rows.Clear();
             foreach (TollStation tollStation in tollStations)
@@ -67,6 +94,7 @@ namespace Simsprojekat.View
         {
             this.panel2.Show();
             this.panel1.Hide();
+            this.panel3.Hide();
             List<User> users = _userController.GetAllUsers();
             this.userDataGridView.Rows.Clear();
             foreach (User user in users)
@@ -169,7 +197,158 @@ namespace Simsprojekat.View
 
         private void tollStationUpdateBtn_Click(object sender, EventArgs e)
         {
+            var selectedRowCount = tollStationGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
 
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int tollStationId = int.Parse((string)tollStationGridView.SelectedRows[i].Cells[0].Value);
+                        TollStation ts = _tollStationController.GetById(tollStationId);
+                        new TollStationCreationForm(ts.Id, ts.location.ZipCode,ts.location.Name).ShowDialog();
+                        
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            _loginForm.Show();
+        }
+
+        private void tollStationDeleteBtn_Click(object sender, EventArgs e)
+        {
+            var selectedRowCount = tollStationGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int tollStationId = int.Parse((string)tollStationGridView.SelectedRows[i].Cells[0].Value);
+                        List<TollBooth> tollBooths = _tollBoothController.GetByTollStationId(tollStationId);
+                        foreach(TollBooth tb  in tollBooths){
+                            _tollBoothController.Delete(tb.Id);
+                        }
+                        _tollStationController.Delete(tollStationId);
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+                MessageBox.Show("Selected toll stations successfuly deleted");
+
+            }
+        }
+
+        private void tollStationCreateBtn_Click(object sender, EventArgs e)
+        {
+            new TollStationCreationForm().ShowDialog();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ticketGenerationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.panel2.Hide();
+            this.panel1.Hide();
+            this.panel3.Show();
+            List<TollStation> tollStations = _tollStationController.GetAll();
+            comboBox1.Items.Clear();
+            foreach (TollStation tollStation in tollStations)
+            {
+                comboBox1.Items.Add(tollStation.Id + "," +tollStation.location.Name);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ticketGenButton_Click(object sender, EventArgs e)
+        {
+            if(comboBox1.SelectedItem is null){
+                return;
+            }
+            string item = (string)comboBox1.SelectedItem;
+            string tollStationId = item.Split(",")[0];
+            int tollStationIdint;
+            RadioButton rb = null;
+            VehicleType type;
+
+            if (backgroundRadioButton1.Checked == true)
+            {
+                type = VehicleType.Car;
+            }
+            else if (backgroundRadioButton2.Checked == true)
+            {
+                type = VehicleType.Truck;
+            }
+            else if (backgroundRadioButton3.Checked == true)
+            {
+                type = VehicleType.Bike;
+            }
+            else if (backgroundRadioButton4.Checked == true)
+            {
+                type = VehicleType.Bus;
+            }
+            else
+            {
+                type = VehicleType.Other;
+            }
+            try
+            {
+                tollStationIdint = int.Parse(tollStationId);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            TollStation tollStation = _tollStationController.GetById(tollStationIdint);
+            Ticket t = new Ticket();
+            t.EntryStationId = tollStationIdint;
+            t.Done = false;
+            t.EntryTime = DateTime.Now;
+            var xeger = new Xeger("[A-Z][A-Z]-[0-9][0-9][0-9]-[A-Z][A-Z]");
+            string generatedString = xeger.Generate();
+            Vehicle vehicle = new Vehicle();
+            if (new Random().Next(2) == 1)
+            {
+                vehicle.ElectronicTag = true;
+            }
+            else {
+                vehicle.ElectronicTag = false;
+            }
+            vehicle.Type = type;
+            vehicle.LicencePlate = generatedString;
+            t.Vehicle = vehicle;
+
+            _ticketController.Insert(t);
+            MessageBox.Show("Ticket successfuly created\n" +
+                "Vehicle license plate: " + generatedString + "\n" +
+                "Electronic tag: " + vehicle.ElectronicTag + "\n" +
+                "Vehicle type: " + vehicle.Type.ToString()
+            );
         }
     }
 }

@@ -18,14 +18,11 @@ namespace Simsprojekat.Model
         [BsonElement("id")]
         public int Id { get; set; }
 
-
         [BsonElement("date")]
         public DateTime Date { get; set; }
 
-
         [BsonElement("amount")]
         public int Amount { get; set; }
-
 
         [BsonElement("paidInDinars")]
         public bool PaidInDinars { get; set; }

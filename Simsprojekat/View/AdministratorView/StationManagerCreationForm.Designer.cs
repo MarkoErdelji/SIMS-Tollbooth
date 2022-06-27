@@ -209,9 +209,9 @@
             this.firstNameLabel.AutoSize = true;
             this.firstNameLabel.Location = new System.Drawing.Point(75, 48);
             this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(67, 15);
+            this.firstNameLabel.Size = new System.Drawing.Size(70, 15);
             this.firstNameLabel.TabIndex = 41;
-            this.firstNameLabel.Text = "FirstName :";
+            this.firstNameLabel.Text = "First Name :";
             // 
             // submitBtn
             // 
@@ -263,6 +263,7 @@
             this.Controls.Add(this.submitBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "StationManagerCreationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "StationManagerCreationForm";
             this.Load += new System.EventHandler(this.StationManagerCreationForm_Load);
             this.ResumeLayout(false);

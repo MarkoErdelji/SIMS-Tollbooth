@@ -8,5 +8,10 @@ namespace Simsprojekat.Model
 {
     public class Camera : Device
     {
+        public Camera()
+        {
+            this.Name = "Camera";
+            this.Faulty = false;
+        }
     }
 }

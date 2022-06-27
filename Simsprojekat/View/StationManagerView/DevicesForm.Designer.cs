@@ -91,6 +91,7 @@
             this.Controls.Add(this.fixButton);
             this.Controls.Add(this.devicesGridView);
             this.Name = "DevicesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DevicesForm";
             this.Load += new System.EventHandler(this.DevicesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.devicesGridView)).EndInit();

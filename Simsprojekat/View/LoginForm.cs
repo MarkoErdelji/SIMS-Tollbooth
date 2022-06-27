@@ -29,7 +29,7 @@ namespace Simsprojekat.View
                 this.Hide();
                 if (user.Type == UserType.Admin)
                 {
-                    AdministratorForm adminForm = new AdministratorForm();
+                    AdministratorForm adminForm = new AdministratorForm(this);
                     adminForm.Show();
                 }
                 if (user.Type == UserType.HeadManager)
@@ -56,6 +56,11 @@ namespace Simsprojekat.View
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usernameTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
