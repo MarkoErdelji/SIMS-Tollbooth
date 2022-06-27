@@ -58,7 +58,7 @@ namespace Simsprojekat.View.AdministratorView
             if (_sectionController.Update(section))
             {
                 invalidInfoLabel.Visible = false;
-                MessageBox.Show("Section successfuly created");
+                MessageBox.Show("Section successfuly updated");
                 this.Dispose();
             }
             else

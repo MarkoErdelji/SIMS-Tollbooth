@@ -74,7 +74,8 @@ namespace Simsprojekat.View.AdministratorView
                     try
                     {
                         int otherStationId = int.Parse((string)dataGridView1.SelectedRows[i].Cells[0].Value);
-                        new SectionUpdateForm(ts.Id, otherStationId, int.Parse((string)dataGridView1.SelectedRows[i].Cells[1].Value)).ShowDialog();
+                        int distance = (int)dataGridView1.SelectedRows[i].Cells[2].Value;
+                        new SectionUpdateForm(ts.Id, otherStationId, distance).ShowDialog();
                     }
                     catch (Exception exc)
                     {
