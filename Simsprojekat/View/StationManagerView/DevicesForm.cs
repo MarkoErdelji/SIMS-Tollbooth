@@ -34,6 +34,7 @@ namespace Simsprojekat.View.StationManagerView
                 {
                     device.Faulty = false;
                     tollBoothController.Update(tollBooth);
+                    MessageBox.Show("Device successfully fixed");
                 }
             }
 
