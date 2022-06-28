@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -59,6 +61,9 @@ namespace Simsprojekat.View.AdministratorView
                 if (_tollStationController.Insert(ts))
                 {
                     invalidInfoLabel.Visible = false;
+                    Thread trd = new Thread(() => ThreadCreator.TollBoothThreadTask(ts));
+                    trd.IsBackground = true;
+                    trd.Start();
                     MessageBox.Show("Toll station successfuly created");
                     this.Dispose();
                 }
