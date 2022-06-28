@@ -67,7 +67,6 @@ namespace Simsprojekat.View
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("Jebem ti mamu");
             List<TollStation> tollStations = tollStationController.GetAll();
             foreach(TollStation ts in tollStations)
             {

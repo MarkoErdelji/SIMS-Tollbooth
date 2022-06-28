@@ -296,11 +296,11 @@ namespace Simsprojekat.View
             RadioButton rb = null;
             VehicleType type;
 
-            if (backgroundRadioButton1.Checked == true)
+            if (backgroundRadioButton2.Checked == true)
             {
                 type = VehicleType.Car;
             }
-            else if (backgroundRadioButton2.Checked == true)
+            else if (backgroundRadioButton1.Checked == true)
             {
                 type = VehicleType.Truck;
             }
@@ -349,6 +349,11 @@ namespace Simsprojekat.View
                 "Electronic tag: " + vehicle.ElectronicTag + "\n" +
                 "Vehicle type: " + vehicle.Type.ToString()
             );
+        }
+
+        private void vehicleRadioGroup_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
