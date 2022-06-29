@@ -23,6 +23,7 @@ namespace Simsprojekat.View
         TollBoothController _tollBoothController;
         TicketController _ticketController;
         SectionController _sectionController;
+        TransactionController _transactionController;
 
         private LoginForm _loginForm;
         public AdministratorForm(LoginForm loginForm)
@@ -33,6 +34,7 @@ namespace Simsprojekat.View
             _tollBoothController = new TollBoothController();
             _tollStationController = new TollStationController();
             _ticketController = new TicketController();
+            _transactionController = new TransactionController();
             InitializeComponent();
 
         }
@@ -268,12 +270,22 @@ namespace Simsprojekat.View
                         TollStation ts = (TollStation)tollStationGridView.SelectedRows[i].Tag;
                         List<TollBooth> tollBooths = _tollBoothController.GetByTollStationId(tollStationId);
                         List<Section> tollStationSections = _sectionController.GetByStationId(ts.Id);
+                        List<Ticket> tollStationTickets = _ticketController.GetByStationId(ts.Id);
+                        List<Transaction> tollStationTransactions = _transactionController.GetByStationId(ts.Id);
                         foreach (TollBooth tb  in tollBooths){
                             _tollBoothController.Delete(tb.Id);
                         }
                         foreach(Section s in tollStationSections)
                         {
                             _sectionController.Delete(s.EntryStationId, s.ExitStationId);
+                        }
+                        foreach(Ticket ticket in tollStationTickets)
+                        {
+                            _ticketController.Delete(ticket.Id);
+                        }
+                        foreach(Transaction transaction in tollStationTransactions)
+                        {
+                            _transactionController.Delete(transaction.Id);
                         }
                         _tollStationController.Delete(tollStationId);
                         ts.Notify();
