@@ -103,11 +103,11 @@ namespace Simsprojekat.View.HeadManagerView
             return true;
         }
 
-        private void keyboardCheck(KeyPressEventArgs e)
+        private void keyboardCheck(KeyPressEventArgs e,int field)
         {
             char ch = e.KeyChar;
 
-            if (ch == 46 && txbEuro.Text.IndexOf('.') != -1)
+            if (ch == 46 && field != -1)
             {
                 e.Handled = true;
                 return;
@@ -120,37 +120,37 @@ namespace Simsprojekat.View.HeadManagerView
         }
         private void txbEuro_KeyPress(object sender, KeyPressEventArgs e)
         {
-            keyboardCheck(e);
+            keyboardCheck(e, txbEuro.Text.IndexOf('.'));
         }
 
         private void txbDinar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            keyboardCheck(e);
+            keyboardCheck(e, txbDinar.Text.IndexOf('.'));
         }
 
         private void txbCar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            keyboardCheck(e);
+            keyboardCheck(e, txbCar.Text.IndexOf('.'));
         }
 
         private void txbTruck_KeyPress(object sender, KeyPressEventArgs e)
         {
-            keyboardCheck(e);
+            keyboardCheck(e, txbTruck.Text.IndexOf('.'));
         }
 
         private void txbOther_KeyPress(object sender, KeyPressEventArgs e)
         {
-            keyboardCheck(e);
+            keyboardCheck(e, txbOther.Text.IndexOf('.'));
         }
 
         private void txbBike_KeyPress(object sender, KeyPressEventArgs e)
         {
-            keyboardCheck(e);
+            keyboardCheck(e, txbBike.Text.IndexOf('.'));
         }
 
         private void txbBus_KeyPress(object sender, KeyPressEventArgs e)
         {
-            keyboardCheck(e);
+            keyboardCheck(e, txbBus.Text.IndexOf('.'));
         }
     }
 }

@@ -48,13 +48,14 @@ namespace Simsprojekat.View.StationManagerView
             this.tollstationZipCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tollstationSection = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelPriceLists = new System.Windows.Forms.Panel();
+            this.btnSetActive = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.dgwPriceLists = new System.Windows.Forms.DataGridView();
             this.idPricelist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastUsed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panelTollStations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTollStations)).BeginInit();
@@ -203,12 +204,33 @@ namespace Simsprojekat.View.StationManagerView
             // 
             // panelPriceLists
             // 
+            this.panelPriceLists.Controls.Add(this.btnSetActive);
             this.panelPriceLists.Controls.Add(this.btnAdd);
             this.panelPriceLists.Controls.Add(this.dgwPriceLists);
             this.panelPriceLists.Location = new System.Drawing.Point(0, 31);
             this.panelPriceLists.Name = "panelPriceLists";
             this.panelPriceLists.Size = new System.Drawing.Size(800, 418);
             this.panelPriceLists.TabIndex = 1;
+            // 
+            // btnSetActive
+            // 
+            this.btnSetActive.Location = new System.Drawing.Point(255, 367);
+            this.btnSetActive.Name = "btnSetActive";
+            this.btnSetActive.Size = new System.Drawing.Size(94, 29);
+            this.btnSetActive.TabIndex = 2;
+            this.btnSetActive.Text = "Set active";
+            this.btnSetActive.UseVisualStyleBackColor = true;
+            this.btnSetActive.Click += new System.EventHandler(this.btnSetActive_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(100, 367);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(123, 29);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Add pricelist";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgwPriceLists
             // 
@@ -226,6 +248,7 @@ namespace Simsprojekat.View.StationManagerView
             this.dgwPriceLists.RowTemplate.Height = 29;
             this.dgwPriceLists.Size = new System.Drawing.Size(587, 323);
             this.dgwPriceLists.TabIndex = 0;
+            this.dgwPriceLists.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwPriceLists_CellClick);
             this.dgwPriceLists.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwPriceLists_CellContentClick);
             // 
             // idPricelist
@@ -266,16 +289,6 @@ namespace Simsprojekat.View.StationManagerView
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.deleteBtn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(100, 367);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(123, 29);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "Add pricelist";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // HeadManagerForm
             // 
@@ -327,5 +340,6 @@ namespace Simsprojekat.View.StationManagerView
         private System.Windows.Forms.DataGridViewButtonColumn editBtn;
         private System.Windows.Forms.DataGridViewButtonColumn deleteBtn;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnSetActive;
     }
 }

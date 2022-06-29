@@ -18,6 +18,7 @@ namespace Simsprojekat.View.StationManagerView
         private LoginForm _loginForm;
         private TollStationController _tollStationController;
         private PriceListController _priceListController;
+        private int _selectedId;
         public HeadManagerForm(LoginForm loginForm)
         {
            
@@ -25,6 +26,7 @@ namespace Simsprojekat.View.StationManagerView
             _tollStationController = new TollStationController();
             _priceListController = new PriceListController();
             InitializeComponent();
+            this.btnSetActive.Enabled = false;
             this.panelTollStations.Hide();
             this.panelPriceLists.Hide();
         }
@@ -152,6 +154,35 @@ namespace Simsprojekat.View.StationManagerView
         {
 
             new CreateUpdatePriceListForm().ShowDialog();
+        }
+
+        private void btnSetActive_Click(object sender, EventArgs e)
+        {
+            changeActivePriceList();
+        }
+
+        private void changeActivePriceList()
+        {
+            PriceList selected = _priceListController.GetById(this._selectedId);
+            PriceList active = _priceListController.GetActive();
+
+            selected.IsActive = true;
+            active.IsActive = false;
+
+            selected.LastActive = "NOW";
+            active.LastActive = DateTime.Now.ToString("dd-MM-yyyy");
+
+            _priceListController.Update(selected);
+            _priceListController.Update(active);
+            MessageBox.Show("Successfuly changed active pricelist");
+        }
+
+        private void dgwPriceLists_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this._selectedId = int.Parse((string)dgwPriceLists.Rows[e.RowIndex].Cells[0].Value);
+            bool isActive = bool.Parse((string)dgwPriceLists.Rows[e.RowIndex].Cells[2].Value);
+            if (isActive) btnSetActive.Enabled = false;
+            else btnSetActive.Enabled = true;
         }
     }
 }
