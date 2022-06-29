@@ -15,14 +15,15 @@ namespace Simsprojekat.View
     public partial class WorkerForm : Form
     {
         private LoginForm _loginForm;
+        private TollBooth _tollBooth;
 
         public WorkerForm(Worker worker,LoginForm loginform)
         {
             _loginForm = loginform;
             InitializeComponent();
             welcomeLabel.Text += " " + worker.FirstName + " " + worker.LastName;
-            TollBooth tb = new TollBoothController().GetById(worker.TollBoothId);
-            tollBoothLabel.Text += tb.TollBoothNumber;
+            _tollBooth = new TollBoothController().GetById(worker.TollBoothId);
+            tollBoothLabel.Text += _tollBooth.TollBoothNumber;
         }
 
         private void roundButton1_Click(object sender, EventArgs e)
@@ -52,7 +53,40 @@ namespace Simsprojekat.View
 
         private void WorkerForm_Load(object sender, EventArgs e)
         {
+            foreach (Device device in _tollBooth.Devices)
+            {
+                if (device.Name == "Ramp")
+                {
+                    if (device.Faulty)
+                    {
+                        tbTicket.Enabled = false;
+                        lblRamp.ForeColor = Color.Red;
+                        lblRamp.Text = "Ramp is not in function.";
+                    }
+                    else
+                    {
+                        lblRamp.ForeColor = Color.Green;
+                        lblRamp.Text = "Ramp is in function.";
+                    }
+                }
+                else
+                {
+                    if (device.Faulty)
+                    {
+                        tbTicket.Enabled = false;
+                        lblCamera.ForeColor = Color.Red;
+                        lblCamera.Text = "Camera is not in function.";
+                    }
+                    else
+                    {
+                        lblCamera.ForeColor = Color.Green;
+                        lblCamera.Text = "Camera is in function.";
+                    }
 
+                }
+
+
+            }
         }
 
         private void logoutButton_Click(object sender, EventArgs e)

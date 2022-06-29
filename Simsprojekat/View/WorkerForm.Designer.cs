@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkerForm));
             this.rampRaiseBtn = new Simsprojekat.View.RoundButton();
             this.submitTicketBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbTicket = new System.Windows.Forms.TextBox();
             this.ticketIdLabel = new System.Windows.Forms.Label();
             this.tollBoothLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
@@ -43,6 +43,8 @@
             this.backgroundRadioButton4 = new Simsprojekat.View.BackgroundRadioButton();
             this.backgroundRadioButton5 = new Simsprojekat.View.BackgroundRadioButton();
             this.vehicleRadioGroup = new System.Windows.Forms.GroupBox();
+            this.lblRamp = new System.Windows.Forms.Label();
+            this.lblCamera = new System.Windows.Forms.Label();
             this.vehicleRadioGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,12 +70,12 @@
             this.submitTicketBtn.TabIndex = 2;
             this.submitTicketBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tbTicket
             // 
-            this.textBox1.Location = new System.Drawing.Point(383, 287);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(216, 23);
-            this.textBox1.TabIndex = 3;
+            this.tbTicket.Location = new System.Drawing.Point(383, 287);
+            this.tbTicket.Name = "tbTicket";
+            this.tbTicket.Size = new System.Drawing.Size(216, 23);
+            this.tbTicket.TabIndex = 3;
             // 
             // ticketIdLabel
             // 
@@ -88,7 +90,7 @@
             // 
             this.tollBoothLabel.AutoSize = true;
             this.tollBoothLabel.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tollBoothLabel.Location = new System.Drawing.Point(417, 25);
+            this.tollBoothLabel.Location = new System.Drawing.Point(417, 9);
             this.tollBoothLabel.Name = "tollBoothLabel";
             this.tollBoothLabel.Size = new System.Drawing.Size(182, 45);
             this.tollBoothLabel.TabIndex = 5;
@@ -98,7 +100,7 @@
             // 
             this.welcomeLabel.AutoSize = true;
             this.welcomeLabel.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.welcomeLabel.Location = new System.Drawing.Point(350, 93);
+            this.welcomeLabel.Location = new System.Drawing.Point(388, 87);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(134, 37);
             this.welcomeLabel.TabIndex = 6;
@@ -193,18 +195,40 @@
             this.vehicleRadioGroup.TabIndex = 10;
             this.vehicleRadioGroup.TabStop = false;
             // 
+            // lblRamp
+            // 
+            this.lblRamp.AutoSize = true;
+            this.lblRamp.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRamp.Location = new System.Drawing.Point(20, 149);
+            this.lblRamp.Name = "lblRamp";
+            this.lblRamp.Size = new System.Drawing.Size(67, 30);
+            this.lblRamp.TabIndex = 12;
+            this.lblRamp.Text = "Ramp";
+            // 
+            // lblCamera
+            // 
+            this.lblCamera.AutoSize = true;
+            this.lblCamera.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCamera.Location = new System.Drawing.Point(20, 201);
+            this.lblCamera.Name = "lblCamera";
+            this.lblCamera.Size = new System.Drawing.Size(84, 30);
+            this.lblCamera.TabIndex = 13;
+            this.lblCamera.Text = "Camera";
+            // 
             // WorkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 601);
+            this.Controls.Add(this.lblCamera);
+            this.Controls.Add(this.lblRamp);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.vehicleRadioGroup);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.welcomeLabel);
             this.Controls.Add(this.tollBoothLabel);
             this.Controls.Add(this.ticketIdLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbTicket);
             this.Controls.Add(this.submitTicketBtn);
             this.Controls.Add(this.rampRaiseBtn);
             this.Name = "WorkerForm";
@@ -219,7 +243,7 @@
         #endregion
         private RoundButton rampRaiseBtn;
         private System.Windows.Forms.Button submitTicketBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbTicket;
         private System.Windows.Forms.Label ticketIdLabel;
         private System.Windows.Forms.Label tollBoothLabel;
         private System.Windows.Forms.Label welcomeLabel;
@@ -231,5 +255,7 @@
         private BackgroundRadioButton backgroundRadioButton4;
         private BackgroundRadioButton backgroundRadioButton5;
         private System.Windows.Forms.GroupBox vehicleRadioGroup;
+        private System.Windows.Forms.Label lblRamp;
+        private System.Windows.Forms.Label lblCamera;
     }
 }
