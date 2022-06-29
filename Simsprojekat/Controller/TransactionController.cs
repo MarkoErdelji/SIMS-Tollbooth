@@ -33,6 +33,8 @@ namespace Simsprojekat.Controller
 
         public void Insert(Transaction t)
         {
+            var id = transactionCollection.Find(e => true).SortByDescending(e => e.Id).FirstOrDefault().Id;
+            t.Id = id + 1;
             transactionCollection.InsertOne(t);
         }
         public void Delete(int id)

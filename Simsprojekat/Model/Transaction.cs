@@ -22,7 +22,7 @@ namespace Simsprojekat.Model
         public DateTime Date { get; set; }
 
         [BsonElement("amount")]
-        public int Amount { get; set; }
+        public double Amount { get; set; }
 
         [BsonElement("paidInDinars")]
         public bool PaidInDinars { get; set; }
@@ -33,5 +33,14 @@ namespace Simsprojekat.Model
         [BsonElement("ticketId")]
         public int TicketId { get; set; }
 
+
+        public Transaction(DateTime date, double amount, bool paidInDinars, int exitStationId, int ticketId)
+        {
+            Date = date;
+            Amount = amount;
+            PaidInDinars = paidInDinars;
+            ExitStationId = exitStationId;
+            TicketId = ticketId;
+        }
     }
 }

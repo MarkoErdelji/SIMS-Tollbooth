@@ -113,6 +113,11 @@ namespace Simsprojekat.View
 
             var ticketId = Convert.ToInt32(tbTicket.Text);
             var ticket = _ticketController.GetById(ticketId);
+            if(ticket.Done)
+            {
+                MessageBox.Show("This ticket has already been used!");
+                return;
+            }
             if(ticket == null)
             {
                 MessageBox.Show("Ticket with this ID doesn't exist!");
@@ -129,7 +134,7 @@ namespace Simsprojekat.View
 
             if(sec != null)
             {
-                CreateTransactionForm transactionForm = new CreateTransactionForm(sec, ticket);
+                CreateTransactionForm transactionForm = new CreateTransactionForm(sec, ticket, this, stationId);
                 transactionForm.ShowDialog();
             } else
             {

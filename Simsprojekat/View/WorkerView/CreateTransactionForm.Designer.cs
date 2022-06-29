@@ -114,6 +114,7 @@ namespace Simsprojekat.View.WorkerView
             // rbEur
             // 
             this.rbEur.AutoSize = true;
+            this.rbEur.Checked = true;
             this.rbEur.Location = new System.Drawing.Point(172, 178);
             this.rbEur.Name = "rbEur";
             this.rbEur.Size = new System.Drawing.Size(42, 19);
@@ -130,17 +131,16 @@ namespace Simsprojekat.View.WorkerView
             this.rbDin.Name = "rbDin";
             this.rbDin.Size = new System.Drawing.Size(43, 19);
             this.rbDin.TabIndex = 9;
-            this.rbDin.TabStop = true;
             this.rbDin.Text = "Din";
             this.rbDin.UseVisualStyleBackColor = true;
             // 
             // btnPodigniRampu
             // 
-            this.btnPodigniRampu.Location = new System.Drawing.Point(172, 421);
+            this.btnPodigniRampu.Location = new System.Drawing.Point(125, 405);
             this.btnPodigniRampu.Name = "btnPodigniRampu";
-            this.btnPodigniRampu.Size = new System.Drawing.Size(118, 23);
+            this.btnPodigniRampu.Size = new System.Drawing.Size(244, 44);
             this.btnPodigniRampu.TabIndex = 10;
-            this.btnPodigniRampu.Text = "Raise the ramp";
+            this.btnPodigniRampu.Text = "Create the transaction and raise the ramp";
             this.btnPodigniRampu.UseVisualStyleBackColor = true;
             this.btnPodigniRampu.Click += new System.EventHandler(this.btnPodigniRampu_Click);
             // 

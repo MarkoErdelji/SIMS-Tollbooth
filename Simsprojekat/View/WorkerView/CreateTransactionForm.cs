@@ -18,13 +18,20 @@ namespace Simsprojekat.View.WorkerView
         private Ticket _ticket;
         private PriceListController _priceListController;
         private double _price;
-        
-        public CreateTransactionForm(Section section, Ticket ticket)
+        private WorkerForm _workerForm;
+        private int _stationId;
+        private TransactionController _transactionController;
+        private TicketController _ticketController;
+
+        public CreateTransactionForm(Section section, Ticket ticket, WorkerForm workerForm, int stationId)
         {
             _section = section;
             _ticket = ticket;
+            _workerForm = workerForm;
             _priceListController = new PriceListController();
-            _priceListController = new PriceListController();
+            _stationId = stationId;
+            _transactionController = new TransactionController();
+            _ticketController = new TicketController();
             InitializeComponent();
         }
 
@@ -82,6 +89,20 @@ namespace Simsprojekat.View.WorkerView
 
         private void btnPodigniRampu_Click(object sender, EventArgs e)
         {
+            _ticket.Done = true;
+            _ticketController.Update(_ticket);
+
+            var transaction = new Transaction(
+                DateTime.Now,
+                _price,
+                rbDin.Checked ? true : false,
+                _stationId,
+                _ticket.Id
+                );
+
+
+            _transactionController.Insert(transaction);
+            this.Close();
         }
 
         private void rbEur_CheckedChanged(object sender, EventArgs e)
