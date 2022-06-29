@@ -16,10 +16,16 @@ namespace Simsprojekat.View
     {
         private LoginForm _loginForm;
         private TollBooth _tollBooth;
+        private SectionController _sectionController;
+        private TicketController _ticketController;
+        private TollStationController _tollStationController;
 
         public WorkerForm(Worker worker,LoginForm loginform)
         {
             _loginForm = loginform;
+            _sectionController = new SectionController();
+            _ticketController = new TicketController();
+            _tollStationController = new TollStationController();
             InitializeComponent();
             welcomeLabel.Text += " " + worker.FirstName + " " + worker.LastName;
             _tollBooth = new TollBoothController().GetById(worker.TollBoothId);
@@ -84,8 +90,6 @@ namespace Simsprojekat.View
                     }
 
                 }
-
-
             }
         }
 
@@ -93,6 +97,53 @@ namespace Simsprojekat.View
         {
             this.Dispose();
             _loginForm.Show();
+        }
+
+        private void submitTicketBtn_Click(object sender, EventArgs e)
+        {
+            if(tbTicket.Text == "")
+            {
+                MessageBox.Show("Ticket ID input field can't be empty!");
+                return;
+            }
+
+            var ticketId = Convert.ToInt32(tbTicket.Text);
+            var ticket = _ticketController.GetById(ticketId);
+            if(ticket == null)
+            {
+                MessageBox.Show("Ticket with this ID doesn't exist!");
+                return;
+            }
+            var stationId = _tollStationController.FindByTollBooth(_tollBooth.Id).Id;
+
+            var sections = _sectionController.All();
+            
+            var sec = sections.Find(section =>
+                (section.EntryStationId == ticket.EntryStationId || section.ExitStationId == ticket.EntryStationId)
+                && (section.EntryStationId == stationId || section.ExitStationId == stationId)
+            );
+
+            if(sec != null)
+            {
+                MessageBox.Show("Successfully found the section!");
+            } else
+            {
+                MessageBox.Show("You can't use this ticket here!");
+            }
+
+            
+/*            foreach (Section section in sections)
+            {
+                if (section.EntryStationId == ticket.EntryStationId || section.ExitStationId == ticket.EntryStationId)
+                {
+                    if (section.EntryStationId == stationId || section.ExitStationId == stationId)
+                    {
+                        MessageBox.Show("It works :)");
+                        return;
+                    }
+                }
+            }*/
+            
         }
     }
 }

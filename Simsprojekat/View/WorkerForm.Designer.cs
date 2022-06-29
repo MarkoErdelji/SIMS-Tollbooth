@@ -69,6 +69,7 @@
             this.submitTicketBtn.Size = new System.Drawing.Size(31, 30);
             this.submitTicketBtn.TabIndex = 2;
             this.submitTicketBtn.UseVisualStyleBackColor = true;
+            this.submitTicketBtn.Click += new System.EventHandler(this.submitTicketBtn_Click);
             // 
             // tbTicket
             // 
