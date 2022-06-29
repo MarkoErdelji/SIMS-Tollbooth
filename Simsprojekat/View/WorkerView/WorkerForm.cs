@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.View.WorkerView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -125,7 +126,8 @@ namespace Simsprojekat.View
 
             if(sec != null)
             {
-                MessageBox.Show("Successfully found the section!");
+                CreateTransactionForm transactionForm = new CreateTransactionForm(sec, ticket);
+                transactionForm.ShowDialog();
             } else
             {
                 MessageBox.Show("You can't use this ticket here!");

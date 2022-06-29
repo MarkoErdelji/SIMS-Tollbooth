@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Reports\" />
     <Folder Include="Observer\" />
-    <Folder Include="View\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>
