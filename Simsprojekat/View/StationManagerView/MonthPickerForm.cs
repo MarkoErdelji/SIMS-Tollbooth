@@ -66,6 +66,7 @@ namespace Simsprojekat.View.StationManagerView
             fileEur.WriteLine(sumEuro);
             fileDin.Close();
             fileEur.Close();
+            MessageBox.Show("Monthly report has been created! Check Reports directiorium.");
             this.Dispose();
         }
     }
