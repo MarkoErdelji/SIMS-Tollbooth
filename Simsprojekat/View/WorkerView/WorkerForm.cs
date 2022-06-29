@@ -125,6 +125,12 @@ namespace Simsprojekat.View
             }
 
             var ticketId = Convert.ToInt32(tbTicket.Text);
+            var ids = _ticketController.GetIds();
+            if(!ids.Contains(ticketId))
+            {
+                MessageBox.Show("Ticket with that ID doesn't exist!");
+                return;
+            }
             var ticket = _ticketController.GetById(ticketId);
             if(ticket.Done)
             {
@@ -137,35 +143,16 @@ namespace Simsprojekat.View
                 return;
             }
             var stationId = _tollStationController.FindByTollBooth(_tollBooth.Id).Id;
+            var section = _sectionController.GetByStationIds(ticket.EntryStationId, stationId);
 
-            var sections = _sectionController.All();
-            
-            var sec = sections.Find(section =>
-                (section.EntryStationId == ticket.EntryStationId || section.ExitStationId == ticket.EntryStationId)
-                && (section.EntryStationId == stationId || section.ExitStationId == stationId)
-            );
-
-            if(sec != null)
+            if(section != null)
             {
-                CreateTransactionForm transactionForm = new CreateTransactionForm(sec, ticket, this, stationId);
+                CreateTransactionForm transactionForm = new CreateTransactionForm(section, ticket, this, stationId);
                 transactionForm.ShowDialog();
             } else
             {
                 MessageBox.Show("You can't use this ticket here!");
             }
-
-            
-/*            foreach (Section section in sections)
-            {
-                if (section.EntryStationId == ticket.EntryStationId || section.ExitStationId == ticket.EntryStationId)
-                {
-                    if (section.EntryStationId == stationId || section.ExitStationId == stationId)
-                    {
-                        MessageBox.Show("It works :)");
-                        return;
-                    }
-                }
-            }*/
             
         }
     }
