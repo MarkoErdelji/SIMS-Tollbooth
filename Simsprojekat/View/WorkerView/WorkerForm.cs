@@ -20,7 +20,9 @@ namespace Simsprojekat.View
         private SectionController _sectionController;
         private TicketController _ticketController;
         private TollStationController _tollStationController;
-        
+
+        public Timer RampMovingTimer = new Timer();
+
 
         public WorkerForm(Worker worker,LoginForm loginform)
         {
@@ -34,7 +36,18 @@ namespace Simsprojekat.View
             tollBoothLabel.Text += _tollBooth.TollBoothNumber;
         }
 
+        public void RaiseRamp()
+        {
+            rampRaiseBtn.BackColor = Color.Red;
+            rampRaiseBtn.Text = "Ramp is raised.";
+        }
+        public void LowerRamp(Object myObject, EventArgs myEventArgs)
+        {
+            RampMovingTimer.Stop();
 
+            rampRaiseBtn.BackColor = Color.Green;
+            rampRaiseBtn.Text = "Ramp is lowered.";
+        }
 
         private void roundButton1_Click(object sender, EventArgs e)
         {
