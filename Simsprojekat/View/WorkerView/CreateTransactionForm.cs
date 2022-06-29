@@ -24,7 +24,9 @@ namespace Simsprojekat.View.WorkerView
 
         private void TransactionForm_Load(object sender, EventArgs e)
         {
-
+            var timeDiff = DateTime.Now.Subtract(_ticket.EntryTime).TotalHours;
+            double averageSpeed = _section.Distance / timeDiff;
+            lblSpeed.Text = "Average speed of the vehicle has been: " + Math.Round(averageSpeed, 2) + " km/h.";
         }
     }
 }

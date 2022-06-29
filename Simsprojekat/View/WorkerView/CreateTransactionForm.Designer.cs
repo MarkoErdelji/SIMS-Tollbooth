@@ -55,7 +55,7 @@ namespace Simsprojekat.View.WorkerView
             // 
             this.lblSpeed.AutoSize = true;
             this.lblSpeed.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSpeed.Location = new System.Drawing.Point(188, 62);
+            this.lblSpeed.Location = new System.Drawing.Point(39, 62);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(64, 25);
             this.lblSpeed.TabIndex = 2;
@@ -137,7 +137,7 @@ namespace Simsprojekat.View.WorkerView
             this.btnPodigniRampu.Text = "Podigni rampu";
             this.btnPodigniRampu.UseVisualStyleBackColor = true;
             // 
-            // TransactionForm
+            // CreateTransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -152,7 +152,7 @@ namespace Simsprojekat.View.WorkerView
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.label1);
-            this.Name = "TransactionForm";
+            this.Name = "CreateTransactionForm";
             this.Text = "TransactionForm";
             this.Load += new System.EventHandler(this.TransactionForm_Load);
             this.ResumeLayout(false);
