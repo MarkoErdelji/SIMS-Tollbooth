@@ -57,7 +57,7 @@ namespace Simsprojekat.View.HeadManagerView
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            if (true) {
+            if (fieldsChecked()) {
                 this._priceList.BikeCoeficient = Convert.ToDouble(txbBike.Text);
                 this._priceList.TruckCoeficient = Convert.ToDouble(txbTruck.Text);
                 this._priceList.CarCoeficient = Convert.ToDouble(txbCar.Text);
@@ -82,6 +82,27 @@ namespace Simsprojekat.View.HeadManagerView
                 this.Dispose();
             }
         }
+
+        private bool fieldsChecked()
+        {
+            List<string> textBoxes = new List<string>()
+            {
+                txbBike.Text, txbTruck.Text, txbCar.Text, txbBus.Text,
+                txbOther.Text, txbDinar.Text, txbEuro.Text,
+            };
+
+
+            foreach(string text in textBoxes)
+            {
+                if(text == "" || text == "0")
+                {
+                    MessageBox.Show("Inputs cannot be empty or 0");
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private void keyboardCheck(KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
