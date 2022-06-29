@@ -51,13 +51,14 @@
             // rampRaiseBtn
             // 
             this.rampRaiseBtn.BackColor = System.Drawing.Color.Green;
+            this.rampRaiseBtn.Enabled = false;
             this.rampRaiseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.rampRaiseBtn.ForeColor = System.Drawing.Color.Black;
             this.rampRaiseBtn.Location = new System.Drawing.Point(824, 238);
             this.rampRaiseBtn.Name = "rampRaiseBtn";
             this.rampRaiseBtn.Size = new System.Drawing.Size(124, 123);
             this.rampRaiseBtn.TabIndex = 1;
-            this.rampRaiseBtn.Text = "Raise ramp";
+            this.rampRaiseBtn.Text = "Ramp is lowered.";
             this.rampRaiseBtn.UseVisualStyleBackColor = false;
             this.rampRaiseBtn.Click += new System.EventHandler(this.roundButton1_Click);
             // 

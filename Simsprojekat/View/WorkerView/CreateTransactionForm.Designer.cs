@@ -31,7 +31,7 @@ namespace Simsprojekat.View.WorkerView
         {
             this.label1 = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbGivenAmount = new System.Windows.Forms.TextBox();
             this.lblCena = new System.Windows.Forms.Label();
             this.lblKusur = new System.Windows.Forms.Label();
             this.btnKusur = new System.Windows.Forms.Button();
@@ -39,6 +39,7 @@ namespace Simsprojekat.View.WorkerView
             this.rbEur = new System.Windows.Forms.RadioButton();
             this.rbDin = new System.Windows.Forms.RadioButton();
             this.btnPodigniRampu = new System.Windows.Forms.Button();
+            this.lblVehicle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -61,32 +62,35 @@ namespace Simsprojekat.View.WorkerView
             this.lblSpeed.TabIndex = 2;
             this.lblSpeed.Text = "Speed";
             // 
-            // textBox1
+            // tbGivenAmount
             // 
-            this.textBox1.Location = new System.Drawing.Point(172, 247);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(118, 23);
-            this.textBox1.TabIndex = 3;
+            this.tbGivenAmount.Location = new System.Drawing.Point(172, 247);
+            this.tbGivenAmount.Name = "tbGivenAmount";
+            this.tbGivenAmount.Size = new System.Drawing.Size(118, 23);
+            this.tbGivenAmount.TabIndex = 3;
             // 
             // lblCena
             // 
             this.lblCena.AutoSize = true;
             this.lblCena.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCena.Location = new System.Drawing.Point(202, 136);
+            this.lblCena.Location = new System.Drawing.Point(194, 142);
             this.lblCena.Name = "lblCena";
-            this.lblCena.Size = new System.Drawing.Size(42, 20);
+            this.lblCena.Size = new System.Drawing.Size(41, 20);
             this.lblCena.TabIndex = 4;
-            this.lblCena.Text = "Cena";
+            this.lblCena.Text = "Price";
+            this.lblCena.Visible = false;
+            this.lblCena.Click += new System.EventHandler(this.lblCena_Click);
             // 
             // lblKusur
             // 
             this.lblKusur.AutoSize = true;
             this.lblKusur.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblKusur.Location = new System.Drawing.Point(202, 341);
+            this.lblKusur.Location = new System.Drawing.Point(172, 341);
             this.lblKusur.Name = "lblKusur";
-            this.lblKusur.Size = new System.Drawing.Size(50, 21);
+            this.lblKusur.Size = new System.Drawing.Size(63, 21);
             this.lblKusur.TabIndex = 5;
-            this.lblKusur.Text = "Kusur";
+            this.lblKusur.Text = "Change";
+            this.lblKusur.Visible = false;
             // 
             // btnKusur
             // 
@@ -94,17 +98,18 @@ namespace Simsprojekat.View.WorkerView
             this.btnKusur.Name = "btnKusur";
             this.btnKusur.Size = new System.Drawing.Size(118, 23);
             this.btnKusur.TabIndex = 6;
-            this.btnKusur.Text = "Izracunaj kusur";
+            this.btnKusur.Text = "Calculate change";
             this.btnKusur.UseVisualStyleBackColor = true;
+            this.btnKusur.Click += new System.EventHandler(this.btnKusur_Click);
             // 
             // lblDobijenaSuma
             // 
             this.lblDobijenaSuma.AutoSize = true;
-            this.lblDobijenaSuma.Location = new System.Drawing.Point(202, 213);
+            this.lblDobijenaSuma.Location = new System.Drawing.Point(183, 213);
             this.lblDobijenaSuma.Name = "lblDobijenaSuma";
-            this.lblDobijenaSuma.Size = new System.Drawing.Size(63, 15);
+            this.lblDobijenaSuma.Size = new System.Drawing.Size(82, 15);
             this.lblDobijenaSuma.TabIndex = 7;
-            this.lblDobijenaSuma.Text = "Data suma";
+            this.lblDobijenaSuma.Text = "Given amount";
             // 
             // rbEur
             // 
@@ -116,6 +121,7 @@ namespace Simsprojekat.View.WorkerView
             this.rbEur.TabStop = true;
             this.rbEur.Text = "Eur";
             this.rbEur.UseVisualStyleBackColor = true;
+            this.rbEur.CheckedChanged += new System.EventHandler(this.rbEur_CheckedChanged);
             // 
             // rbDin
             // 
@@ -134,14 +140,26 @@ namespace Simsprojekat.View.WorkerView
             this.btnPodigniRampu.Name = "btnPodigniRampu";
             this.btnPodigniRampu.Size = new System.Drawing.Size(118, 23);
             this.btnPodigniRampu.TabIndex = 10;
-            this.btnPodigniRampu.Text = "Podigni rampu";
+            this.btnPodigniRampu.Text = "Raise the ramp";
             this.btnPodigniRampu.UseVisualStyleBackColor = true;
+            this.btnPodigniRampu.Click += new System.EventHandler(this.btnPodigniRampu_Click);
+            // 
+            // lblVehicle
+            // 
+            this.lblVehicle.AutoSize = true;
+            this.lblVehicle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblVehicle.Location = new System.Drawing.Point(39, 97);
+            this.lblVehicle.Name = "lblVehicle";
+            this.lblVehicle.Size = new System.Drawing.Size(95, 21);
+            this.lblVehicle.TabIndex = 11;
+            this.lblVehicle.Text = "Vehicle Type";
             // 
             // CreateTransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(481, 471);
+            this.Controls.Add(this.lblVehicle);
             this.Controls.Add(this.btnPodigniRampu);
             this.Controls.Add(this.rbDin);
             this.Controls.Add(this.rbEur);
@@ -149,7 +167,7 @@ namespace Simsprojekat.View.WorkerView
             this.Controls.Add(this.btnKusur);
             this.Controls.Add(this.lblKusur);
             this.Controls.Add(this.lblCena);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbGivenAmount);
             this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.label1);
             this.Name = "CreateTransactionForm";
@@ -164,7 +182,7 @@ namespace Simsprojekat.View.WorkerView
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSpeed;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbGivenAmount;
         private System.Windows.Forms.Label lblCena;
         private System.Windows.Forms.Label lblKusur;
         private System.Windows.Forms.Button btnKusur;
@@ -172,5 +190,6 @@ namespace Simsprojekat.View.WorkerView
         private System.Windows.Forms.RadioButton rbEur;
         private System.Windows.Forms.RadioButton rbDin;
         private System.Windows.Forms.Button btnPodigniRampu;
+        private System.Windows.Forms.Label lblVehicle;
     }
 }

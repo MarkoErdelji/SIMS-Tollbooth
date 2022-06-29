@@ -20,6 +20,7 @@ namespace Simsprojekat.View
         private SectionController _sectionController;
         private TicketController _ticketController;
         private TollStationController _tollStationController;
+        
 
         public WorkerForm(Worker worker,LoginForm loginform)
         {
@@ -32,6 +33,8 @@ namespace Simsprojekat.View
             _tollBooth = new TollBoothController().GetById(worker.TollBoothId);
             tollBoothLabel.Text += _tollBooth.TollBoothNumber;
         }
+
+
 
         private void roundButton1_Click(object sender, EventArgs e)
         {
