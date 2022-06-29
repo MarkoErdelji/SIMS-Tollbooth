@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +18,10 @@ namespace Simsprojekat.View.AdministratorView
         int stationOneId;
         SectionController _sectionController;
         TollStationController _tollStationController;
-        public SectionCreationForm(int stationOneId)
+        IObserver _observer;
+        public SectionCreationForm(IObserver observer, int stationOneId)
         {
+            _observer = observer;
             this.stationOneId = stationOneId;
             _sectionController = new SectionController();
             _tollStationController = new TollStationController();
@@ -71,6 +74,8 @@ namespace Simsprojekat.View.AdministratorView
             {
                 invalidInfoLabel.Visible = false;
                 MessageBox.Show("Section successfuly created");
+                section.Attach(_observer);
+                section.Notify();
                 this.Dispose();
             }
             else

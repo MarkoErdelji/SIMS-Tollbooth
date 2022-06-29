@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +18,13 @@ namespace Simsprojekat.View.AdministratorView
         UserType _userType;
         bool _isUpdate;
         private int userId;
+        IObserver _observer;
 
         UserController _userController;
         TollBoothController _tollBoothController;
-        public WorkerCreationForm(UserType type)
+        public WorkerCreationForm(IObserver observer,UserType type)
         {
+            _observer = observer;
             userId = 0;
             _isUpdate = false;
             _tollBoothController = new TollBoothController();
@@ -30,10 +33,12 @@ namespace Simsprojekat.View.AdministratorView
             InitializeComponent();
         }
 
-        public WorkerCreationForm(int id,string firstName, string lastName, string username, string password, string email, UserType type, Address address, City city, int tollBoothId)
+        public WorkerCreationForm(IObserver observer,int id,string firstName, string lastName, string username, string password, string email, UserType type, Address address, City city, int tollBoothId)
         {
+            _observer = observer;
             userId = id;
             _userController = new UserController();
+            _tollBoothController = new TollBoothController();
             _isUpdate = true;
             _userType = type;
             InitializeComponent();
@@ -130,6 +135,8 @@ namespace Simsprojekat.View.AdministratorView
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly created");
+                    w.Attach(_observer);
+                    w.Notify();
                     this.Dispose();
                 }
                 else
@@ -152,6 +159,8 @@ namespace Simsprojekat.View.AdministratorView
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly updated");
+                    worker.Attach(_observer);
+                    worker.Notify();
                     this.Dispose();
                 }
                 else

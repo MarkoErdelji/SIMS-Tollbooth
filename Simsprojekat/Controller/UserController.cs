@@ -80,7 +80,7 @@ public class UserController
 
     public bool InsertWorker(Worker worker)
     {
-        var users = _database.GetCollection<User>("Users");
+        var users = _database.GetCollection<Worker>("Users");
 
         var id = users.Find(e => true).SortByDescending(e => e.Id).FirstOrDefault().Id;
         worker.Id = id + 1;
@@ -94,7 +94,7 @@ public class UserController
 
     public bool InsertStationManager(StationManager stationManager)
     {
-        var users = _database.GetCollection<User>("Users");
+        var users = _database.GetCollection<StationManager>("Users");
 
         var id = users.Find(e => true).SortByDescending(e => e.Id).FirstOrDefault().Id;
         stationManager.Id = id + 1;
@@ -120,7 +120,7 @@ public class UserController
 
     public bool UpdateWorker(Worker worker)
     {
-        var users = _database.GetCollection<User>("Users");
+        var users = _database.GetCollection<Worker>("Users");
 
         users.ReplaceOne(u => u.Id == worker.Id, worker);
 
@@ -130,7 +130,7 @@ public class UserController
 
     public bool UpdateStationManager(StationManager stationManager)
     {
-        var users = _database.GetCollection<User>("Users");
+        var users = _database.GetCollection<StationManager>("Users");
 
         users.ReplaceOne(u => u.Id == stationManager.Id, stationManager);
 
