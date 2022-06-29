@@ -29,7 +29,13 @@ namespace Simsprojekat.View
         private void ListTollBoothPanel_Paint(object sender, PaintEventArgs e)
         {
 
-            
+
+            LoadData();
+
+        }
+        
+        public void LoadData()
+        {
             List<TollBooth> tollBooths = GetTollBooths();
             TollStation tollStation = tollStationController.GetById(stationManager.TollStationId);
             tollStationNameLabel.Text = tollStation.location.Name;
@@ -41,9 +47,8 @@ namespace Simsprojekat.View
                 var index = listOfTollBoothsGridView.Rows.Add();
                 listOfTollBoothsGridView.Rows[index].Cells[0].Value = tollBooth.Id.ToString();
                 listOfTollBoothsGridView.Rows[index].Cells[1].Value = tollBooth.TollBoothNumber;
-               
-            }
 
+            }
         }
 
         private void listTollboothsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,7 +59,8 @@ namespace Simsprojekat.View
 
         private void StationManagerForm_Load(object sender, EventArgs e)
         {
-
+            ListTollBoothPanel.Show();
+            LoadData();
         }
         public List<TollBooth> GetTollBooths()
         {
