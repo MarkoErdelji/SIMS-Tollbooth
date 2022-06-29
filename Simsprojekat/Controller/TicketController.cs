@@ -25,6 +25,11 @@ namespace Simsprojekat.Controller
             return ticketCollection.Find(item => item.Id == id).FirstOrDefault();
         }
 
+        public List<Ticket> GetByStationId(int id)
+        {
+            return ticketCollection.Find(item => item.EntryStationId == id).ToList();
+        }
+
         public List<int> GetIds()
         {
             return GetAll().Select(c => c.Id).ToList();

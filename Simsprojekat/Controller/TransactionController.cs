@@ -26,6 +26,12 @@ namespace Simsprojekat.Controller
             return transactionCollection.Find(item => true).ToList();
         }
 
+        public List<Transaction> GetByStationId(int id)
+        {
+            return transactionCollection.Find(item => item.ExitStationId == id).ToList();
+        }
+
+
         public Transaction GetById(int id)
         {
             return transactionCollection.Find(item => item.Id == id).FirstOrDefault();
