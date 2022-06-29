@@ -29,6 +29,11 @@ namespace Simsprojekat.Controller
             return tollStationsCollection.Find(item => true).ToList();
         }
 
+        public TollStation FindByTollBooth(int tollBothId)
+        {
+            return tollStationsCollection.Find(item => item.tollBoothsId.Contains(tollBothId)).FirstOrDefault();
+        }
+
         public bool Insert(TollStation ts)
         {
             var tollStations = _database.GetCollection<TollStation>("TollStations");
