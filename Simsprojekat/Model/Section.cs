@@ -5,11 +5,12 @@ using System.Text;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Threading.Tasks;
+using Simsprojekat.Observer;
 
 namespace Simsprojekat.Model
 {
     [BsonIgnoreExtraElements]
-    public class Section
+    public class Section : IObservable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -23,5 +24,21 @@ namespace Simsprojekat.Model
 
         [BsonElement("distance")]
         public int Distance { get; set; }
+
+        private List<IObserver> _observers = new List<IObserver>();
+
+        public void Attach(IObserver observer)
+        {
+            if (_observers == null) _observers = new List<IObserver>();
+            _observers.Add(observer);
+        }
+
+        public void Notify()
+        {
+            _observers.ForEach(o =>
+            {
+                o.Update(this);
+            });
+        }
     }
 }

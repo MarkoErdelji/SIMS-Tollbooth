@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View.AdministratorView
 {
-    public partial class SectionAdminForm : Form
+    public partial class SectionAdminForm : Form,IObserver
     {
         TollStationController tollStationController;
         SectionController sectionController;
@@ -26,26 +27,34 @@ namespace Simsprojekat.View.AdministratorView
             InitializeComponent();
             tollBoothNumberLabel.Text += " " + ts.Id;
             locationLabel.Text += " " + ts.location.Name;
+            LoadSectionData();
+        }
+
+        public void LoadSectionData()
+        {
             List<Section> sections = sectionController.GetByStationId(ts.Id);
             this.dataGridView1.Rows.Clear();
-            foreach (Section section in sections)
+            sections.ForEach(o =>
             {
-
+                o.Attach(this);
                 var index = dataGridView1.Rows.Add();
                 TollStation otherStation;
-                if(section.EntryStationId == ts.Id)
+
+                dataGridView1.Rows[index].Tag = o;
+                if (o.EntryStationId == ts.Id)
                 {
-                    dataGridView1.Rows[index].Cells[0].Value = section.ExitStationId.ToString();
-                    otherStation = tollStationController.GetById(section.ExitStationId);
+                    dataGridView1.Rows[index].Cells[0].Value = o.ExitStationId.ToString();
+                    otherStation = tollStationController.GetById(o.ExitStationId);
                 }
                 else
                 {
-                    dataGridView1.Rows[index].Cells[0].Value = section.EntryStationId.ToString();
-                    otherStation = tollStationController.GetById(section.EntryStationId);
+                    dataGridView1.Rows[index].Cells[0].Value = o.EntryStationId.ToString();
+                    otherStation = tollStationController.GetById(o.EntryStationId);
                 }
                 dataGridView1.Rows[index].Cells[1].Value = otherStation.location.Name;
-                dataGridView1.Rows[index].Cells[2].Value = section.Distance;
-            }
+                dataGridView1.Rows[index].Cells[2].Value = o.Distance;
+            });
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -60,7 +69,7 @@ namespace Simsprojekat.View.AdministratorView
 
         private void sectionCreateBtn_Click(object sender, EventArgs e)
         {
-            new SectionCreationForm(ts.Id).ShowDialog();
+            new SectionCreationForm(this,ts.Id).ShowDialog();
         }
 
         private void sectionUpdate_Click(object sender, EventArgs e)
@@ -75,7 +84,7 @@ namespace Simsprojekat.View.AdministratorView
                     {
                         int otherStationId = int.Parse((string)dataGridView1.SelectedRows[i].Cells[0].Value);
                         int distance = (int)dataGridView1.SelectedRows[i].Cells[2].Value;
-                        new SectionUpdateForm(ts.Id, otherStationId, distance).ShowDialog();
+                        new SectionUpdateForm(this,ts.Id, otherStationId, distance).ShowDialog();
                     }
                     catch (Exception exc)
                     {
@@ -97,7 +106,9 @@ namespace Simsprojekat.View.AdministratorView
                     try
                     {
                         int otherStationId = int.Parse((string)dataGridView1.SelectedRows[i].Cells[0].Value);
+                        Section section = (Section)dataGridView1.SelectedRows[i].Tag;
                         sectionController.Delete(ts.Id,otherStationId);
+                        section.Notify();
                     }
                     catch (Exception exc)
                     {
@@ -107,6 +118,11 @@ namespace Simsprojekat.View.AdministratorView
                 MessageBox.Show("Selected sections successfuly deleted");
 
             }
+        }
+
+        public void Update(IObservable observable)
+        {
+            LoadSectionData();
         }
     }
 }

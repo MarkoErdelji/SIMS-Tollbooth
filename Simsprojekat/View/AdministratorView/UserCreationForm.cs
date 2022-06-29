@@ -1,4 +1,5 @@
 ﻿using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +18,10 @@ namespace Simsprojekat.View.AdministratorView
         bool _isUpdate;
         private int userId;
         UserController _userController;
-        public UserCreationForm(UserType type)
+        IObserver _observer;
+        public UserCreationForm(IObserver observer,UserType type)
         {
+            _observer = observer;
             _isUpdate = false;
             userId = 0;
             _userController = new UserController();
@@ -26,8 +29,9 @@ namespace Simsprojekat.View.AdministratorView
             InitializeComponent();
         }
 
-        public UserCreationForm(int id,string firstName,string lastName,string username,string password,string email,UserType type,Address address,City city)
+        public UserCreationForm(IObserver observer,int id,string firstName,string lastName,string username,string password,string email,UserType type,Address address,City city)
         {
+            _observer = observer;
             userId = id;
             _userController = new UserController();
             _isUpdate = true;
@@ -126,6 +130,8 @@ namespace Simsprojekat.View.AdministratorView
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly created");
+                    u.Attach(_observer);
+                    u.Notify();
                     this.Dispose();
                 }
                 else
@@ -147,6 +153,8 @@ namespace Simsprojekat.View.AdministratorView
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly updated");
+                    user.Attach(_observer);
+                    user.Notify();
                     this.Dispose();
                 }
                 else
