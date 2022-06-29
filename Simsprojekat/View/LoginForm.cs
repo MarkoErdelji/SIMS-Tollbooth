@@ -49,12 +49,25 @@ namespace Simsprojekat.View
                 }
                 if (user.Type == UserType.StationManager)
                 {
-                    StationManagerForm stationManagerForm = new StationManagerForm(_userController.GetStationManager(user.Id));
+                    StationManager sm = _userController.GetStationManager(user.Id);
+                    TollStation ts = tollStationController.GetById(sm.TollStationId);
+                    if (ts == null)
+                    {
+                        MessageBox.Show("You are being redirected to another tollstation! (Administrator)");
+                        return;
+                    }
+                    StationManagerForm stationManagerForm = new StationManagerForm(sm);
                     stationManagerForm.Show();
                 }
                 if (user.Type == UserType.Worker)
                 {
                     Worker worker = _userController.GetWorker(user.Id);
+                    TollBooth tb = tollBoothController.GetById(worker.TollBoothId);
+                    if (tb == null)
+                    {
+                        MessageBox.Show("You are being redirected to another tollbooth! (Administrator)");
+                        return;
+                    }
                     WorkerForm workerForm = new WorkerForm(worker,this);
                     workerForm.Show();
                 }

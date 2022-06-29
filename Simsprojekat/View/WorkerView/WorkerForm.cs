@@ -124,6 +124,12 @@ namespace Simsprojekat.View
                 return;
             }
 
+            if (!int.TryParse(tbTicket.Text, out _))
+            {
+                MessageBox.Show("Id has to be integer!");
+                return;
+            }
+
             var ticketId = Convert.ToInt32(tbTicket.Text);
             var ids = _ticketController.GetIds();
             if(!ids.Contains(ticketId))
