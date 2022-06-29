@@ -16,18 +16,21 @@ namespace Simsprojekat.Model
         [BsonRepresentation(BsonType.ObjectId)]
         public string? _Id { get; set; }
 
+        [BsonElement("Id")]
+        public int Id { get; set; }
+
         [BsonElement("basePriceEuro")]
         public double basePriceEuro { get; set; }
 
 
         [BsonElement("basePriceDinar")]
-        public double Id { get; set; }
+        public double basePriceDinar { get; set; }
 
         [BsonElement("isActive")]
-        public double IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         [BsonElement("lastActive")]
-        public int LastActive { get; set; }
+        public string LastActive { get; set; }
 
         [BsonElement("carCoeficient")]
         public double CarCoeficient { get; set; }

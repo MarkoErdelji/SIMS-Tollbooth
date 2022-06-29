@@ -36,28 +36,21 @@
             this.tollBoothLabel = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.logoutButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.backgroundRadioButton1 = new Simsprojekat.View.BackgroundRadioButton();
-            this.backgroundRadioButton2 = new Simsprojekat.View.BackgroundRadioButton();
-            this.backgroundRadioButton3 = new Simsprojekat.View.BackgroundRadioButton();
-            this.backgroundRadioButton4 = new Simsprojekat.View.BackgroundRadioButton();
-            this.backgroundRadioButton5 = new Simsprojekat.View.BackgroundRadioButton();
-            this.vehicleRadioGroup = new System.Windows.Forms.GroupBox();
             this.lblRamp = new System.Windows.Forms.Label();
             this.lblCamera = new System.Windows.Forms.Label();
-            this.vehicleRadioGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // rampRaiseBtn
             // 
             this.rampRaiseBtn.BackColor = System.Drawing.Color.Green;
+            this.rampRaiseBtn.Enabled = false;
             this.rampRaiseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.rampRaiseBtn.ForeColor = System.Drawing.Color.Black;
-            this.rampRaiseBtn.Location = new System.Drawing.Point(824, 238);
+            this.rampRaiseBtn.Location = new System.Drawing.Point(834, 191);
             this.rampRaiseBtn.Name = "rampRaiseBtn";
             this.rampRaiseBtn.Size = new System.Drawing.Size(124, 123);
             this.rampRaiseBtn.TabIndex = 1;
-            this.rampRaiseBtn.Text = "Raise ramp";
+            this.rampRaiseBtn.Text = "Ramp is lowered.";
             this.rampRaiseBtn.UseVisualStyleBackColor = false;
             this.rampRaiseBtn.Click += new System.EventHandler(this.roundButton1_Click);
             // 
@@ -118,84 +111,6 @@
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(436, 402);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Select the vehicle type :";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // backgroundRadioButton1
-            // 
-            this.backgroundRadioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton1.AutoCheck = false;
-            this.backgroundRadioButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton1.BackgroundImage")));
-            this.backgroundRadioButton1.Location = new System.Drawing.Point(155, 22);
-            this.backgroundRadioButton1.Name = "backgroundRadioButton1";
-            this.backgroundRadioButton1.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton1.TabIndex = 7;
-            this.backgroundRadioButton1.UseVisualStyleBackColor = true;
-            // 
-            // backgroundRadioButton2
-            // 
-            this.backgroundRadioButton2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton2.BackgroundImage")));
-            this.backgroundRadioButton2.Checked = true;
-            this.backgroundRadioButton2.Location = new System.Drawing.Point(22, 22);
-            this.backgroundRadioButton2.Name = "backgroundRadioButton2";
-            this.backgroundRadioButton2.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton2.TabIndex = 9;
-            this.backgroundRadioButton2.TabStop = true;
-            this.backgroundRadioButton2.UseVisualStyleBackColor = true;
-            // 
-            // backgroundRadioButton3
-            // 
-            this.backgroundRadioButton3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton3.BackgroundImage")));
-            this.backgroundRadioButton3.Location = new System.Drawing.Point(279, 22);
-            this.backgroundRadioButton3.Name = "backgroundRadioButton3";
-            this.backgroundRadioButton3.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton3.TabIndex = 10;
-            this.backgroundRadioButton3.UseVisualStyleBackColor = true;
-            this.backgroundRadioButton3.CheckedChanged += new System.EventHandler(this.backgroundRadioButton3_CheckedChanged);
-            // 
-            // backgroundRadioButton4
-            // 
-            this.backgroundRadioButton4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.backgroundRadioButton4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backgroundRadioButton4.BackgroundImage")));
-            this.backgroundRadioButton4.Location = new System.Drawing.Point(410, 23);
-            this.backgroundRadioButton4.Name = "backgroundRadioButton4";
-            this.backgroundRadioButton4.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton4.TabIndex = 11;
-            this.backgroundRadioButton4.UseVisualStyleBackColor = false;
-            // 
-            // backgroundRadioButton5
-            // 
-            this.backgroundRadioButton5.Appearance = System.Windows.Forms.Appearance.Button;
-            this.backgroundRadioButton5.BackgroundImage = global::Simsprojekat.Properties.Resources.icons8_question_mark_48;
-            this.backgroundRadioButton5.Location = new System.Drawing.Point(528, 23);
-            this.backgroundRadioButton5.Name = "backgroundRadioButton5";
-            this.backgroundRadioButton5.Size = new System.Drawing.Size(48, 48);
-            this.backgroundRadioButton5.TabIndex = 12;
-            this.backgroundRadioButton5.UseVisualStyleBackColor = true;
-            // 
-            // vehicleRadioGroup
-            // 
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton5);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton4);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton3);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton2);
-            this.vehicleRadioGroup.Controls.Add(this.backgroundRadioButton1);
-            this.vehicleRadioGroup.Location = new System.Drawing.Point(195, 431);
-            this.vehicleRadioGroup.Name = "vehicleRadioGroup";
-            this.vehicleRadioGroup.Size = new System.Drawing.Size(596, 99);
-            this.vehicleRadioGroup.TabIndex = 10;
-            this.vehicleRadioGroup.TabStop = false;
-            // 
             // lblRamp
             // 
             this.lblRamp.AutoSize = true;
@@ -220,12 +135,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 601);
+            this.ClientSize = new System.Drawing.Size(1064, 432);
             this.Controls.Add(this.lblCamera);
             this.Controls.Add(this.lblRamp);
             this.Controls.Add(this.logoutButton);
-            this.Controls.Add(this.vehicleRadioGroup);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.welcomeLabel);
             this.Controls.Add(this.tollBoothLabel);
             this.Controls.Add(this.ticketIdLabel);
@@ -235,7 +148,6 @@
             this.Name = "WorkerForm";
             this.Text = "Worker";
             this.Load += new System.EventHandler(this.WorkerForm_Load);
-            this.vehicleRadioGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,13 +161,6 @@
         private System.Windows.Forms.Label tollBoothLabel;
         private System.Windows.Forms.Label welcomeLabel;
         private System.Windows.Forms.Button logoutButton;
-        private System.Windows.Forms.Label label1;
-        private BackgroundRadioButton backgroundRadioButton1;
-        private BackgroundRadioButton backgroundRadioButton2;
-        private BackgroundRadioButton backgroundRadioButton3;
-        private BackgroundRadioButton backgroundRadioButton4;
-        private BackgroundRadioButton backgroundRadioButton5;
-        private System.Windows.Forms.GroupBox vehicleRadioGroup;
         private System.Windows.Forms.Label lblRamp;
         private System.Windows.Forms.Label lblCamera;
     }

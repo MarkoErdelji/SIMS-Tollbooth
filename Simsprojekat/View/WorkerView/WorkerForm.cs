@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.View.WorkerView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,9 @@ namespace Simsprojekat.View
         private TicketController _ticketController;
         private TollStationController _tollStationController;
 
+        public Timer RampMovingTimer = new Timer();
+
+
         public WorkerForm(Worker worker,LoginForm loginform)
         {
             _loginForm = loginform;
@@ -30,6 +34,19 @@ namespace Simsprojekat.View
             welcomeLabel.Text += " " + worker.FirstName + " " + worker.LastName;
             _tollBooth = new TollBoothController().GetById(worker.TollBoothId);
             tollBoothLabel.Text += _tollBooth.TollBoothNumber;
+        }
+
+        public void RaiseRamp()
+        {
+            rampRaiseBtn.BackColor = Color.Red;
+            rampRaiseBtn.Text = "Ramp is raised.";
+        }
+        public void LowerRamp(Object myObject, EventArgs myEventArgs)
+        {
+            RampMovingTimer.Stop();
+
+            rampRaiseBtn.BackColor = Color.Green;
+            rampRaiseBtn.Text = "Ramp is lowered.";
         }
 
         private void roundButton1_Click(object sender, EventArgs e)
@@ -108,41 +125,34 @@ namespace Simsprojekat.View
             }
 
             var ticketId = Convert.ToInt32(tbTicket.Text);
+            var ids = _ticketController.GetIds();
+            if(!ids.Contains(ticketId))
+            {
+                MessageBox.Show("Ticket with that ID doesn't exist!");
+                return;
+            }
             var ticket = _ticketController.GetById(ticketId);
+            if(ticket.Done)
+            {
+                MessageBox.Show("This ticket has already been used!");
+                return;
+            }
             if(ticket == null)
             {
                 MessageBox.Show("Ticket with this ID doesn't exist!");
                 return;
             }
             var stationId = _tollStationController.FindByTollBooth(_tollBooth.Id).Id;
+            var section = _sectionController.GetByStationIds(ticket.EntryStationId, stationId);
 
-            var sections = _sectionController.All();
-            
-            var sec = sections.Find(section =>
-                (section.EntryStationId == ticket.EntryStationId || section.ExitStationId == ticket.EntryStationId)
-                && (section.EntryStationId == stationId || section.ExitStationId == stationId)
-            );
-
-            if(sec != null)
+            if(section != null)
             {
-                MessageBox.Show("Successfully found the section!");
+                CreateTransactionForm transactionForm = new CreateTransactionForm(section, ticket, this, stationId);
+                transactionForm.ShowDialog();
             } else
             {
                 MessageBox.Show("You can't use this ticket here!");
             }
-
-            
-/*            foreach (Section section in sections)
-            {
-                if (section.EntryStationId == ticket.EntryStationId || section.ExitStationId == ticket.EntryStationId)
-                {
-                    if (section.EntryStationId == stationId || section.ExitStationId == stationId)
-                    {
-                        MessageBox.Show("It works :)");
-                        return;
-                    }
-                }
-            }*/
             
         }
     }
