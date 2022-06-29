@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Simsprojekat.Model;
+using Simsprojekat.View.StationManagerView;
 
 namespace Simsprojekat.View
 {
@@ -34,7 +35,7 @@ namespace Simsprojekat.View
                 }
                 if (user.Type == UserType.HeadManager)
                 {
-                    HeadManagerForm headManagerForm = new HeadManagerForm();
+                    HeadManagerForm headManagerForm = new HeadManagerForm(this);
                     headManagerForm.Show();
                 }
                 if (user.Type == UserType.StationManager)
