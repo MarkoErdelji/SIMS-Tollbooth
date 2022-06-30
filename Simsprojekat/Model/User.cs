@@ -7,6 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
+using Simsprojekat.Observer;
 
 namespace Simsprojekat.Model
 {
@@ -19,7 +20,7 @@ namespace Simsprojekat.Model
     }
 
     [BsonIgnoreExtraElements]
-    public class User
+    public class User : IObservable
     {
         public User(int id, string firstName, string lastName, string username, string password, string email, UserType type, Address adress)
         {
@@ -60,6 +61,22 @@ namespace Simsprojekat.Model
 
         [BsonElement("adress")]
         public Address Adress { get; set; }
+
+        private List<IObserver> _observers = new List<IObserver>();
+
+        public void Attach(IObserver observer)
+        {
+            if (_observers == null) _observers = new List<IObserver>();
+            _observers.Add(observer);
+        }
+
+        public void Notify()
+        {
+            _observers.ForEach(o =>
+            {
+                o.Update(this);
+            });
+        }
 
 
     }

@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +20,10 @@ namespace Simsprojekat.View.AdministratorView
         bool _isUpdate;
         UserController _userController;
         TollStationController _tollStationController;
-        public StationManagerCreationForm(UserType type)
+        IObserver _observer;
+        public StationManagerCreationForm(IObserver observer, UserType type)
         {
+            _observer = observer;
             userId = 0;
             _userController = new UserController();
             _tollStationController = new TollStationController();
@@ -29,9 +32,11 @@ namespace Simsprojekat.View.AdministratorView
             InitializeComponent();
         }
 
-        public StationManagerCreationForm(int id,string firstName, string lastName, string username, string password, string email, UserType type, Address address, City city, int tollStationId)
+        public StationManagerCreationForm(IObserver observer,int id,string firstName, string lastName, string username, string password, string email, UserType type, Address address, City city, int tollStationId)
         {
+            _observer = observer;
             _userController = new UserController();
+            _tollStationController = new TollStationController();
             userId = id;
             _isUpdate = true;
             _userType = type;
@@ -130,6 +135,8 @@ namespace Simsprojekat.View.AdministratorView
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly created");
+                    sm.Attach(_observer);
+                    sm.Notify();
                     this.Dispose();
                 }
                 else
@@ -152,6 +159,8 @@ namespace Simsprojekat.View.AdministratorView
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("User succesfuly updated");
+                    stationManager.Attach(_observer);
+                    stationManager.Notify();
                     this.Dispose();
                 }
                 else

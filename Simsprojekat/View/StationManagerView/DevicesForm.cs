@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 namespace Simsprojekat.View.StationManagerView
 {
 
-    partial class DevicesForm : Form
+    partial class DevicesForm : Form,IObserver
     {
         public TollBoothController tollBoothController;
         public TollBooth tollBooth;
@@ -34,21 +35,24 @@ namespace Simsprojekat.View.StationManagerView
                 {
                     device.Faulty = false;
                     tollBoothController.Update(tollBooth);
+                    device.Attach(this);
+                    device.Notify();
+                    MessageBox.Show("Device successfully fixed");
                 }
             }
 
         }
 
-        private void DevicesForm_Load(object sender, EventArgs e)
+        public void LoadData()
         {
             this.devicesGridView.Rows.Clear();
-            foreach (Device device in tollBooth.Devices)
+            tollBooth.Devices.ForEach(o =>
             {
-
-
                 var index = devicesGridView.Rows.Add();
-                devicesGridView.Rows[index].Cells[0].Value = device.Name;
-                if (device.Faulty)
+
+
+                devicesGridView.Rows[index].Cells[0].Value = o.Name;
+                if (o.Faulty)
                 {
                     devicesGridView.Rows[index].Cells[1].Value = "Broken";
                 }
@@ -56,9 +60,18 @@ namespace Simsprojekat.View.StationManagerView
                 {
                     devicesGridView.Rows[index].Cells[1].Value = "Working";
                 }
-                
+            });
 
-            }
+        }
+
+        private void DevicesForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        public void Update(IObservable observable)
+        {
+            LoadData();
         }
     }
 }

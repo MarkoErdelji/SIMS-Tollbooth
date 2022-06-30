@@ -1,6 +1,7 @@
 ﻿using Fare;
 using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using Simsprojekat.View.AdministratorView;
 using System;
 using System.Collections.Generic;
@@ -15,22 +16,77 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View
 {
-    public partial class AdministratorForm : Form
+    public partial class AdministratorForm : Form,IObserver
     {
         UserController _userController;
         TollStationController _tollStationController;
         TollBoothController _tollBoothController;
         TicketController _ticketController;
+        SectionController _sectionController;
+        TransactionController _transactionController;
+
         private LoginForm _loginForm;
         public AdministratorForm(LoginForm loginForm)
         {
             _loginForm = loginForm;
+            _sectionController = new SectionController();
             _userController = new UserController();
             _tollBoothController = new TollBoothController();
             _tollStationController = new TollStationController();
             _ticketController = new TicketController();
+            _transactionController = new TransactionController();
             InitializeComponent();
 
+        }
+
+        public void Update(IObservable observable)
+        {
+            LoadTollStationData();
+            LoadUserData();
+        }
+
+        public void LoadTollStationData()
+        {
+            List<TollStation> tollStations = _tollStationController.GetAll();
+            this.tollStationGridView.Rows.Clear();
+            tollStations.ForEach(o =>
+            {
+                o.Attach(this);
+
+                var index = tollStationGridView.Rows.Add();
+
+                tollStationGridView.Rows[index].Tag = o;
+
+                tollStationGridView.Rows[index].Cells[0].Value = o.Id.ToString();
+                tollStationGridView.Rows[index].Cells[1].Value = o.location.Name;
+                tollStationGridView.Rows[index].Cells[2].Value = o.location.ZipCode;
+            }
+            );
+        }
+
+        public void LoadUserData()
+        {
+            List<User> users = _userController.GetAllUsers();
+            this.userDataGridView.Rows.Clear();
+
+            users.ForEach(o =>
+            {
+                o.Attach(this);
+
+                var index = userDataGridView.Rows.Add();
+
+                userDataGridView.Rows[index].Tag = o;
+
+                userDataGridView.Rows[index].Cells[0].Value = o.Id.ToString();
+                userDataGridView.Rows[index].Cells[1].Value = o.FirstName;
+                userDataGridView.Rows[index].Cells[2].Value = o.LastName;
+                userDataGridView.Rows[index].Cells[3].Value = o.Username;
+                userDataGridView.Rows[index].Cells[4].Value = o.Password;
+                userDataGridView.Rows[index].Cells[5].Value = o.Email;
+                userDataGridView.Rows[index].Cells[6].Value = ((UserType)o.Type).ToString();
+                userDataGridView.Rows[index].Cells[7].Value = o.Adress.ToString();
+                userDataGridView.Rows[index].Cells[8].Value = o.Adress.City.Name;
+            });
         }
 
         private void tolLStationsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,16 +94,7 @@ namespace Simsprojekat.View
             this.panel1.Show();
             this.panel2.Hide();
             this.panel3.Hide();
-            List<TollStation> tollStations = _tollStationController.GetAll();
-            this.tollStationGridView.Rows.Clear();
-            foreach (TollStation tollStation in tollStations)
-            {
-                var index = tollStationGridView.Rows.Add();
-
-                tollStationGridView.Rows[index].Cells[0].Value = tollStation.Id.ToString();
-                tollStationGridView.Rows[index].Cells[1].Value = tollStation.location.Name;
-                tollStationGridView.Rows[index].Cells[2].Value = tollStation.location.ZipCode;
-            }
+            LoadTollStationData();
 
         }
 
@@ -78,16 +125,7 @@ namespace Simsprojekat.View
             this.panel1.Show();
             this.panel2.Hide();
             this.panel3.Hide();
-            List<TollStation> tollStations = _tollStationController.GetAll();
-            this.tollStationGridView.Rows.Clear();
-            foreach (TollStation tollStation in tollStations)
-            {
-                var index = tollStationGridView.Rows.Add();
-
-                tollStationGridView.Rows[index].Cells[0].Value = tollStation.Id.ToString();
-                tollStationGridView.Rows[index].Cells[1].Value = tollStation.location.Name;
-                tollStationGridView.Rows[index].Cells[2].Value = tollStation.location.ZipCode;
-            }
+            LoadTollStationData();
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -95,23 +133,7 @@ namespace Simsprojekat.View
             this.panel2.Show();
             this.panel1.Hide();
             this.panel3.Hide();
-            List<User> users = _userController.GetAllUsers();
-            this.userDataGridView.Rows.Clear();
-            foreach (User user in users)
-            {
-
-                var index = userDataGridView.Rows.Add();
-
-                userDataGridView.Rows[index].Cells[0].Value = user.Id.ToString();
-                userDataGridView.Rows[index].Cells[1].Value = user.FirstName;
-                userDataGridView.Rows[index].Cells[2].Value = user.LastName;
-                userDataGridView.Rows[index].Cells[3].Value = user.Username;
-                userDataGridView.Rows[index].Cells[4].Value = user.Password;
-                userDataGridView.Rows[index].Cells[5].Value = user.Email;
-                userDataGridView.Rows[index].Cells[6].Value = ((UserType) user.Type).ToString();
-                userDataGridView.Rows[index].Cells[7].Value = user.Adress.ToString();
-                userDataGridView.Rows[index].Cells[8].Value = user.Adress.City.Name;
-            }
+            LoadUserData();
         }
 
         private void userDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -131,7 +153,7 @@ namespace Simsprojekat.View
 
         private void userCreateBtn_Click(object sender, EventArgs e)
         {
-            new CreationChoiceForm().ShowDialog();
+            new CreationChoiceForm(this).ShowDialog();
         }
 
         private void userUpdateBtn_Click(object sender, EventArgs e)
@@ -148,19 +170,20 @@ namespace Simsprojekat.View
                         string userType = (string)userDataGridView.SelectedRows[i].Cells[6].Value;
                         if (userType.Equals("Worker")){
                             Worker w = _userController.GetWorker(userid);
-                            WorkerCreationForm wcf = new WorkerCreationForm(w.Id,w.FirstName, w.LastName,w.Username,w.Password,w.Email,w.Type,w.Adress,w.Adress.City,w.TollBoothId);
+                            WorkerCreationForm wcf = new WorkerCreationForm(this,w.Id,w.FirstName, w.LastName,w.Username,w.Password,w.Email,w.Type,w.Adress,w.Adress.City,w.TollBoothId);
                             wcf.ShowDialog();
                         }
                         if (userType.Equals("StationManager"))
                         {
                             StationManager sm = _userController.GetStationManager(userid);
-                            StationManagerCreationForm wcf = new StationManagerCreationForm(sm.Id,sm.FirstName, sm.LastName, sm.Username, sm.Password, sm.Email, sm.Type, sm.Adress, sm.Adress.City, sm.TollStationId);
+                            StationManagerCreationForm wcf = new StationManagerCreationForm(this, sm.Id,sm.FirstName, sm.LastName, sm.Username, sm.Password, sm.Email, sm.Type, sm.Adress, sm.Adress.City, sm.TollStationId);
                             wcf.ShowDialog();
                         }
-                        else
+                        else if (userType.Equals("HeadManager") || userType.Equals("Admin"))
+
                         {
                             User u = _userController.GetUser(userid);
-                            UserCreationForm wcf = new UserCreationForm(u.Id,u.FirstName, u.LastName, u.Username, u.Password, u.Email, u.Type, u.Adress, u.Adress.City);
+                            UserCreationForm wcf = new UserCreationForm(this, u.Id,u.FirstName, u.LastName, u.Username, u.Password, u.Email, u.Type, u.Adress, u.Adress.City);
                             wcf.ShowDialog();
                         }
                     }
@@ -184,7 +207,10 @@ namespace Simsprojekat.View
                     try
                     {
                         int userid = int.Parse((string)userDataGridView.SelectedRows[i].Cells[0].Value);
+                        User u = (User) userDataGridView.SelectedRows[i].Tag;
                         _userController.DeleteUser(userid);
+                        u.Notify();
+
                                            }
                     catch (Exception exc){
                         return;
@@ -207,7 +233,7 @@ namespace Simsprojekat.View
                     {
                         int tollStationId = int.Parse((string)tollStationGridView.SelectedRows[i].Cells[0].Value);
                         TollStation ts = _tollStationController.GetById(tollStationId);
-                        new TollStationCreationForm(ts.Id, ts.location.ZipCode,ts.location.Name).ShowDialog();
+                        new TollStationCreationForm(this,ts.Id, ts.location.ZipCode,ts.location.Name).ShowDialog();
                         
                     }
                     catch (Exception exc)
@@ -241,11 +267,28 @@ namespace Simsprojekat.View
                     try
                     {
                         int tollStationId = int.Parse((string)tollStationGridView.SelectedRows[i].Cells[0].Value);
+                        TollStation ts = (TollStation)tollStationGridView.SelectedRows[i].Tag;
                         List<TollBooth> tollBooths = _tollBoothController.GetByTollStationId(tollStationId);
-                        foreach(TollBooth tb  in tollBooths){
+                        List<Section> tollStationSections = _sectionController.GetByStationId(ts.Id);
+                        List<Ticket> tollStationTickets = _ticketController.GetByStationId(ts.Id);
+                        List<Transaction> tollStationTransactions = _transactionController.GetByStationId(ts.Id);
+                        foreach (TollBooth tb  in tollBooths){
                             _tollBoothController.Delete(tb.Id);
                         }
+                        foreach(Section s in tollStationSections)
+                        {
+                            _sectionController.Delete(s.EntryStationId, s.ExitStationId);
+                        }
+                        foreach(Ticket ticket in tollStationTickets)
+                        {
+                            _ticketController.Delete(ticket.Id);
+                        }
+                        foreach(Transaction transaction in tollStationTransactions)
+                        {
+                            _transactionController.Delete(transaction.Id);
+                        }
                         _tollStationController.Delete(tollStationId);
+                        ts.Notify();
                     }
                     catch (Exception exc)
                     {
@@ -259,7 +302,7 @@ namespace Simsprojekat.View
 
         private void tollStationCreateBtn_Click(object sender, EventArgs e)
         {
-            new TollStationCreationForm().ShowDialog();
+            new TollStationCreationForm(this).ShowDialog();
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -296,11 +339,11 @@ namespace Simsprojekat.View
             RadioButton rb = null;
             VehicleType type;
 
-            if (backgroundRadioButton1.Checked == true)
+            if (backgroundRadioButton2.Checked == true)
             {
                 type = VehicleType.Car;
             }
-            else if (backgroundRadioButton2.Checked == true)
+            else if (backgroundRadioButton1.Checked == true)
             {
                 type = VehicleType.Truck;
             }
@@ -349,6 +392,11 @@ namespace Simsprojekat.View
                 "Electronic tag: " + vehicle.ElectronicTag + "\n" +
                 "Vehicle type: " + vehicle.Type.ToString()
             );
+        }
+
+        private void vehicleRadioGroup_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

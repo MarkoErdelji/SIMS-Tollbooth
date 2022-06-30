@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,11 @@ namespace Simsprojekat.View.AdministratorView
         int stationTwoId;
         SectionController _sectionController;
         TollStationController _tollStationController;
+        IObserver _observer;
 
-        public SectionUpdateForm(int stationOneId,int stationTwoId, int distance)
+        public SectionUpdateForm(IObserver observer,int stationOneId,int stationTwoId, int distance)
         {
+            this._observer = observer;
             this.stationOneId = stationOneId;
             this.stationTwoId = stationTwoId;
             _sectionController = new SectionController();
@@ -59,6 +62,8 @@ namespace Simsprojekat.View.AdministratorView
             {
                 invalidInfoLabel.Visible = false;
                 MessageBox.Show("Section successfuly updated");
+                section.Attach(_observer);
+                section.Notify();
                 this.Dispose();
             }
             else

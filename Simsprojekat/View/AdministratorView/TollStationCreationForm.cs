@@ -1,5 +1,7 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
+using Simsprojekat.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,18 +20,21 @@ namespace Simsprojekat.View.AdministratorView
         bool _isUpdate;
         int tsId;
         TollStationController _tollStationController;
-        public TollStationCreationForm()
+        IObserver _observer;
+        public TollStationCreationForm(IObserver observer)
         {
             _isUpdate = false;
             tsId = 0;
+            _observer = observer;
             _tollStationController = new TollStationController();
             InitializeComponent();
         }
 
-        public TollStationCreationForm(int id,string zipCode,string cityName)
+        public TollStationCreationForm(IObserver observer,int id,string zipCode,string cityName)
         {
             _isUpdate = true;
             tsId = id;
+            _observer = observer;
             _tollStationController = new TollStationController();
             InitializeComponent();
             cityTextBox.Text = cityName;
@@ -59,7 +65,12 @@ namespace Simsprojekat.View.AdministratorView
                 if (_tollStationController.Insert(ts))
                 {
                     invalidInfoLabel.Visible = false;
+                    Thread trd = new Thread(() => ThreadCreator.TollBoothThreadTask(ts));
+                    trd.IsBackground = true;
+                    trd.Start();
                     MessageBox.Show("Toll station successfuly created");
+                    ts.Attach(_observer);
+                    ts.Notify();
                     this.Dispose();
                 }
                 else
@@ -76,6 +87,8 @@ namespace Simsprojekat.View.AdministratorView
                 {
                     invalidInfoLabel.Visible = false;
                     MessageBox.Show("Toll station successfuly updated");
+                    ts.Attach(_observer);
+                    ts.Notify();
                     this.Dispose();
                 }
                 else

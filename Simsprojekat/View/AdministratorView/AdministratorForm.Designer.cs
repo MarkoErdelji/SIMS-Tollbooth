@@ -460,6 +460,7 @@
             this.vehicleRadioGroup.Size = new System.Drawing.Size(681, 132);
             this.vehicleRadioGroup.TabIndex = 12;
             this.vehicleRadioGroup.TabStop = false;
+            this.vehicleRadioGroup.Enter += new System.EventHandler(this.vehicleRadioGroup_Enter);
             // 
             // backgroundRadioButton5
             // 

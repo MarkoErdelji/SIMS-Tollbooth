@@ -29,6 +29,11 @@ namespace Simsprojekat.Controller
             return true;
         }
 
+        public List<Section> All()
+        {
+            return sectionCollection.Find(item => true).ToList();
+        }
+
         public List<Section> GetByStationId(int id)
         {
             var sections = _database.GetCollection<Section>("Sections");

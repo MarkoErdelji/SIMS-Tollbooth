@@ -8,18 +8,20 @@ using System.Threading.Tasks;
 
 namespace Simsprojekat.Controller
 {
-    internal class PriceListController
+    public class PriceListController
     {
-
         private readonly IMongoDatabase _database;
+        public IMongoCollection<PriceList> priceListCollection;
 
         public PriceListController()
         {
             var settings = MongoClientSettings.FromConnectionString("mongodb+srv://PrlinaRozicBibinErdelji:PrlinaRozicBibinErdelji@cluster0.5qfgf.mongodb.net/?retryWrites=true&w=majority");
             var client = new MongoClient(settings);
             _database = client.GetDatabase("TollBooth");
+            this.priceListCollection = _database.GetCollection<PriceList>("PriceList");
         }
 
+        
         public List<PriceList> GetAll()
         {
             var priceLists = _database.GetCollection<PriceList>("PriceList");
@@ -69,10 +71,12 @@ namespace Simsprojekat.Controller
             return true;
 
         }
-
-
-
-
+        
+        public PriceList getActivePriceList()
+        {
+            var priceLists = _database.GetCollection<PriceList>("PriceList");
+            return priceLists.Find(priceList => priceList.IsActive == true).FirstOrDefault();
+        }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using Simsprojekat.View.StationManagerView;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View.AdministratorView
 {
-    public partial class TollBoothAdminForm : Form
+    public partial class TollBoothAdminForm : Form,IObserver
     {
         TollStationController tollStationController;
         TollBoothController tollBoothController;
@@ -25,20 +26,35 @@ namespace Simsprojekat.View.AdministratorView
             ts = tollStationController.GetById(tollStationId);
             tollBoothController = new TollBoothController();
             InitializeComponent();
-            List<TollBooth> tollBooth = tollBoothController.GetByTollStationId(tollStationId);
             tollBoothNumberLabel.Text += " " + ts.Id;
             locationLabel.Text += " " + ts.location.Name;
+            LoadTollBoothData();
+
+        }
+
+        public void Update(IObservable observable)
+        {
+            LoadTollBoothData();
+        }
+
+        public void LoadTollBoothData()
+        {
+            List<TollBooth> tollBooth = tollBoothController.GetByTollStationId(ts.Id);
             this.dataGridView1.Rows.Clear();
-            foreach (TollBooth tb in tollBooth)
+            tollBooth.ForEach(o =>
             {
+                o.Attach(this);
 
                 var index = dataGridView1.Rows.Add();
 
-                dataGridView1.Rows[index].Cells[0].Value = tb.Id.ToString();
-                dataGridView1.Rows[index].Cells[1].Value = tb.TollBoothNumber;
-            }
-        }
+                dataGridView1.Rows[index].Tag = o;
 
+                dataGridView1.Rows[index].Cells[0].Value = o.Id.ToString();
+                dataGridView1.Rows[index].Cells[1].Value = o.TollBoothNumber;
+
+             }
+            );
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -78,6 +94,8 @@ namespace Simsprojekat.View.AdministratorView
             tb.Devices = devices;
             tb.TollStationId = ts.Id;
             tollBoothController.Insert(tb);
+            tb.Attach(this);
+            tb.Notify();
             MessageBox.Show("Toll booth successfuly created");
 
         }
@@ -93,7 +111,9 @@ namespace Simsprojekat.View.AdministratorView
                     try
                     {
                         int tollStationId = int.Parse((string)dataGridView1.SelectedRows[i].Cells[0].Value);
+                        TollBooth tb = (TollBooth)dataGridView1.SelectedRows[i].Tag;
                         tollBoothController.Delete(tollStationId);
+                        tb.Notify();
                     }
                     catch (Exception exc)
                     {
