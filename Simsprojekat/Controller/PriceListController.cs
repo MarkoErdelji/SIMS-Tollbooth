@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Simsprojekat.Controller
 {
-    public class PriceListController
+    internal class PriceListController
     {
         private readonly IMongoDatabase _database;
         public IMongoCollection<PriceList> priceListCollection;

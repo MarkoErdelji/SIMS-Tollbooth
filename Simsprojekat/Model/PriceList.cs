@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,13 @@ namespace Simsprojekat.Model
 {
 
     [BsonIgnoreExtraElements]
-    class PriceList
+    class PriceList : IObservable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? _Id { get; set; }
 
-        [BsonElement("Id")]
+        [BsonElement("id")]
         public int Id { get; set; }
 
         [BsonElement("basePriceEuro")]
@@ -24,9 +25,6 @@ namespace Simsprojekat.Model
 
         [BsonElement("basePriceDinar")]
         public double BasePriceDinar { get; set; }
-
-        [BsonElement("id")]
-        public int Id { get; set; }
 
         [BsonElement("isActive")]
         public bool IsActive { get; set; }
@@ -49,5 +47,20 @@ namespace Simsprojekat.Model
         [BsonElement("busCoeficient")]
         public double BusCoeficient { get; set; }
 
+        private List<IObserver> _observers = new List<IObserver>();
+
+        public void Attach(IObserver observer)
+        {
+            if (_observers == null) _observers = new List<IObserver>();
+            _observers.Add(observer);
+        }
+
+        public void Notify()
+        {
+            _observers.ForEach(o =>
+            {
+                o.Update(this);
+            });
+        }
     }
 }

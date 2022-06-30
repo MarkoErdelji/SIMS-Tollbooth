@@ -1,0 +1,5 @@
+1	Sunday, May 29, 2022	300
+5	Wednesday, June 29, 2022	600
+9	Wednesday, June 29, 2022	500
+10	Wednesday, June 29, 2022	500
+Sum: 1900

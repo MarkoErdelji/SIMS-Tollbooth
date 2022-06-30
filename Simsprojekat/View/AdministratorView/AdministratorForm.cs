@@ -398,5 +398,11 @@ namespace Simsprojekat.View
         {
 
         }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            _loginForm.Show();
+        }
     }
 }

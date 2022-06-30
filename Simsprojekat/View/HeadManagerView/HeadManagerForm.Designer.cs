@@ -57,6 +57,9 @@ namespace Simsprojekat.View.StationManagerView
             this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelWorkers = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.dgwWorkers = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,9 +70,6 @@ namespace Simsprojekat.View.StationManagerView
             this.userType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnCreate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panelTollStations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTollStations)).BeginInit();
@@ -317,6 +317,39 @@ namespace Simsprojekat.View.StationManagerView
             this.panelWorkers.Size = new System.Drawing.Size(800, 418);
             this.panelWorkers.TabIndex = 3;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(580, 335);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(136, 52);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(339, 335);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(121, 52);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(68, 332);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(118, 55);
+            this.btnCreate.TabIndex = 5;
+            this.btnCreate.Text = "Create";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // dgwWorkers
             // 
             this.dgwWorkers.AllowUserToAddRows = false;
@@ -425,39 +458,6 @@ namespace Simsprojekat.View.StationManagerView
             this.userCity.Name = "userCity";
             this.userCity.ReadOnly = true;
             this.userCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(580, 335);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(136, 52);
-            this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(339, 335);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(121, 52);
-            this.btnUpdate.TabIndex = 6;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.Location = new System.Drawing.Point(68, 332);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(118, 55);
-            this.btnCreate.TabIndex = 5;
-            this.btnCreate.Text = "Create";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // HeadManagerForm
             // 

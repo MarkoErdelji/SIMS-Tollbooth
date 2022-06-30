@@ -18,9 +18,11 @@ namespace Simsprojekat.View
         public StationManager stationManager;
         public TollBoothController tollBoothController;
         public TollStationController tollStationController;
-        public StationManagerForm(StationManager stationManager)
+        private LoginForm _loginForm;
+        public StationManagerForm(LoginForm loginForm, StationManager stationManager)
         {
             InitializeComponent();
+            this._loginForm = loginForm;
             this.tollBoothController = new TollBoothController();
             this.tollStationController = new TollStationController();
             this.stationManager = stationManager;
@@ -110,6 +112,18 @@ namespace Simsprojekat.View
             TransactionController transactionController = new TransactionController();
             DateTimePickerForm dateTimePickerForm = new DateTimePickerForm(transactionController, stationManager);
             dateTimePickerForm.Show();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this._loginForm.Show();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this._loginForm.Show();
         }
     }
 }

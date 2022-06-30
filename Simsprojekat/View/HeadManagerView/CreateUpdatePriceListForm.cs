@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,13 +15,16 @@ namespace Simsprojekat.View.HeadManagerView
 {
     public partial class CreateUpdatePriceListForm : Form
     {
+        
+        IObserver _observer;
         PriceListController _priceListController;
         PriceList? _priceList;
         bool _isNew;
-        public CreateUpdatePriceListForm(int priceListId=-1)
+        public CreateUpdatePriceListForm(IObserver observer, int priceListId=-1)
         {
             this._priceListController = new PriceListController();
             this._priceList = null;
+            this._observer = observer;
 
             InitializeComponent();
             
@@ -79,6 +83,9 @@ namespace Simsprojekat.View.HeadManagerView
                     _priceListController.Update(_priceList);
                     MessageBox.Show("You have successfuly updated price list");
                 }
+
+                this._priceList.Attach(_observer);
+                this._priceList.Notify();
                 this.Dispose();
             }
         }

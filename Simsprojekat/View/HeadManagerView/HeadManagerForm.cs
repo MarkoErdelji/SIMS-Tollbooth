@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.Observer;
 using Simsprojekat.View.AdministratorView;
 using Simsprojekat.View.HeadManagerView;
 using System;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Simsprojekat.View.StationManagerView
 {
-    public partial class HeadManagerForm : Form
+    public partial class HeadManagerForm : Form, IObserver
     {
         private LoginForm _loginForm;
         private TollStationController _tollStationController;
@@ -30,10 +31,12 @@ namespace Simsprojekat.View.StationManagerView
             _userController = new UserController(); 
             InitializeComponent();
             this.btnSetActive.Enabled = false;
-            this.panelTollStations.Hide();
+            this.panelTollStations.Show();
             this.panelPriceLists.Hide();
             this.panelWorkers.Hide();
+            LoadTollStations();
         }
+
 
         private void yearlyGlobalIncomeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -62,22 +65,7 @@ namespace Simsprojekat.View.StationManagerView
             this._loginForm.Show();
         }
 
-        private void tollStationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.panelTollStations.Show();
-            this.panelPriceLists.Hide();
-            this.panelWorkers.Hide();
-            List<TollStation> tollStations = _tollStationController.GetAll();
-            this.dgwTollStations.Rows.Clear();
-            foreach (TollStation tollStation in tollStations)
-            {
-                var index = dgwTollStations.Rows.Add();
-
-                dgwTollStations.Rows[index].Cells[0].Value = tollStation.Id.ToString();
-                dgwTollStations.Rows[index].Cells[1].Value = tollStation.location.Name;
-                dgwTollStations.Rows[index].Cells[2].Value = tollStation.location.ZipCode;
-            }
-        }
+        
 
         private void dgwTollStations_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -92,53 +80,94 @@ namespace Simsprojekat.View.StationManagerView
             }
         }
 
+        public void LoadWorkers()
+        {
+            List<User> users = _userController.GetAllUsers();
+            this.dgwWorkers.Rows.Clear();
+
+            users.ForEach(o => {
+                if(o.Type == UserType.Worker)
+                {
+                    o.Attach(this);
+                    var index = dgwWorkers.Rows.Add();
+                    dgwWorkers.Rows[index].Tag = o;
+
+                    dgwWorkers.Rows[index].Cells[0].Value = o.Id.ToString();
+                    dgwWorkers.Rows[index].Cells[1].Value = o.FirstName;
+                    dgwWorkers.Rows[index].Cells[2].Value = o.LastName;
+                    dgwWorkers.Rows[index].Cells[3].Value = o.Username;
+                    dgwWorkers.Rows[index].Cells[4].Value = o.Password;
+                    dgwWorkers.Rows[index].Cells[5].Value = o.Email;
+                    dgwWorkers.Rows[index].Cells[6].Value = ((UserType)o.Type).ToString();
+                    dgwWorkers.Rows[index].Cells[7].Value = o.Adress.ToString();
+                    dgwWorkers.Rows[index].Cells[8].Value = o.Adress.City.Name;
+
+                }
+            });
+
+        }
+
+        public void LoadTollStations()
+        {
+            List<TollStation> tollStations = _tollStationController.GetAll();
+            this.dgwTollStations.Rows.Clear();
+            tollStations.ForEach(o => {
+                o.Attach(this);
+                var index = dgwTollStations.Rows.Add();
+                dgwTollStations.Rows[index].Tag = o;
+                dgwTollStations.Rows[index].Cells[0].Value = o.Id.ToString();
+                dgwTollStations.Rows[index].Cells[1].Value = o.location.Name;
+                dgwTollStations.Rows[index].Cells[2].Value = o.location.ZipCode;
+
+
+
+            });
+        }
+
+        public void LoadPriceLists()
+        {
+            List<PriceList> priceLists = _priceListController.GetAll();
+            this.dgwPriceLists.Rows.Clear();
+            priceLists.ForEach(o =>
+            {
+
+                o.Attach(this);
+
+                var index = dgwPriceLists.Rows.Add();
+
+                dgwPriceLists.Rows[index].Tag = o;
+
+                dgwPriceLists.Rows[index].Cells[0].Value = o.Id.ToString();
+                dgwPriceLists.Rows[index].Cells[2].Value = o.IsActive.ToString();
+                dgwPriceLists.Rows[index].Cells[1].Value = o.LastActive.ToString();
+
+            });
+        }
+
+
         private void priceListsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.panelPriceLists.Show();
             this.panelTollStations.Hide();
             this.panelWorkers.Hide();
-            List<PriceList> priceLists = _priceListController.GetAll();
-            this.dgwPriceLists.Rows.Clear();
-            foreach(PriceList priceList in priceLists)
-            {
-                var index = dgwPriceLists.Rows.Add();
-
-                dgwPriceLists.Rows[index].Cells[0].Value = priceList.Id.ToString();
-                dgwPriceLists.Rows[index].Cells[2].Value = priceList.IsActive.ToString();
-                dgwPriceLists.Rows[index].Cells[1].Value = priceList.LastActive.ToString();
-
-            }
-
-
+            LoadPriceLists();
         }
-
+        
+        private void tollStationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.panelTollStations.Show();
+            this.panelPriceLists.Hide();
+            this.panelWorkers.Hide();
+            LoadTollStations();
+            
+        }
         private void workersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.panelWorkers.Show();
-            this.panelTollStations.Show();
-            this.panelPriceLists.Show();
-
-            List<User> users = _userController.GetAllUsers();
-            this.dgwWorkers.Rows.Clear();
-            foreach (User user in users)
-            {
-
-                if (user.Type == UserType.Worker) {
-                    var index = dgwWorkers.Rows.Add();
-
-                    dgwWorkers.Rows[index].Cells[0].Value = user.Id.ToString();
-                    dgwWorkers.Rows[index].Cells[1].Value = user.FirstName;
-                    dgwWorkers.Rows[index].Cells[2].Value = user.LastName;
-                    dgwWorkers.Rows[index].Cells[3].Value = user.Username;
-                    dgwWorkers.Rows[index].Cells[4].Value = user.Password;
-                    dgwWorkers.Rows[index].Cells[5].Value = user.Email;
-                    dgwWorkers.Rows[index].Cells[6].Value = ((UserType)user.Type).ToString();
-                    dgwWorkers.Rows[index].Cells[7].Value = user.Adress.ToString();
-                    dgwWorkers.Rows[index].Cells[8].Value = user.Adress.City.Name;
-                }
-            }
-
-
+            this.panelTollStations.Hide();
+            this.panelPriceLists.Hide();
+            LoadWorkers();
+            
         }
 
         private void dgwPriceLists_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -156,7 +185,7 @@ namespace Simsprojekat.View.StationManagerView
                 }
                 else
                 {
-                    new CreateUpdatePriceListForm(priceListId).ShowDialog();
+                    new CreateUpdatePriceListForm(this, priceListId).ShowDialog();
                 }
 
             }
@@ -165,7 +194,9 @@ namespace Simsprojekat.View.StationManagerView
                 e.RowIndex >= 0 && e.ColumnIndex == 4)
             {
                 int priceListId = int.Parse((string)dgwPriceLists.Rows[e.RowIndex].Cells[0].Value);
+                PriceList priceList = (PriceList)dgwPriceLists.Rows[e.RowIndex].Tag;
                 bool isActive = bool.Parse((string)dgwPriceLists.Rows[e.RowIndex].Cells[2].Value);
+                
                 if (isActive == true)
                 {
                     MessageBox.Show("You cannot delete active price list");
@@ -175,6 +206,7 @@ namespace Simsprojekat.View.StationManagerView
                     if (_priceListController.Delete(priceListId))
                     {
                         MessageBox.Show("Price list successfuly deleted");
+                        priceList.Notify();
                     }
                 }
             }
@@ -183,7 +215,7 @@ namespace Simsprojekat.View.StationManagerView
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
-            new CreateUpdatePriceListForm().ShowDialog();
+            new CreateUpdatePriceListForm(this).ShowDialog();
         }
 
         private void btnSetActive_Click(object sender, EventArgs e)
@@ -205,6 +237,13 @@ namespace Simsprojekat.View.StationManagerView
             _priceListController.Update(selected);
             _priceListController.Update(active);
             MessageBox.Show("Successfuly changed active pricelist");
+            selected.Attach(this);
+            selected.Notify();
+
+
+            active.Attach(this);
+            active.Notify();
+
         }
 
         private void dgwPriceLists_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -217,7 +256,7 @@ namespace Simsprojekat.View.StationManagerView
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            WorkerCreationForm usc = new WorkerCreationForm(UserType.Worker);
+            WorkerCreationForm usc = new WorkerCreationForm(this, UserType.Worker);
             usc.Visible = false;
             usc.ShowDialog();
         }
@@ -236,7 +275,7 @@ namespace Simsprojekat.View.StationManagerView
                         string userType = (string)dgwWorkers.SelectedRows[i].Cells[6].Value;
                       
                         Worker w = _userController.GetWorker(userid);
-                        WorkerCreationForm wcf = new WorkerCreationForm(w.Id, w.FirstName, w.LastName, w.Username, w.Password, w.Email, w.Type, w.Adress, w.Adress.City, w.TollBoothId);
+                        WorkerCreationForm wcf = new WorkerCreationForm(this, w.Id, w.FirstName, w.LastName, w.Username, w.Password, w.Email, w.Type, w.Adress, w.Adress.City, w.TollBoothId);
                         wcf.ShowDialog();
                         
                     }
@@ -260,7 +299,10 @@ namespace Simsprojekat.View.StationManagerView
                     try
                     {
                         int userid = int.Parse((string)dgwWorkers.SelectedRows[i].Cells[0].Value);
+                        User user = (User)dgwWorkers.SelectedRows[i].Tag;
                         _userController.DeleteUser(userid);
+                        user.Notify();
+
                     }
                     catch (Exception exc)
                     {
@@ -270,6 +312,19 @@ namespace Simsprojekat.View.StationManagerView
                 MessageBox.Show("Selected users successfuly deleted");
 
             }
+        }
+
+        public void Update(IObservable observable)
+        {
+            LoadPriceLists();
+            LoadTollStations();
+            LoadWorkers();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this._loginForm.Show();
         }
     }
 }

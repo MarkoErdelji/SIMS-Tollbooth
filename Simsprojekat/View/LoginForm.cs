@@ -57,7 +57,7 @@ namespace Simsprojekat.View
                         MessageBox.Show("You are being redirected to another tollstation! (Administrator)");
                         return;
                     }
-                    StationManagerForm stationManagerForm = new StationManagerForm(sm);
+                    StationManagerForm stationManagerForm = new StationManagerForm(this, sm);
                     stationManagerForm.Show();
                 }
                 if (user.Type == UserType.Worker)

@@ -60,23 +60,23 @@ namespace Simsprojekat.View.WorkerView
             {
                 if (_ticket.Vehicle.Type == VehicleType.Car)
                 {
-                    _price = priceList.CarCoeficient * priceList.basePriceEuro;
+                    _price = priceList.CarCoeficient * priceList.BasePriceEuro;
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Truck)
                 {
-                    _price = priceList.TruckCoeficient * priceList.basePriceEuro;
+                    _price = priceList.TruckCoeficient * priceList.BasePriceEuro;
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Bike)
                 {
-                    _price = priceList.BikeCoeficient * priceList.basePriceEuro;
+                    _price = priceList.BikeCoeficient * priceList.BasePriceEuro;
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Bus)
                 {
-                    _price = priceList.BusCoeficient * priceList.basePriceEuro;
+                    _price = priceList.BusCoeficient * priceList.BasePriceEuro;
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Car)
                 {
-                    _price = priceList.OtherCoeficient * priceList.basePriceEuro;
+                    _price = priceList.OtherCoeficient * priceList.BasePriceEuro;
                 }
                 lblCena.Text = "Price: " + _price + " eur.";
             }
@@ -84,26 +84,26 @@ namespace Simsprojekat.View.WorkerView
             {
                 if (_ticket.Vehicle.Type == VehicleType.Car)
                 {
-                    _price = priceList.CarCoeficient * priceList.basePriceDinar;
+                    _price = priceList.CarCoeficient * priceList.BasePriceDinar;
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Truck)
                 {
-                    _price = priceList.TruckCoeficient * priceList.basePriceDinar;
+                    _price = priceList.TruckCoeficient * priceList.BasePriceDinar;
 
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Bike)
                 {
-                    _price = priceList.BikeCoeficient * priceList.basePriceDinar;
+                    _price = priceList.BikeCoeficient * priceList.BasePriceDinar;
 
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Bus)
                 {
-                    _price = priceList.BusCoeficient * priceList.basePriceDinar;
+                    _price = priceList.BusCoeficient * priceList.BasePriceDinar;
 
                 }
                 else if (_ticket.Vehicle.Type == VehicleType.Car)
                 {
-                    _price = priceList.OtherCoeficient * priceList.basePriceDinar;
+                    _price = priceList.OtherCoeficient * priceList.BasePriceDinar;
                 }
                 lblCena.Text = "Price: " + _price + " din.";
 

@@ -69,6 +69,7 @@
             this.backgroundRadioButton2 = new Simsprojekat.View.BackgroundRadioButton();
             this.backgroundRadioButton1 = new Simsprojekat.View.BackgroundRadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tollStationGridView)).BeginInit();
@@ -84,7 +85,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tolLStationsToolStripMenuItem,
             this.usersToolStripMenuItem,
-            this.ticketGenerationToolStripMenuItem});
+            this.ticketGenerationToolStripMenuItem,
+            this.logoutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
@@ -121,10 +123,10 @@
             this.panel1.Controls.Add(this.tollStationUpdateBtn);
             this.panel1.Controls.Add(this.tollStationCreateBtn);
             this.panel1.Controls.Add(this.tollStationGridView);
-            this.panel1.Location = new System.Drawing.Point(3, 36);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1130, 649);
+            this.panel1.Size = new System.Drawing.Size(1125, 649);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -137,6 +139,7 @@
             this.logoutButton.TabIndex = 12;
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Visible = false;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
             // tollStationDeleteBtn
@@ -248,6 +251,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.userDeleteBtn);
             this.panel2.Controls.Add(this.userUpdateBtn);
             this.panel2.Controls.Add(this.userCreateBtn);
@@ -409,7 +414,7 @@
             this.panel3.Controls.Add(this.ticketGenButton);
             this.panel3.Controls.Add(this.vehicleRadioGroup);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(1, 37);
+            this.panel3.Location = new System.Drawing.Point(3, 36);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1125, 648);
@@ -529,14 +534,19 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Select the vehicle type :";
             // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
             // AdministratorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 681);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -601,5 +611,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label selectLabel;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
