@@ -1,5 +1,6 @@
 ﻿using Simsprojekat.Controller;
 using Simsprojekat.Model;
+using Simsprojekat.View.AdministratorView;
 using Simsprojekat.View.HeadManagerView;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Simsprojekat.View.StationManagerView
         private LoginForm _loginForm;
         private TollStationController _tollStationController;
         private PriceListController _priceListController;
+        private UserController _userController;
         private int _selectedId;
         public HeadManagerForm(LoginForm loginForm)
         {
@@ -25,10 +27,12 @@ namespace Simsprojekat.View.StationManagerView
             this._loginForm = loginForm;
             _tollStationController = new TollStationController();
             _priceListController = new PriceListController();
+            _userController = new UserController(); 
             InitializeComponent();
             this.btnSetActive.Enabled = false;
             this.panelTollStations.Hide();
             this.panelPriceLists.Hide();
+            this.panelWorkers.Hide();
         }
 
         private void yearlyGlobalIncomeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,6 +66,7 @@ namespace Simsprojekat.View.StationManagerView
         {
             this.panelTollStations.Show();
             this.panelPriceLists.Hide();
+            this.panelWorkers.Hide();
             List<TollStation> tollStations = _tollStationController.GetAll();
             this.dgwTollStations.Rows.Clear();
             foreach (TollStation tollStation in tollStations)
@@ -91,6 +96,7 @@ namespace Simsprojekat.View.StationManagerView
         {
             this.panelPriceLists.Show();
             this.panelTollStations.Hide();
+            this.panelWorkers.Hide();
             List<PriceList> priceLists = _priceListController.GetAll();
             this.dgwPriceLists.Rows.Clear();
             foreach(PriceList priceList in priceLists)
@@ -108,6 +114,30 @@ namespace Simsprojekat.View.StationManagerView
 
         private void workersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.panelWorkers.Show();
+            this.panelTollStations.Show();
+            this.panelPriceLists.Show();
+
+            List<User> users = _userController.GetAllUsers();
+            this.dgwWorkers.Rows.Clear();
+            foreach (User user in users)
+            {
+
+                if (user.Type == UserType.Worker) {
+                    var index = dgwWorkers.Rows.Add();
+
+                    dgwWorkers.Rows[index].Cells[0].Value = user.Id.ToString();
+                    dgwWorkers.Rows[index].Cells[1].Value = user.FirstName;
+                    dgwWorkers.Rows[index].Cells[2].Value = user.LastName;
+                    dgwWorkers.Rows[index].Cells[3].Value = user.Username;
+                    dgwWorkers.Rows[index].Cells[4].Value = user.Password;
+                    dgwWorkers.Rows[index].Cells[5].Value = user.Email;
+                    dgwWorkers.Rows[index].Cells[6].Value = ((UserType)user.Type).ToString();
+                    dgwWorkers.Rows[index].Cells[7].Value = user.Adress.ToString();
+                    dgwWorkers.Rows[index].Cells[8].Value = user.Adress.City.Name;
+                }
+            }
+
 
         }
 
@@ -183,6 +213,63 @@ namespace Simsprojekat.View.StationManagerView
             bool isActive = bool.Parse((string)dgwPriceLists.Rows[e.RowIndex].Cells[2].Value);
             if (isActive) btnSetActive.Enabled = false;
             else btnSetActive.Enabled = true;
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            WorkerCreationForm usc = new WorkerCreationForm(UserType.Worker);
+            usc.Visible = false;
+            usc.ShowDialog();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            var selectedRowCount = dgwWorkers.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int userid = int.Parse((string)dgwWorkers.SelectedRows[i].Cells[0].Value);
+                        string userType = (string)dgwWorkers.SelectedRows[i].Cells[6].Value;
+                      
+                        Worker w = _userController.GetWorker(userid);
+                        WorkerCreationForm wcf = new WorkerCreationForm(w.Id, w.FirstName, w.LastName, w.Username, w.Password, w.Email, w.Type, w.Adress, w.Adress.City, w.TollBoothId);
+                        wcf.ShowDialog();
+                        
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var selectedRowCount = dgwWorkers.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount > 0)
+            {
+
+                for (int i = 0; i < selectedRowCount; i++)
+                {
+                    try
+                    {
+                        int userid = int.Parse((string)dgwWorkers.SelectedRows[i].Cells[0].Value);
+                        _userController.DeleteUser(userid);
+                    }
+                    catch (Exception exc)
+                    {
+                        return;
+                    }
+                }
+                MessageBox.Show("Selected users successfuly deleted");
+
+            }
         }
     }
 }

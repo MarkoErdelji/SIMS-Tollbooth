@@ -56,11 +56,27 @@ namespace Simsprojekat.View.StationManagerView
             this.isActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deleteBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panelWorkers = new System.Windows.Forms.Panel();
+            this.dgwWorkers = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panelTollStations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTollStations)).BeginInit();
             this.panelPriceLists.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwPriceLists)).BeginInit();
+            this.panelWorkers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwWorkers)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -290,11 +306,165 @@ namespace Simsprojekat.View.StationManagerView
             this.deleteBtn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.deleteBtn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // panelWorkers
+            // 
+            this.panelWorkers.Controls.Add(this.btnDelete);
+            this.panelWorkers.Controls.Add(this.btnUpdate);
+            this.panelWorkers.Controls.Add(this.btnCreate);
+            this.panelWorkers.Controls.Add(this.dgwWorkers);
+            this.panelWorkers.Location = new System.Drawing.Point(0, 31);
+            this.panelWorkers.Name = "panelWorkers";
+            this.panelWorkers.Size = new System.Drawing.Size(800, 418);
+            this.panelWorkers.TabIndex = 3;
+            // 
+            // dgwWorkers
+            // 
+            this.dgwWorkers.AllowUserToAddRows = false;
+            this.dgwWorkers.AllowUserToDeleteRows = false;
+            this.dgwWorkers.AllowUserToResizeColumns = false;
+            this.dgwWorkers.AllowUserToResizeRows = false;
+            this.dgwWorkers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwWorkers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.userFirstName,
+            this.userLastName,
+            this.userUsername,
+            this.userPassword,
+            this.userEmail,
+            this.userType,
+            this.userAdress,
+            this.userCity});
+            this.dgwWorkers.Location = new System.Drawing.Point(12, 16);
+            this.dgwWorkers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgwWorkers.Name = "dgwWorkers";
+            this.dgwWorkers.RowHeadersWidth = 51;
+            this.dgwWorkers.RowTemplate.Height = 25;
+            this.dgwWorkers.Size = new System.Drawing.Size(776, 288);
+            this.dgwWorkers.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // userFirstName
+            // 
+            this.userFirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.userFirstName.HeaderText = "First Name";
+            this.userFirstName.MinimumWidth = 6;
+            this.userFirstName.Name = "userFirstName";
+            this.userFirstName.ReadOnly = true;
+            this.userFirstName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // userLastName
+            // 
+            this.userLastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.userLastName.HeaderText = "Last Name";
+            this.userLastName.MinimumWidth = 6;
+            this.userLastName.Name = "userLastName";
+            this.userLastName.ReadOnly = true;
+            this.userLastName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // userUsername
+            // 
+            this.userUsername.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.userUsername.HeaderText = "Username";
+            this.userUsername.MinimumWidth = 6;
+            this.userUsername.Name = "userUsername";
+            this.userUsername.ReadOnly = true;
+            this.userUsername.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // userPassword
+            // 
+            this.userPassword.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.userPassword.HeaderText = "Password";
+            this.userPassword.MinimumWidth = 6;
+            this.userPassword.Name = "userPassword";
+            this.userPassword.ReadOnly = true;
+            this.userPassword.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // userEmail
+            // 
+            this.userEmail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.userEmail.FillWeight = 1F;
+            this.userEmail.HeaderText = "Email";
+            this.userEmail.MinimumWidth = 6;
+            this.userEmail.Name = "userEmail";
+            this.userEmail.ReadOnly = true;
+            this.userEmail.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.userEmail.Width = 150;
+            // 
+            // userType
+            // 
+            this.userType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.userType.HeaderText = "Type";
+            this.userType.MinimumWidth = 6;
+            this.userType.Name = "userType";
+            this.userType.ReadOnly = true;
+            this.userType.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // userAdress
+            // 
+            this.userAdress.HeaderText = "Adress";
+            this.userAdress.MinimumWidth = 6;
+            this.userAdress.Name = "userAdress";
+            this.userAdress.ReadOnly = true;
+            this.userAdress.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.userAdress.Width = 125;
+            // 
+            // userCity
+            // 
+            this.userCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.userCity.HeaderText = "City";
+            this.userCity.MinimumWidth = 6;
+            this.userCity.Name = "userCity";
+            this.userCity.ReadOnly = true;
+            this.userCity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(580, 335);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(136, 52);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(339, 335);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(121, 52);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(68, 332);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(118, 55);
+            this.btnCreate.TabIndex = 5;
+            this.btnCreate.Text = "Create";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
             // HeadManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panelWorkers);
             this.Controls.Add(this.panelPriceLists);
             this.Controls.Add(this.panelTollStations);
             this.Controls.Add(this.menuStrip1);
@@ -308,6 +478,8 @@ namespace Simsprojekat.View.StationManagerView
             ((System.ComponentModel.ISupportInitialize)(this.dgwTollStations)).EndInit();
             this.panelPriceLists.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgwPriceLists)).EndInit();
+            this.panelWorkers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgwWorkers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,5 +513,19 @@ namespace Simsprojekat.View.StationManagerView
         private System.Windows.Forms.DataGridViewButtonColumn deleteBtn;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSetActive;
+        private System.Windows.Forms.Panel panelWorkers;
+        private System.Windows.Forms.DataGridView dgwWorkers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userUsername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userPassword;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userAdress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userCity;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnCreate;
     }
 }
